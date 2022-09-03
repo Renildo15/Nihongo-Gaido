@@ -4,7 +4,7 @@ from .models import Grammar, Grammar_Phrase
 from .forms import GramarPhraseForm, GrammarForm
 # Create your views here.
 
-def index(request):
+def grammar_list(request):
     grammar = Grammar.objects.all()
     context = {
         'grammar': grammar,
