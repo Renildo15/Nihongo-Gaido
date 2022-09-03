@@ -22,7 +22,7 @@
       <td>{{g.gramatica}}</td>
       <td>{{g.estrutura}}</td>
       <td>{{g.nivel}}</td>
-      <td>{{g.frases}}</td>
+      <td><a href="{% url 'grammar:phrases_list' %}">Ver frases</a></td>
       <td>
         <a href="{% url 'grammar:update' g.id %}">edit</a>
         <a href="{% url 'grammar:delete' g.id %}">delete</a>
