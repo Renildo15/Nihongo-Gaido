@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    List Grammar
+{% endblock%}
+
+{% block content %}
+<a href="{% url 'grammar:home' %}">Mwnu</a><br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Gramatica</th>
+      <th>Estrutura</th>
+      <th>Nivel</th>
+      <th>Frases</th>
+    </tr>
+  </thead>
+  <tbody>
+    <a href="{% url 'grammar:add' %}">add</a>
+    {% for g in grammar%}
+    <tr>
+      <td>{{g.gramatica}}</td>
+      <td>{{g.estrutura}}</td>
+      <td>{{g.nivel}}</td>
+      <td><a href="{% url 'grammar:phrases_list' %}">Ver frases</a></td>
+      <td>
+        <a href="{% url 'grammar:update' g.id %}">edit</a>
+        <a href="{% url 'grammar:delete' g.id %}">delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
