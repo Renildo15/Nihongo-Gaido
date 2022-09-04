@@ -12,9 +12,15 @@
 
     <header>
         <div id="topnav" class="topnav">
-            <a class="link active" href="{% url 'pages:home' %}">Home</a>
-            <a class="link" href="{% url 'grammar:grammar_list'%}">Grammar</a>
-            <a class="link" href="#">Sobre</a>
+            <a href="{% url 'pages:home' %}">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Home
+            </a>
+            <a href="{% url 'grammar:grammar_list'%}">Grammar</a>
+            <a href="#">
+                Sobre
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </a>
         </div>
     </header>
     {% block content %}

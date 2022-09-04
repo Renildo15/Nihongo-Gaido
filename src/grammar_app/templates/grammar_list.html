@@ -5,6 +5,7 @@
 {% endblock%}
 
 {% block content %}
+<h2 class='title text-center'>Lista de Gramática</h2>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -15,16 +16,16 @@
     </tr>
   </thead>
   <tbody>
-    <a href="{% url 'grammar:add' %}">add</a>
+    <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add' %}">Adicionar nova gramática</a>
     {% for g in grammar%}
     <tr>
       <td>{{g.gramatica}}</td>
       <td>{{g.estrutura}}</td>
       <td>{{g.nivel}}</td>
-      <td><a href="{% url 'grammar:phrases_list' %}">Ver frases</a></td>
+      <td><a class="btn" href="{% url 'grammar:phrases_list' %}">Ver frases</a></td>
       <td>
-        <a href="{% url 'grammar:update' g.id %}">edit</a>
-        <a href="{% url 'grammar:delete' g.id %}">delete</a>
+        <a class="btn btn-warning" href="{% url 'grammar:update' g.id %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'grammar:delete' g.id %}">Deletar</a>
       </td>
     </tr>
     {% endfor %}

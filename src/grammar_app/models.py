@@ -5,7 +5,7 @@ from django.db import models
 class Grammar_Phrase(models.Model):
     frase = models.CharField(max_length=200)
     traducao = models.CharField(max_length=200)
-    explicacao = models.CharField(max_length=300)
+    explicacao = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return self.frase

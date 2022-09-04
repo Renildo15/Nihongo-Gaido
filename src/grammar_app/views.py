@@ -30,13 +30,13 @@ def grammar_create(request):
         if request.POST.get('phrase') == 'Salvar Frase': 
             if form_phrase.is_valid():
                 form_phrase.save()
-                return redirect('grammar:home')
+                return redirect('pages:home')
 
         if request.POST.get('grammar') == 'Salvar Gramatica':
            
             if form_Grammar.is_valid():
                 form_Grammar.save()
-                return redirect('grammar:home')
+                return redirect('pages:home')
     context = {
         'form_grammar': form_Grammar,
         'form_phrase': form_phrase
@@ -51,7 +51,7 @@ def grammar_update(request, pk):
 
     if form_grammar.is_valid():
         form_grammar.save()
-        return redirect('grammar:home')
+        return redirect('pages:home')
     
     context = {
         "form_grammar":form_grammar
@@ -78,7 +78,7 @@ def phrase_update(request,pk):
 def grammar_delete(request, pk):
     grammar = Grammar.objects.get(id = pk)
     grammar.delete()
-    return redirect('grammar:home')
+    return redirect('pages:home')
 
 
 def phrase_delete(request, pk):
