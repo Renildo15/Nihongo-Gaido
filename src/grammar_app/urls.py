@@ -4,7 +4,7 @@ from grammar_app import views
 app_name = 'grammar'
 
 urlpatterns = [
-    path('home/', views.index, name='home'),
+    path('grammar_list/', views.grammar_list, name='grammar_list'),
     path('phrases_list/', views.phrase_list, name='phrases_list'),
     path('update_phrase/<int:pk>', views.phrase_update,name='update_phrase'),
     path('delete_phrase/<int:pk>', views.phrase_delete, name='delete_phrase'),

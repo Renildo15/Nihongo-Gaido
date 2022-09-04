@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add' %}">Adicionar nova frase</a>
+    <a class="btn btn-primary mt-3 mb-3" href="{% url 'grammar:grammar_list' %}">Voltar</a>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -17,8 +19,8 @@
                 <td>{{f.traducao}}</td>
                 <td>{{f.explicacao}}</td>
                 <td>
-                    <a href="{% url 'grammar:update_phrase' f.id %}">edit</a>
-                    <a href="{% url 'grammar:delete_phrase' f.id %}">delete</a>
+                    <a class="btn btn-warning mt-3 mb-3" href="{% url 'grammar:update_phrase' f.id %}">Editar</a>
+                    <a class="btn btn-danger mt-3 mb-3" href="{% url 'grammar:delete_phrase' f.id %}">Deletar</a>
                 </td>
             </tr>
             {% endfor %}
