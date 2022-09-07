@@ -5,7 +5,7 @@
     <div class="container">
         <h2 class='h2 text-center mt-4'>Lista de frases</h2>
         <hr>
-        <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add_phrase' %}">Adicionar nova frase</a>
+        <a class="btn btn-success mt-3 mb-3" href="{% url 'phrase:add_phrase' %}">Adicionar nova frase</a>
         <a class="btn btn-primary mt-3 mb-3" href="{% url 'grammar:grammar_list' %}">Voltar</a>
         <table class="table table-bordered">
             <thead>
@@ -23,8 +23,8 @@
                     <td>{{f.traducao}}</td>
                     <td>{{f.explicacao}}</td>
                     <td>
-                        <a class="btn btn-warning" href="{% url 'grammar:update_phrase' f.id %}">Editar</a>
-                        <a class="btn btn-danger" href="{% url 'grammar:delete_phrase' f.id %}">Deletar</a>
+                        <a class="btn btn-warning" href="{% url 'phrase:update_phrase' f.id %}">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'phrase:delete_phrase' f.id %}">Deletar</a>
                     </td>
                 </tr>
                 {% endfor %}

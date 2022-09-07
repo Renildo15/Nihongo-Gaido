@@ -26,7 +26,7 @@
         <td>{{g.gramatica}}</td>
         <td>{{g.estrutura}}</td>
         <td>{{g.nivel}}</td>
-        <td><a class="btn" href="{% url 'grammar:phrases_list' g.id %}">Ver frases</a></td>
+        <td><a class="btn" href="{% url 'phrase:phrases_list' g.id %}">Ver frases</a></td>
         <td>
           <a class="btn btn-warning" href="{% url 'grammar:update' g.id %}">Editar</a>
           <a class="btn btn-danger" href="{% url 'grammar:delete' g.id %}">Deletar</a>
