@@ -23,7 +23,7 @@ class Grammar(models.Model):
     gramatica = models.CharField(max_length=200)
     estrutura = models.CharField(max_length=200)
     nivel = models.CharField(max_length=6, choices=nivel_choices)
-    frases = models.ForeignKey(Grammar_Phrase, on_delete=models.CASCADE)
+    frases = models.ForeignKey(Grammar_Phrase, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.gramatica
