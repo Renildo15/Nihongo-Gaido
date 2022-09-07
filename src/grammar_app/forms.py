@@ -12,7 +12,6 @@ class GrammarForm(forms.ModelForm):
         super(GrammarForm, self).__init__(*args, **kwargs)
         self.fields['frases'].empty_label = "Selecione"
         self.fields['frases'].required = False
-        self.fields['nivel'].empty_label = "Selecione"
 
 class GramarPhraseForm(forms.ModelForm):
     class Meta:

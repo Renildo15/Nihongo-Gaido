@@ -14,8 +14,8 @@ def grammar_list(request):
 
 
 
-def phrase_list(request):
-    grammar_phrase = Grammar_Phrase.objects.all()
+def phrase_list(request,pk):
+    grammar_phrase = Grammar_Phrase.objects.filter(id=pk)
     context = {
         'grammar_phrase': grammar_phrase
     }
@@ -24,26 +24,29 @@ def phrase_list(request):
 
 
 def grammar_create(request):
-    form_phrase = GramarPhraseForm(request.POST or None)
     form_Grammar = GrammarForm(request.POST or None)
     if request.method == 'POST':
-        if request.POST.get('phrase') == 'Salvar Frase': 
-            if form_phrase.is_valid():
-                form_phrase.save()
-                return redirect('pages:home')
-
-        if request.POST.get('grammar') == 'Salvar Gramatica':
-           
-            if form_Grammar.is_valid():
-                form_Grammar.save()
-                return redirect('pages:home')
+        if form_Grammar.is_valid():
+            form_Grammar.save()
+            return redirect('grammar:grammar_list')
     context = {
         'form_grammar': form_Grammar,
-        'form_phrase': form_phrase
     }
 
     return render(request, 'grammar_form.html', context)
 
+
+def phrase_create(request):
+    form_phrase = GramarPhraseForm(request.POST or None)
+    if request.method == 'POST':
+        if form_phrase.is_valid():
+            form_phrase.save()
+            return redirect('grammar:grammar_list')
+    context = {
+        'form_phrase': form_phrase,
+    }
+
+    return render(request, 'phrase_form.html', context)
 
 def grammar_update(request, pk):
     grammar = get_object_or_404(Grammar, pk=pk)
@@ -51,7 +54,7 @@ def grammar_update(request, pk):
 
     if form_grammar.is_valid():
         form_grammar.save()
-        return redirect('pages:home')
+        return redirect('grammar:grammar_list')
     
     context = {
         "form_grammar":form_grammar
@@ -71,14 +74,14 @@ def phrase_update(request,pk):
         "form_phrase": form_phrase
     }
 
-    return render(request, 'grammar_form.html', context)
+    return render(request, 'phrase_form.html', context)
 
 
 
 def grammar_delete(request, pk):
     grammar = Grammar.objects.get(id = pk)
     grammar.delete()
-    return redirect('pages:home')
+    return redirect('grammar:grammar_list')
 
 
 def phrase_delete(request, pk):
