@@ -5,7 +5,7 @@ from .forms import GramarPhraseForm
 # Create your views here.
 def phrase_list(request,pk):
     ##grammar_id = Grammar.objects.only('id').get(id=pk).id
-    grammar_phrase = Grammar_Phrase.objects.filter(id=pk)
+    grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=pk)
     context = {
         'grammar_phrase': grammar_phrase
     }
