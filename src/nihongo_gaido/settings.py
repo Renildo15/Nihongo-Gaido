@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'grammar_app',
     'nihongo_pages_app',
+    'phrases_app',
 ]
 
 MIDDLEWARE = [

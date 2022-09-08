@@ -9,8 +9,10 @@
 <div class="container">
   <h2 class='h2 text-center mt-4'>Lista de Gramática</h2>
   <hr>
-  <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add' %}">Adicionar nova gramática</a>
+  <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add_grammar' %}">Adicionar nova gramática</a>
   <div class="row"></div>
+
+  {% if grammar %}
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -26,7 +28,7 @@
         <td>{{g.gramatica}}</td>
         <td>{{g.estrutura}}</td>
         <td>{{g.nivel}}</td>
-        <td><a class="btn" href="{% url 'grammar:phrases_list' %}">Ver frases</a></td>
+        <td><a class="btn" href="{% url 'phrase:phrases_list' g.id %}">Ver frases</a></td>
         <td>
           <a class="btn btn-warning" href="{% url 'grammar:update' g.id %}">Editar</a>
           <a class="btn btn-danger" href="{% url 'grammar:delete' g.id %}">Deletar</a>
@@ -35,6 +37,12 @@
       {% endfor %}
     </tbody>
   </table>
+  {% else %}
+    <div class='text-center mt-4'>
+      <h2>Não há dados cadastrados</h2>
+    </div>
+  {% endif %}
+  
 </div>
 
 {% endblock %}
