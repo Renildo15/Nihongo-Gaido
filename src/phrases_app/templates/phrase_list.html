@@ -7,28 +7,34 @@
         <hr>
         <a class="btn btn-success mt-3 mb-3" href="{% url 'phrase:add_phrase' %}">Adicionar nova frase</a>
         <a class="btn btn-primary mt-3 mb-3" href="{% url 'grammar:grammar_list' %}">Voltar</a>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Frases</th>
-                    <th>Tradução</th>
-                    <th>Explicação</th>
-                </tr>
-            </thead>
+        {% if grammar_phrase %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Frases</th>
+                        <th>Tradução</th>
+                        <th>Explicação</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {% for f in grammar_phrase %}
-                <tr>
-                    <td>{{f.frase}}</td>
-                    <td>{{f.traducao}}</td>
-                    <td>{{f.explicacao}}</td>
-                    <td>
-                        <a class="btn btn-warning" href="{% url 'phrase:update_phrase' f.id %}">Editar</a>
-                        <a class="btn btn-danger" href="{% url 'phrase:delete_phrase' f.id %}">Deletar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                <tbody>
+                    {% for f in grammar_phrase %}
+                    <tr>
+                        <td>{{f.frase}}</td>
+                        <td>{{f.traducao}}</td>
+                        <td>{{f.explicacao}}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'phrase:update_phrase' f.id %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'phrase:delete_phrase' f.id %}">Deletar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+          <div class='text-center mt-4'>
+            <h2>Não há dados cadastrados</h2>
+          </div> 
+        {% endif %}
     </div>
 {% endblock content %}

@@ -11,6 +11,8 @@
   <hr>
   <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add_grammar' %}">Adicionar nova gramática</a>
   <div class="row"></div>
+
+  {% if grammar %}
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -35,6 +37,12 @@
       {% endfor %}
     </tbody>
   </table>
+  {% else %}
+    <div class='text-center mt-4'>
+      <h2>Não há dados cadastrados</h2>
+    </div>
+  {% endif %}
+  
 </div>
 
 {% endblock %}
