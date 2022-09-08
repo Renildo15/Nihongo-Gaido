@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse,reverse
 from .models import Grammar_Phrase
+from grammar_app.models import Grammar
+from grammar_app.forms import GrammarForm
 from .forms import GramarPhraseForm
 
 # Create your views here.
@@ -27,13 +29,14 @@ def phrase_create(request):
     return render(request, 'phrase_form.html', context)
 
 
-def phrase_update(request,pk):
+def phrase_update(request, pk):
     phrase = get_object_or_404(Grammar_Phrase, pk=pk)
     form_phrase = GramarPhraseForm(request.POST or None, instance=phrase)
-
+    print(phrase.grammar_id)
     if form_phrase.is_valid():
         form_phrase.save()
-        return redirect('grammar:phrases_list')
+        ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
+        return redirect('grammar:grammar_list')
 
     context = {
         "form_phrase": form_phrase
@@ -44,5 +47,5 @@ def phrase_update(request,pk):
 def phrase_delete(request, pk):
     phrase = Grammar_Phrase.objects.get(id = pk)
     phrase.delete()
-    return redirect('grammar:phrases_list')
+    return redirect('grammar:grammar_list')
 
