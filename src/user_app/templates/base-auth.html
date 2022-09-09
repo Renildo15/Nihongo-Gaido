@@ -12,19 +12,6 @@
 </head>
 <body>
 
-    <header>
-        <div id="topnav" class="topnav">
-            <a class="link active" href="{% url 'pages:home' %}">
-                <i class="fa fa-home" aria-hidden="true"></i>
-                Home
-            </a>
-            <a class="link" href="{% url 'grammar:grammar_list'%}">Grammar</a>
-            <a class="link" href="{% url 'pages:sobre' %}">
-                Sobre
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-            </a>
-        </div>
-    </header>
     {% block content %}
     {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

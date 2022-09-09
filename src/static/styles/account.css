@@ -5,3 +5,12 @@ img{
 .gl-font-size-h2 {
     font-size: 1.1875rem;
 }
+
+.gl-pt-5 {
+    padding-top: 1rem;
+}
+
+.gl-px-5 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
