@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+{% if messages%}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+            </div>
+        {% endfor %}
+{% endif %}
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            
+        </div>
+
+        <div class=" shadow p-4 bg-body rounded mb-5 col-md mt-5">
+            
+            <h1>Login</h1>
+            <hr>
+
+            <form method="POST" action="{% url 'user:logar_user' %}" class="teste-login">
+                {% csrf_token %}
+                <label>Username</label>
+                <input name="username" class="form-control input" type="text" placeholder="Username...">
+                <br>
+                <label>Senha</label>
+                <input name="password" class="form-control input" type="password" placeholder="Senha...">
+                <br>
+                <input class="btn btn-login btn-lg" type="submit" value="Login">
+                <a href="#" class="btn btn-register-log btn-lg">Cadastre-se</a><br><br>
+                <a href="#">Esqueceu a senha? Clique aqui!</a>
+            </form>
+        </div>
+
+        <div class="col-md-3">
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}
