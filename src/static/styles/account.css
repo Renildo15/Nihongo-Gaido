@@ -60,6 +60,10 @@ form input[type=text]:focus{
     background: #4F9D69;
 }
 
+span{
+    font-size: 15px;
+}
+
 .link{
     color: #68D89B;
     text-decoration: none;
