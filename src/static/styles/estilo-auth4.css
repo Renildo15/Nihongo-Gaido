@@ -144,8 +144,35 @@ label{
 }
 
 
+.content-reset{
+    width: 50%;
+    margin: 0 auto;
+    padding: 30px;
+}
 
+.input-reset{
+    width: 100%;
+    padding: 10px;
+}
 
+.reset-btn{
+    text-decoration: none;
+    width: 100%;
+    height: 45px;
+    cursor: pointer;
+    background: #68D89B;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 1s;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.reset-div-btn{
+    margin-top: 20px;
+}
 
 
 
