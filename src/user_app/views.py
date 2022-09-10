@@ -46,3 +46,9 @@ def cadastrar_user(request):
     }
 
     return render(request, 'cadastro.html', context)
+
+@login_required(login_url='user:logar_user')
+def deslogar_user(request):
+    logout(request)
+    messages.success(request, "Usuário deslogado com sucesso!")
+    return redirect('/home/')
