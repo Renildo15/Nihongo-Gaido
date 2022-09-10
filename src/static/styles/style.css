@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 *{
-    font-family:Roboto;
+    font-family: Roboto Condensed;
 }
 .topnav{
     background-color: #68D89B;

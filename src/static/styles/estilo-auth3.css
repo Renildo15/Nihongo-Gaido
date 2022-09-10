@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     outline: none;
+    font-family: Roboto Condensed;
 }
 
 form{
@@ -111,6 +115,33 @@ label{
 }
 
 
+.home-btn{
+    text-decoration: none;
+    width: 100%;
+    height: 45px;
+    cursor: pointer;
+    background: #68D89B;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 1s;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.home-btn:hover{
+    background: #4F9D69;
+    color: white;
+}
+
+.div-btn{
+    margin-top: 80px;
+}
+
+.h1-div{
+    margin-top: 40px;
+}
 
 
 

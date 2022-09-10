@@ -52,3 +52,23 @@ def deslogar_user(request):
     logout(request)
     messages.success(request, "Usuário deslogado com sucesso!")
     return redirect('/home/')
+
+@login_required(login_url='user:logar_user')
+def mudar_senha(request):
+    if request.method == "POST":
+        form_senha = PasswordChangingForm(request.user, request.POST)
+        if form_senha.is_valid():
+            user = form_senha.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Usuário atualizado com sucesso!')
+            return redirect('/auth/mudar_senha_sucesso/')
+    else:
+        form_senha = PasswordChangingForm(request.user)
+    context = {
+        'form_senha': form_senha
+    }
+    return render(request, 'mudar_senha.html', context)
+
+@login_required(login_url='user:logar_user')
+def mudar_senha_sucesso(request):
+    return render(request, 'mudar_senha_sucesso.html')
