@@ -3,6 +3,7 @@ from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm, Pas
 from .forms import RegisterUserForm, PasswordChangingForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def logar_user(request):
@@ -26,3 +27,22 @@ def logar_user(request):
     }
     return render(request, "login.html", context)
             
+
+def cadastrar_user(request):
+    if request.method == "POST":
+        form_usuario = RegisterUserForm(request.POST)
+        if form_usuario.is_valid():
+            form_usuario.save()
+            username = form_usuario.cleaned_data['username']
+            password = form_usuario.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request,("Cadastrado com sucesso!"))
+            return redirect('/home/')
+    else:
+        form_usuario = RegisterUserForm()
+    context = {
+        'form_usuario': form_usuario
+    }
+
+    return render(request, 'cadastro.html', context)
