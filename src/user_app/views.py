@@ -93,7 +93,7 @@ def password_reset_request(request):
                     email_template_name = "senha/password_reset_email.txt"
                     c = {
 					"email":user.email,
-					'domain':'127.0.0.1:8001',
+					'domain':'127.0.0.1:8000',
 					'site_name': 'Website',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
@@ -108,3 +108,8 @@ def password_reset_request(request):
                     return redirect ("/auth/reset_password_sent/")
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="senha/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+
+def PasswordResetCompleteView(request):
+    return render(request, "senha/password_reset_complete.html")

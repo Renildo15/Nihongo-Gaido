@@ -7,4 +7,5 @@ urlpatterns = [
     path('grammar/', include('grammar_app.urls', namespace='grammar')),
     path('phrase/', include('phrases_app.urls', namespace='phrase')),
     path('auth/', include('user_app.urls', namespace='user')),
+    
 ]
