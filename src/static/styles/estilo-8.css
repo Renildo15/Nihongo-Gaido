@@ -268,8 +268,65 @@ i{
 
 
 
+/*footer*/
 
+.footer-base{
+    padding: 40px 0;
+    background-color: #68D89B;
+}
 
+.logo-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    background-color: #4F9D69;
+}
+
+.logo-footer span{
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 0;
+}
+
+.logo-footer img{
+    width: 80px;
+}
+
+.footer-base ul{
+    margin-top: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.footer-base ul li a{
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.footer-base ul li{
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.footer-base ul li a:hover{
+    opacity: 1;
+}
+
+.footer-base .copyright{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+}
 
 img{
     width: 10rem;
