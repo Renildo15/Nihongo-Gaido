@@ -4,4 +4,7 @@ $(document).ready(function() {
         // $(".tab").addClass("active"); // instead of this do the below 
         $(this).addClass("active");   
     });
-    });
+});
+
+
+

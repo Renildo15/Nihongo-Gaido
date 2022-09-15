@@ -1,0 +1,64 @@
+{% extends "base-auth.html" %}
+{% load static %}
+
+{% block title %}Entrar - Nihongo Gaido{% endblock %}
+{% block content %}
+{% if messages%}
+        {% for message in messages %}
+        <div class="div-alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+            </div>
+        </div>
+        {% endfor %}
+{% endif %}
+<div class="body">
+    
+    <form method="POST" action="{% url 'user:logar_user' %}" class="shadow">
+        <div class="mt-3 text-center">
+            <div class="col-sm-12 gl-text-center">
+              <img class="gl-w-10" alt="Nihongo Gaido" src="{% static 'imgs/Nihongo-Gaido-1.png' %}">
+              <h1 class="mb-1 gl-font-size-h2">Nihongo Gaido</h1>
+            </div>
+          </div>
+        {% csrf_token %}
+        <div class="form">
+            <label>Username</label>
+             <input id="username" name="username" type="text" placeholder="Username...">
+            <label>Senha</label>
+            <input id="senha" name="password" type="password" placeholder="Senha...">
+            <div class="text-center m-2">
+                <span>Esqueceu a senha?<a href="{% url 'user:password_reset' %}" class="link"> Clique aqui!</a></span>
+            </div>
+           
+            
+            <button class="btn-login">Login</button>
+            <div class="text-center m-2">
+                <span>Não tem uma conta ainda? <a href="{% url 'user:cadastro_user' %}" class="link">Crie uma agora!</a></span>
+            </div>
+        </div>
+       
+        
+    </form>
+</div>
+
+<script>
+    var username = document.getElementById("username");
+    var senha = document.getElementById("senha");
+
+    username.addEventListener("focus", ()=>{
+        username.style.borderColor = "#68D89B"
+    })
+    username.addEventListener("blur", ()=>{
+        username.style.borderColor = "black"
+    })
+
+    senha.addEventListener("focus", ()=>{
+        senha.style.borderColor = "#68D89B"
+    })
+    senha.addEventListener("blur", ()=>{
+        senha.style.borderColor = "black"
+    })
+</script>
+{% endblock content %}

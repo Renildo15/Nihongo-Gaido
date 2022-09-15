@@ -1,0 +1,27 @@
+{% extends 'base-auth.html' %}
+{% load static %}
+{% block title %}
+    Confirmação - Nihongo Gaido
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="m-3 p-5 text-center shadow">
+            <div class="col-sm-12 gl-text-center">
+              <img class="gl-w-10" alt="Nihongo Gaido" src="{% static 'imgs/Nihongo-Gaido-1.png' %}">
+              <h1 class="mb-1 gl-font-size-h2">Nihongo Gaido</h1>
+              <div class="h1-div">
+                <h1>Senha Alterada com Sucesso</h1>
+              </div>
+              <div class="div-btn">
+                <a href="{% url 'pages:home' %}" class="home-btn mb-3">Voltar para a home</a>
+              </div>
+              
+            </div>
+        </div>
+        
+    </div>
+        
+</div>
+{% endblock content %}
