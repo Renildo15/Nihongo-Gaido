@@ -111,5 +111,3 @@ def password_reset_request(request):
 
 
 
-def PasswordResetCompleteView(request):
-    return render(request, "senha/password_reset_complete.html")
