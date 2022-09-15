@@ -71,6 +71,12 @@ form{
     top:50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
+    z-index: -1;
+}
+
+.div-alert{
+    width: 65%;
+    margin: 0 auto;
 }
 
 .form{
