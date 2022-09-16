@@ -308,7 +308,6 @@ i{
 .footer-base ul li a{
     color: inherit;
     text-decoration: none;
-    opacity: 0.8;
     color: #fff;
 }
 
@@ -318,7 +317,8 @@ i{
 }
 
 .footer-base ul li a:hover{
-    opacity: 1;
+    text-decoration: underline;
+    color: #fff;
 }
 
 .footer-base .copyright{
