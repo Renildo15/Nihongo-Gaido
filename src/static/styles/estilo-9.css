@@ -336,6 +336,7 @@ i{
     width: 80%;
     height: 80%;
     margin: 0 auto;
+    margin-top: 80px;
     max-width: 100%;
     box-shadow: 1px 1px 6px #0000001c;
 }
@@ -354,7 +355,27 @@ i{
 }
 
 
+.btn-div{
+    text-align: center;
+}
 
+
+.btn-div input{
+    outline: none;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffff;
+    background-color: #68D89B;
+    border-radius: 10px;
+    transition: 1s ease;
+}
+
+.btn-div input:hover{
+    background-color: #4F9D69;
+    letter-spacing: 2px;
+}
 
 
 
