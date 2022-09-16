@@ -5,23 +5,24 @@ Phrase Form
 {% endblock title %}
 
 {% block content %}
-
-<form class="" method="post">
-    {% csrf_token %}
-    <div class="inputs-grammar">
-        <h2>Adicionar nova frase</h2>
-        {% for field in form_phrase %}
-            <div class="inputs-grammar-box">
-                <label>{{field.label}}</label>
-                {{field}}
+<div class="form-container-form">
+    <form class="" method="post">
+        {% csrf_token %}
+        <div class="inputs-grammar">
+            <h2>Adicionar nova frase</h2>
+            {% for field in form_phrase %}
+                <div class="inputs-grammar-box">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+            <div class="btn-div">
+                <input type="submit" name="phrase" value="Salvar Frase"/>
             </div>
-        {% endfor %}
-        <div class="btn-div">
-            <input type="submit" name="phrase" value="Salvar Frase"/>
         </div>
-    </div>
-    
-</form>
+        
+    </form>
+</div>
 
 {% endblock content %}
 

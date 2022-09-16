@@ -66,10 +66,7 @@ form{
     max-width: 1000px;
     width: 70%;
     padding: 10px;
-    position: absolute;
-    left: 50%;
-    top:50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
     border-radius: 10px;
     z-index: -1;
 }
@@ -336,7 +333,7 @@ i{
     width: 80%;
     height: 80%;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 40px;
     max-width: 100%;
     box-shadow: 1px 1px 6px #0000001c;
 }
@@ -377,6 +374,15 @@ i{
     letter-spacing: 2px;
 }
 
+
+.form-container{
+    margin: 20px;
+    padding: 20px;
+}
+.form-container-form{
+    margin: 0;
+    padding: 0;
+}
 
 
 
