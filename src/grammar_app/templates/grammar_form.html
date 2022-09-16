@@ -6,21 +6,24 @@ Adicionar gramatica - Nihongo Gaido
 
 {% block content %}
 
-<form class="" method="post">
-    {% csrf_token %}
-    <div class="inputs-grammar">
-        <h2>Adicionar nova gramatica</h2>
-        {% for field in form_grammar %}
-            <div class="inputs-grammar-box">
-                <label>{{field.label}}</label>
-                {{field}}
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="inputs-grammar">
+            <h2>Adicionar nova gramatica</h2>
+            {% for field in form_grammar %}
+                <div class="inputs-grammar-box">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+            <div class="btn-div">
+                <input type="submit" name="grammar" value="Salvar Gramatica"/>
             </div>
-        {% endfor %}
-        <div class="btn-div">
-            <input type="submit" name="grammar" value="Salvar Gramatica"/>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+
 {% endblock content %}
 
 {% block footer %}
