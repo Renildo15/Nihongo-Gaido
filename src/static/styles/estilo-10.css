@@ -334,6 +334,7 @@ i{
     height: 80%;
     margin: 0 auto;
     margin-top: 40px;
+    margin-bottom: 40px;
     max-width: 100%;
     box-shadow: 1px 1px 6px #0000001c;
 }
@@ -377,6 +378,10 @@ i{
 
 .form-container{
     margin: 20px;
+    padding: 20px;
+}
+.form-container-senha{
+    margin-top: 50px;
     padding: 20px;
 }
 .form-container-form{
