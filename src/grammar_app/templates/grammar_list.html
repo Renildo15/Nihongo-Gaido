@@ -21,7 +21,7 @@
           <th>Estrutura</th>
           <th>Nivel</th>
           <th>Frases</th>
-          <th></th>
+          <th>Opções</th>
         </tr>
       </thead>
       <tbody>
@@ -31,9 +31,9 @@
           <td>{{g.estrutura}}</td>
           <td>{{g.nivel}}</td>
           <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases</a></td>
-          <td>
-            <a class="btn-edit" href="{% url 'grammar:update' g.id %}">Editar</a>
-            <a class="btn-delete" href="{% url 'grammar:delete' g.id %}">Deletar</a>
+          <td class="btn-table">
+            <a class="btn-edit" href="{% url 'grammar:update' g.id %}"><i class="fa fa-edit"></i></a>
+            <a class="btn-delete" href="{% url 'grammar:delete' g.id %}"><i class="fa fa-trash"></i></a>
           </td>
         </tr>
         {% endfor %}

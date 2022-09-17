@@ -465,7 +465,55 @@ i{
 .table-css{
     width: 100%;
     border-collapse: collapse;
-    border-radius: 50%;
+    border-radius: 10px;;
+    box-shadow: 6px 6px 6px #0000001c;
+}
+
+.btn-table{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-table a{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.btn-frase {
+    text-decoration: none;
+    background-color: #660066;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+}
+.btn-frase:hover {
+    background-color: #420042;
+    color: #fff;
+    box-shadow: 6px 6px 1px #0000001c;
+}
+
+.btn-edit i{
+    color: #664e00;
+}
+.btn-edit i:hover{
+    color: #664e00;
+    transform: scale(1.5);
+    
+}
+.btn-detail i{
+    color: #660066;
+}
+.btn-detail i:hover{
+    color: #660066;
+    transform: scale(1.5);
+}
+.btn-delete i{
+    color: #c00303;
+}
+.btn-delete i:hover{
+    transform: scale(1.5);
+    color: #c00303;
 }
 
 

@@ -7,7 +7,7 @@
             <h2 class='h2 text-center mt-4'>Lista de frases</h2>
             <hr>
             <div class="div-buttons">
-                <a class="btn-add" href="{% url 'phrase:add_phrase' %}">Adicionar nova frase</a>
+                <a class="btn-add" href="{% url 'phrase:add_phrase' %}">Add nova frase</a>
                 <a class="btn-back" href="{% url 'grammar:grammar_list' %}">Voltar</a>
             </div>
         </div>
@@ -18,7 +18,7 @@
                         <tr>
                             <th>Frases</th>
                             <th>Tradução</th>
-                            <th></th>
+                            <th>Opções</th>
                         </tr>
                     </thead>
 
@@ -27,10 +27,10 @@
                         <tr>
                             <td>{{f.frase}}</td>
                             <td>{{f.traducao}}</td>
-                            <td class="">
-                                <a class="btn-edit" href="{% url 'phrase:update_phrase' f.id %}">Editar</a>
-                                <a class="btn-detail" href="#">Detalhes</a>
-                                <a class="btn-delete" href="{% url 'phrase:delete_phrase' f.id %}">Deletar</a>
+                            <td class="btn-table">
+                                <a class="btn-edit" href="{% url 'phrase:update_phrase' f.id %}"><i class="fa fa-edit"></i></a>
+                                <a class="btn-detail" href="#"><i class="fa fa-eye"></i></a>
+                                <a class="btn-delete" href="{% url 'phrase:delete_phrase' f.id %}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         {% endfor %}
