@@ -421,7 +421,7 @@ i{
 }
 
 .container .div-buttons .btn-add{
-    width: 150px;
+    width: 190px;
     background-color: #68D89B;
     text-decoration: none;
     color: #fff;
@@ -435,15 +435,18 @@ i{
     background-color: #4F9D69;
     width: 190px;
     letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
 }
 .container .div-buttons .btn-back:hover{
     background-color: #420042;
     letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
 }
 .container .div-buttons .btn-add:hover{
     background-color: #4F9D69;
-    width: 190px;
+    width: 210px;
     letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
 }
 
 .container .div-buttons .btn-back{
