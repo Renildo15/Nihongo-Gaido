@@ -11,6 +11,7 @@ def grammar_list(request):
 
     return render(request, 'grammar_list.html', context)
 
+
 def grammar_create(request):
     if request.method == 'POST':
         form_Grammar = GrammarForm(request.POST or None)
