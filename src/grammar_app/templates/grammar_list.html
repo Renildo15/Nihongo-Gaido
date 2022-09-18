@@ -7,41 +7,46 @@
 {% block content %}
 
 <div class="container">
-  <h2 class='h2 text-center mt-4'>Lista de Gramática</h2>
-  <hr>
-  <a class="btn btn-success mt-3 mb-3" href="{% url 'grammar:add_grammar' %}">Adicionar nova gramática</a>
-  <div class="row"></div>
+  <div class="div-text">
+    <h2 class='h2 text-center mt-4'>Lista de Gramática</h2>
+    <hr>
+    <div class="div-buttons"><a class="btn-add" href="{% url 'grammar:add_grammar' %}"> <i class="fa fa-plus"></i> Add nova gramática</a></div>
+  </div>
+  <div class="div-table">
+    {% if grammar %}
+    <table class="table-css">
+      <thead>
+        <tr>
+          <th>Gramatica</th>
+          <th>Estrutura</th>
+          <th>Nivel</th>
+          <th>Frases</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for g in grammar%}
+        <tr>
+          <td>{{g.gramatica}}</td>
+          <td>{{g.estrutura}}</td>
+          <td>{{g.nivel}}</td>
+          <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases <i class="fa fa-eye"></i></a></td>
+          <td class="btn-table">
+            <a class="btn-edit" href="{% url 'grammar:update' g.id %}"><i class="fa fa-edit"></i></a>
+            <a class="btn-delete" href="{% url 'grammar:delete' g.id %}"><i class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <div class='text-center mt-4'>
+        <h2>Não há dados cadastrados</h2>
+      </div>
+    {% endif %}
+  </div>
 
-  {% if grammar %}
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Gramatica</th>
-        <th>Estrutura</th>
-        <th>Nivel</th>
-        <th>Frases</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for g in grammar%}
-      <tr>
-        <td>{{g.gramatica}}</td>
-        <td>{{g.estrutura}}</td>
-        <td>{{g.nivel}}</td>
-        <td><a class="btn" href="{% url 'phrase:phrases_list' g.id %}">Ver frases</a></td>
-        <td>
-          <a class="btn btn-warning" href="{% url 'grammar:update' g.id %}">Editar</a>
-          <a class="btn btn-danger" href="{% url 'grammar:delete' g.id %}">Deletar</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-    <div class='text-center mt-4'>
-      <h2>Não há dados cadastrados</h2>
-    </div>
-  {% endif %}
+ 
   
 </div>
 
