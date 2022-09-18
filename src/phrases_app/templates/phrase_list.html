@@ -32,7 +32,7 @@
                             <td>{{f.traducao}}</td>
                             <td class="btn-table">
                                 <a class="btn-edit" href="{% url 'phrase:update_phrase' f.id %}"><i class="fa fa-edit"></i></a>
-                                <a class="btn-detail" href="#"><i class="fa fa-eye"></i></a>
+                                <a class="btn-detail" href="{% url 'phrase:phrase_view' f.id %}"><i class="fa fa-eye"></i></a>
                                 <a class="btn-delete" href="{% url 'phrase:delete_phrase' f.id %}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>

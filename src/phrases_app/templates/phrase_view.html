@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Detalhes - {{phrase.frase}}
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="div-table ">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Explicação</h5>
+                  <p class="card-text">{{phrase.explicacao}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{phrase.frase}}</li>
+                  <li class="list-group-item">{{phrase.traducao}}</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Editar</a>
+                  <a href="#" class="card-link">Excluir</a>
+                </div>
+              </div>
+        </div>
+    </div>
+{% endblock content %}
