@@ -436,6 +436,7 @@ i{
     width: 190px;
     letter-spacing: 2px;
     box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
 }
 .container .div-buttons .btn-back:hover{
     background-color: #420042;
@@ -447,6 +448,7 @@ i{
     width: 210px;
     letter-spacing: 2px;
     box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
 }
 
 .container .div-buttons .btn-back{
@@ -494,14 +496,16 @@ i{
     background-color: #420042;
     color: #fff;
     box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
 }
 
 .btn-edit i{
     color: #664e00;
 }
 .btn-edit i:hover{
-    color: #664e00;
+    color: #493800;
     transform: scale(1.5);
+    transition: 0.6s ease;
     
 }
 .btn-detail i{
@@ -516,7 +520,8 @@ i{
 }
 .btn-delete i:hover{
     transform: scale(1.5);
-    color: #c00303;
+    color: #8a0000;
+    transition: 0.6s ease;
 }
 
 
@@ -541,6 +546,54 @@ i{
 }
 
 .table-css tr:nth-child(even){background-color: #d0ffe5;}
+
+/*card */
+
+.btn-card-edit{
+    display: inline-block;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 29px;
+    font-size: 16px;
+    background-color: #664e00;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-card-delete{
+    display: inline-block;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 29px;
+    font-size: 16px;
+    background-color: #c00303;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-card-edit:hover{
+    color: #fff;
+    background-color: #493800;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-card-delete:hover{
+    color: #fff;
+    background-color: #8a0000;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+
+
+
+
+
+
+
 
 
 img{
