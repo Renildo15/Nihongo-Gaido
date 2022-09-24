@@ -5,7 +5,8 @@ from .forms import GrammarForm
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
-    grammar = Grammar.objects.filter(criado_por=request.user)
+    grammar = Grammar.objects.filter(criado_por=request.user.id)
+    print(grammar)
     context = {
         'grammar': grammar,
     }
