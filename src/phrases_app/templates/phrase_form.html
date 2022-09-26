@@ -10,7 +10,7 @@ Nihongo Gaido - Adicionar Frase
         {% csrf_token %}
         <div class="inputs-grammar">
             <h2>Adicionar nova frase</h2>
-            {% for field in form_phrase %}
+            {% for field in form %}
                 <div class="inputs-grammar-box">
                     <label>{{field.label}}</label>
                     {{field}}
