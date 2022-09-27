@@ -17,9 +17,28 @@
                 </ul>
                 <div class="card-body d-flex justify-content-around mt-3">
                   <a href="{% url 'phrase:update_phrase' phrase.id %}" class="btn-card-edit">Editar</a>
-                  <a href="{% url 'phrase:delete_phrase' phrase.id %}" class="btn-card-delete">Excluir</a>
+                  <a href="#" class="btn-card-delete"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Excluir</a>
                 </div>
               </div>
         </div>
+    </div>
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-danger">
+            <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <a href="{% url 'phrase:delete_phrase' phrase.id %}" class="btn btn-danger">Sim, desejo apagar</a>
+          </div>
+        </div>
+      </div>
     </div>
 {% endblock content %}
