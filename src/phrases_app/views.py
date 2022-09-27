@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def phrase_list(request,pk):
+    #TODO tentar corrigir a parte de segurança
     grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=pk)
     context = {
         'grammar_phrase': grammar_phrase

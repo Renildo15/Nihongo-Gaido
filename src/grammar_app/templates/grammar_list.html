@@ -33,9 +33,27 @@
           <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases <i class="fa fa-eye"></i></a></td>
           <td class="btn-table">
             <a class="btn-edit" href="{% url 'grammar:update' g.id %}"><i class="fa fa-edit"></i></a>
-            <a class="btn-delete" href="{% url 'grammar:delete' g.id %}"><i class="fa fa-trash"></i></a>
+            <a class="btn-delete" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa fa-trash"></i></a>
+            
           </td>
         </tr>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header text-danger">
+                <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                <a class="btn btn-danger" href="{% url 'grammar:delete' g.id %}">Sim, desejo apagar</a>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </tbody>
     </table>
@@ -46,8 +64,7 @@
     {% endif %}
   </div>
 
- 
-  
-</div>
+<!-- Modal -->
 
+</div>
 {% endblock %}
