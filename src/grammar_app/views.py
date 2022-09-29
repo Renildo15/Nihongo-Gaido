@@ -2,13 +2,20 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Grammar
 from .forms import GrammarForm
+from .encryption_util import *
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
     grammar = Grammar.objects.filter(criado_por=request.user.id)
-    print(grammar)
+    grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+    g = []
+    for i in grs:
+        i['encrypt_key']=encrypt(i['id'])
+        i['id'] = i['id']
+        g.append(i)
+    print(g)
     context = {
-        'grammar': grammar,
+        'grammar': g,
     }
 
     return render(request, 'grammar_list.html', context)
@@ -47,7 +54,8 @@ def grammar_update(request, pk):
 
 @login_required(login_url='user:logar_user')
 def grammar_delete(request, pk):
-    grammar = Grammar.objects.get(id = pk)
+    id = decrypt(pk)
+    grammar = Grammar.objects.get(id = id)
     grammar.delete()
     return redirect('grammar:grammar_list')
 
