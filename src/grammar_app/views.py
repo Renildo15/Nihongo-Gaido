@@ -13,7 +13,6 @@ def grammar_list(request):
         i['encrypt_key']=encrypt(i['id'])
         i['id'] = i['id']
         g.append(i)
-    print(g)
     context = {
         'grammar': g,
     }
@@ -40,7 +39,8 @@ def grammar_create(request):
 
 @login_required(login_url='user:logar_user')
 def grammar_update(request, pk):
-    grammar = get_object_or_404(Grammar, pk=pk)
+    id = decrypt(pk)
+    grammar = get_object_or_404(Grammar, pk=id)
     form_grammar = GrammarForm(request.POST or None, instance=grammar)
 
     if form_grammar.is_valid():
