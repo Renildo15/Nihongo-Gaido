@@ -56,15 +56,17 @@ def phrase_create(request):
 
 @login_required(login_url='user:logar_user')
 def phrase_update(request, pk):
+    #id = encrypt(pk)
     id = decrypt(pk)
     phrase = get_object_or_404(Grammar_Phrase, pk=id)
     form = GramarPhraseForm(request.POST or None, instance=phrase)
-    form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
-    print(phrase.grammar_id)
-    if form.is_valid():
-        form.save()
-        ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
-        return redirect('grammar:grammar_list')
+    if request.method == 'POST':
+        form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
+        print(phrase.grammar_id)
+        if form.is_valid():
+            form.save()
+            ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
+            return redirect('grammar:grammar_list')
 
     context = {
         "form": form
