@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}
-Phrase Form
+Nihongo Gaido - Adicionar Frase
 {% endblock title %}
 
 {% block content %}
 <div class="form-container-form">
-    <form class="" method="post">
+    <form class="" method="POST">
         {% csrf_token %}
         <div class="inputs-grammar">
             <h2>Adicionar nova frase</h2>
-            {% for field in form_phrase %}
+            {% for field in form %}
                 <div class="inputs-grammar-box">
                     <label>{{field.label}}</label>
                     {{field}}

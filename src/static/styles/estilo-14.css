@@ -391,6 +391,209 @@ i{
 
 
 
+/* list table */
+
+.container .div-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.container h2{
+    font-size: 40px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #4F9D69;
+}
+.container .div-text hr{
+    border: 1px solid #68D89B;
+    width: 100%;
+}
+.container .div-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.container .div-buttons .btn-add{
+    width: 190px;
+    background-color: #68D89B;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.container .div-buttons .btn-add:hover{
+    background-color: #4F9D69;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+.container .div-buttons .btn-back:hover{
+    background-color: #420042;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+}
+.container .div-buttons .btn-add:hover{
+    background-color: #4F9D69;
+    width: 210px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.container .div-buttons .btn-back{
+    width: 150px;
+    background-color: #660066;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+
+.div-table{
+    padding: 20px;
+    margin-bottom: 40px;
+}
+.table-css{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;;
+    box-shadow: 6px 6px 6px #0000001c;
+}
+
+.btn-table{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-table a{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.btn-frase {
+    text-decoration: none;
+    background-color: #660066;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+}
+.btn-frase:hover {
+    background-color: #420042;
+    color: #fff;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-edit i{
+    color: #664e00;
+}
+.btn-edit i:hover{
+    color: #493800;
+    transform: scale(1.5);
+    transition: 0.6s ease;
+    
+}
+.btn-detail i{
+    color: #660066;
+}
+.btn-detail i:hover{
+    color: #660066;
+    transform: scale(1.5);
+}
+.btn-delete i{
+    color: #c00303;
+}
+.btn-delete i:hover{
+    transform: scale(1.5);
+    color: #8a0000;
+    transition: 0.6s ease;
+}
+
+
+.table-css td, .table-css th{
+    padding: 12px 15px;
+    
+}
+
+.table-css td:last-child, .table-css th:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.table-css td:first-child, .table-css th:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.table-css th{
+    text-align: center;
+    background-color: #68D89B;
+    color: #fff;
+}
+
+.table-css tr:nth-child(even){background-color: #d0ffe5;}
+
+/*card */
+
+.btn-card-edit{
+    display: inline-block;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 29px;
+    font-size: 16px;
+    background-color: #664e00;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-card-delete{
+    display: inline-block;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 29px;
+    font-size: 16px;
+    background-color: #c00303;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-card-edit:hover{
+    color: #fff;
+    background-color: #493800;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-card-delete:hover{
+    color: #fff;
+    background-color: #8a0000;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+
+
+
+
+
+
+
 
 
 img{
