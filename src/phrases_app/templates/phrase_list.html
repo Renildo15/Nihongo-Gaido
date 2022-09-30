@@ -31,9 +31,9 @@
                             <td>{{f.frase}}</td>
                             <td>{{f.traducao}}</td>
                             <td class="btn-table">
-                                <a class="btn-edit" href="{% url 'phrase:update_phrase' f.id %}"><i class="fa fa-edit"></i></a>
-                                <a class="btn-detail" href="{% url 'phrase:phrase_view' f.id %}"><i class="fa fa-eye"></i></a>
-                                <a class="btn-delete confirm-delete-phrase" id="deleteButton{{f.id}}" href="{% url 'phrase:delete_phrase' f.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
+                                <a class="btn-edit" href="{% url 'phrase:update_phrase' f.encrypt_key %}"><i class="fa fa-edit"></i></a>
+                                <a class="btn-detail" href="{% url 'phrase:phrase_view' f.encrypt_key %}"><i class="fa fa-eye"></i></a>
+                                <a class="btn-delete confirm-delete-phrase" id="deleteButton{{f.id}}" href="{% url 'phrase:delete_phrase' f.encrypt_key %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <div class="modal fade" id="confirmDeleteModalPhrase" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">

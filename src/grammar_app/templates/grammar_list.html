@@ -30,10 +30,10 @@
           <td>{{g.gramatica}}</td>
           <td>{{g.estrutura}}</td>
           <td>{{g.nivel}}</td>
-          <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases <i class="fa fa-eye"></i></a></td>
+          <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.encrypt_key %}">Ver frases <i class="fa fa-eye"></i></a></td>
           <td class="btn-table">
-            <a class="btn-edit" href="{% url 'grammar:update' g.id %}"><i class="fa fa-edit"></i></a>
-            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
+            <a class="btn-edit" href="{% url 'grammar:update' g.encrypt_key %}"><i class="fa fa-edit"></i></a>
+            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:delete' g.encrypt_key %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
             
           </td>
         </tr>
