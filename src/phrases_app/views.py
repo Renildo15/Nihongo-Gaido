@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse,reverse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.urls import reverse
 from .models import Grammar_Phrase
 from grammar_app.models import Grammar
 from .forms import GramarPhraseForm
@@ -43,7 +44,7 @@ def phrase_create(request):
         form_phrase = GramarPhraseForm(request.POST or None)
         if form_phrase.is_valid():
             form_phrase.save()
-            return redirect('grammar:grammar_list')
+            return redirect(reverse('phrase:add_phrase'))
 
     else:
         form_phrase = GramarPhraseForm()

@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from .models import Grammar
 from .forms import GrammarForm
 from .encryption_util import *
+from django.contrib import  messages
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
@@ -27,14 +29,15 @@ def grammar_create(request):
             grammar = form_Grammar.save(commit=False)
             grammar.criado_por = request.user
             grammar.save()
-            return redirect('grammar:grammar_list')
+            messages.add_message(request, messages.SUCCESS, "Gramática adicionada com sucesso!")
+            return redirect(reverse('grammar:add_grammar'))
     else:
         form_Grammar = GrammarForm()
 
     context = {
         'form_grammar': form_Grammar,
     }
-
+   
     return render(request, 'grammar_form.html', context)
 
 @login_required(login_url='user:logar_user')
@@ -57,6 +60,7 @@ def grammar_delete(request, pk):
     id = decrypt(pk)
     grammar = Grammar.objects.get(id = id)
     grammar.delete()
-    return redirect('grammar:grammar_list')
+    messages.add_message(request, messages.SUCCESS, "Apagado com sucesso!!")
+    return redirect(reverse('grammar:grammar_list'))
 
 
