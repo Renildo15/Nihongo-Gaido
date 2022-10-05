@@ -29,7 +29,7 @@ def grammar_create(request):
             grammar = form_Grammar.save(commit=False)
             grammar.criado_por = request.user
             grammar.save()
-            messages.add_message(request, messages.SUCCESS, "Gramática adicionada com sucesso!")
+            messages.success(request,"Gramática adicionada com sucesso!")
             return redirect(reverse('grammar:add_grammar'))
     else:
         form_Grammar = GrammarForm()
@@ -60,7 +60,7 @@ def grammar_delete(request, pk):
     id = decrypt(pk)
     grammar = Grammar.objects.get(id = id)
     grammar.delete()
-    messages.add_message(request, messages.SUCCESS, "Apagado com sucesso!!")
+    messages.success(request, "Apagado com sucesso!")
     return redirect(reverse('grammar:grammar_list'))
 
 

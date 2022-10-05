@@ -5,11 +5,12 @@ Adicionar gramatica - Nihongo Gaido
 {% endblock title %}
 
 {% block content %}
-{% if message in messages %}
-    {% for message in messages %}
-        <div class="Alert {{message.tags}}">{{message}}</div>
-    {% endfor %}
-{% endif %}
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+{% endfor %}
 <div class="form-container-form">
     <form method="post">
         {% csrf_token %}
