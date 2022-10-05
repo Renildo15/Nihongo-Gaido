@@ -44,7 +44,9 @@ def phrase_create(request):
     if request.method == 'POST':
         form_phrase = GramarPhraseForm(request.POST or None)
         if form_phrase.is_valid():
-            form_phrase.save()
+            grammar = form_phrase.save(commit=False)
+            grammar.criado_por = request.user
+            grammar.save()
             messages.success(request,"Frase adicionada com sucesso!")
             return redirect(reverse('phrase:add_phrase'))
 
@@ -65,7 +67,7 @@ def phrase_update(request, pk):
     form = GramarPhraseForm(request.POST or None, instance=phrase)
     if request.method == 'POST':
         form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
-        form.fields['criado_por'] = request.user
+        print(phrase.grammar_id)
         if form.is_valid():
             form.save()
             ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
