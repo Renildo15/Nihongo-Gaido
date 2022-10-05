@@ -60,7 +60,7 @@ def grammar_delete(request, pk):
     id = decrypt(pk)
     grammar = Grammar.objects.get(id = id)
     grammar.delete()
-    messages.success(request, "Apagado com sucesso!")
+    messages.success(request, "Grámatica deletada com sucesso!")
     return redirect(reverse('grammar:grammar_list'))
 
 

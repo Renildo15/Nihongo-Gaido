@@ -5,6 +5,7 @@ from grammar_app.models import Grammar
 from .forms import GramarPhraseForm
 from django.contrib.auth.decorators import login_required
 from grammar_app.encryption_util import *
+from django.contrib import  messages
 
 # Create your views here.
 @login_required(login_url='user:logar_user')
@@ -44,6 +45,7 @@ def phrase_create(request):
         form_phrase = GramarPhraseForm(request.POST or None)
         if form_phrase.is_valid():
             form_phrase.save()
+            messages.success(request,"Frase adicionada com sucesso!")
             return redirect(reverse('phrase:add_phrase'))
 
     else:
@@ -63,7 +65,7 @@ def phrase_update(request, pk):
     form = GramarPhraseForm(request.POST or None, instance=phrase)
     if request.method == 'POST':
         form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
-        print(phrase.grammar_id)
+        form.fields['criado_por'] = request.user
         if form.is_valid():
             form.save()
             ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
@@ -80,5 +82,6 @@ def phrase_delete(request, pk):
     id = decrypt(pk)
     phrase = Grammar_Phrase.objects.get(id = id)
     phrase.delete()
+    messages.success(request,"Frase deletada com sucesso!")
     return redirect('grammar:grammar_list')
 

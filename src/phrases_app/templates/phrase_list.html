@@ -4,64 +4,70 @@
     Nihongo Gaido - Frases
 {% endblock title %}
 {% block content %}
-
-    <div class="container">
-        <div class="div-text">
-            <h2 class='h2 text-center mt-4'>Lista de frases</h2>
-            <hr>
-            <div class="div-buttons">
-                <a class="btn-add" href="{% url 'phrase:add_phrase' %}"><i class="fa fa-plus"></i> Add nova frase</a>
-                <a class="btn-back" href="{% url 'grammar:grammar_list' %}"><i class="fa fa-arrow-left"></i>Voltar</a>
-            </div>
-        </div>
-        <div class="div-table">
-            {% if grammar_phrase %}
-                <table class="table-css">
-                    <thead>
-                        <tr>
-                            <th>Frases</th>
-                            <th>Tradução</th>
-                            <th>Opções</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for f in grammar_phrase %}
-                        <tr>
-                            <td>{{f.frase}}</td>
-                            <td>{{f.traducao}}</td>
-                            <td class="btn-table">
-                                <a class="btn-edit" href="{% url 'phrase:update_phrase' f.encrypt_key %}"><i class="fa fa-edit"></i></a>
-                                <a class="btn-detail" href="{% url 'phrase:phrase_view' f.encrypt_key %}"><i class="fa fa-eye"></i></a>
-                                <a class="btn-delete confirm-delete-phrase" id="deleteButton{{f.id}}" href="{% url 'phrase:delete_phrase' f.encrypt_key %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <div class="modal fade" id="confirmDeleteModalPhrase" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header text-danger">
-                                  <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body confirm-delete-phrase">
-                                  Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalPhrase">Sim, desejo apagar</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-            <div class='text-center mt-4'>
-                <h2>Não há dados cadastrados</h2>
-            </div> 
-            {% endif %}
-        </div>
-       
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
     </div>
+{% endfor %}
+
+<div class="container">
+    <div class="div-text">
+        <h2 class='h2 text-center mt-4'>Lista de frases</h2>
+        <hr>
+        <div class="div-buttons">
+            <a class="btn-add" href="{% url 'phrase:add_phrase' %}"><i class="fa fa-plus"></i> Add nova frase</a>
+            <a class="btn-back" href="{% url 'grammar:grammar_list' %}"><i class="fa fa-arrow-left"></i>Voltar</a>
+        </div>
+    </div>
+    <div class="div-table">
+        {% if grammar_phrase %}
+            <table class="table-css">
+                <thead>
+                    <tr>
+                        <th>Frases</th>
+                        <th>Tradução</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for f in grammar_phrase %}
+                    <tr>
+                        <td>{{f.frase}}</td>
+                        <td>{{f.traducao}}</td>
+                        <td class="btn-table">
+                            <a class="btn-edit" href="{% url 'phrase:update_phrase' f.encrypt_key %}"><i class="fa fa-edit"></i></a>
+                            <a class="btn-detail" href="{% url 'phrase:phrase_view' f.encrypt_key %}"><i class="fa fa-eye"></i></a>
+                            <a class="btn-delete confirm-delete-phrase" id="deleteButton{{f.id}}" href="{% url 'phrase:delete_phrase' f.encrypt_key %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="confirmDeleteModalPhrase" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header text-danger">
+                                <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body confirm-delete-phrase">
+                                Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalPhrase">Sim, desejo apagar</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+        <div class='text-center mt-4'>
+            <h2>Não há dados cadastrados</h2>
+        </div> 
+        {% endif %}
+    </div>
+    
+</div>
 {% endblock content %}
