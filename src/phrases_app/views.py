@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse,reverse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.urls import reverse
 from .models import Grammar_Phrase
 from grammar_app.models import Grammar
 from .forms import GramarPhraseForm
 from django.contrib.auth.decorators import login_required
 from grammar_app.encryption_util import *
+from django.contrib import  messages
 
 # Create your views here.
 @login_required(login_url='user:logar_user')
@@ -42,8 +44,11 @@ def phrase_create(request):
     if request.method == 'POST':
         form_phrase = GramarPhraseForm(request.POST or None)
         if form_phrase.is_valid():
-            form_phrase.save()
-            return redirect('grammar:grammar_list')
+            grammar = form_phrase.save(commit=False)
+            grammar.criado_por = request.user
+            grammar.save()
+            messages.success(request,"Frase adicionada com sucesso!")
+            return redirect(reverse('phrase:add_phrase'))
 
     else:
         form_phrase = GramarPhraseForm()
@@ -79,5 +84,6 @@ def phrase_delete(request, pk):
     id = decrypt(pk)
     phrase = Grammar_Phrase.objects.get(id = id)
     phrase.delete()
+    messages.success(request,"Frase deletada com sucesso!")
     return redirect('grammar:grammar_list')
 
