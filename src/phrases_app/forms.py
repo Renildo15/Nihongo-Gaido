@@ -1,5 +1,6 @@
 from django import forms
 from .models import Grammar_Phrase
+from urllib import request
 
 class GramarPhraseForm(forms.ModelForm):
     class Meta:
@@ -12,8 +13,9 @@ class GramarPhraseForm(forms.ModelForm):
             'explicacao': 'Explicação',
             'grammar_id': 'Estrutura',
         }
-       
+     
 
     def __init__(self, *args, **kwargs):
         super(GramarPhraseForm, self).__init__(*args, **kwargs)    
         #self.fields['grammar_id'].disabled = True
+        self.fields['grammar_id'].empty_label = "Selecione"
