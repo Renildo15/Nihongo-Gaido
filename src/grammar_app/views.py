@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import Grammar
@@ -11,7 +11,6 @@ from django.contrib import  messages
 def grammar_list(request):
     paramentro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '3')
-
     grammar = Grammar.objects.filter(criado_por=request.user.id)
     grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
     g = []
@@ -20,8 +19,16 @@ def grammar_list(request):
         i['encrypt_key']=encrypt(i['id'])
         i['id'] = i['id']
         g.append(i)
+    if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+        parametro_limit = '3'
+
     grammar_paginator = Paginator(g, parametro_limit)
-    page = grammar_paginator.page(paramentro_page)
+
+    try:
+        page = grammar_paginator.page(paramentro_page)
+    except (EmptyPage, PageNotAnInteger):
+        page = grammar_paginator.page(1)
+
     context = {
         'grammar': page,
     }
