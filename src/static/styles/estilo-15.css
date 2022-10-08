@@ -399,6 +399,15 @@ i{
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.container .div-text-frase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
     padding: 20px;
 }
 
@@ -464,6 +473,11 @@ i{
 
 
 .div-table{
+    padding: 0 20px;
+    margin-bottom: 40px;
+}
+
+.div-table-frase{
     padding: 20px;
     margin-bottom: 40px;
 }
@@ -588,12 +602,53 @@ i{
 }
 
 
+.div-pagination{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.div-pagination .paginacao{
+    width: 250px;
+
+}
+
+.qtn-itens{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 250px;
+    margin-top: 0px;
+}
+
+.qtn-itens span{
+    margin-right: 10px;
+}
+
+.qtn-itens ul{
+    text-align: center;
+    margin-top: 20px;
+}
 
 
+.page-link {
+    position: relative;
+    display: block;
+    color: #4F9D69;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
-
-
-
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #4F9D69;
+    border-color: #4F9D69;
+}
 
 
 img{

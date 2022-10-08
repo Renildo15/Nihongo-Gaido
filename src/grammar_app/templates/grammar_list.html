@@ -19,6 +19,18 @@
   </div>
   <div class="div-table">
     {% if grammar %}
+    <div class="qtn-itens">
+      <span>Itens por página:</span>
+      <ul class="pagination pagination-sm test">
+        {% for qnt in quantidade_por_pagina %}
+          {% if qnt == qnt_pagina %}
+            <li class="page-item active"><a class="page-link" href="#">{{qnt}}</a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="{% url 'grammar:grammar_list'%}?limit={{qnt}}">{{qnt}}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
     <table class="table-css">
       <thead>
         <tr>
@@ -62,7 +74,7 @@
         {% endfor %}
       </tbody>
     </table>
-    <br>
+    <div class="div-pagination">
       <div class="paginacao">
         <div class="paginacao-content">
           <ul class="pagination">
@@ -101,21 +113,13 @@
             {% endif %}
             
           </ul>
+        </div>
       </div>
 
-      <div class="qtn-itens">
-        <span>Itens por página:</span>
-        <ul class="pagination pagination-sm">
-          {% for qnt in quantidade_por_pagina %}
-            {% if qnt == qnt_pagina %}
-              <li class="page-item active"><a class="page-link" href="#">{{qnt}}</a></li>
-            {% else %}
-              <li class="page-item"><a class="page-link" href="{% url 'grammar:grammar_list'%}?limit={{qnt}}">{{qnt}}</a></li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
+      
     </div>
+      
+  </div>
     {% else %}
       <div class='text-center mt-4'>
         <h2>Não há dados cadastrados</h2>
