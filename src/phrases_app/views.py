@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
 from .models import Grammar_Phrase
 from grammar_app.models import Grammar
@@ -11,6 +12,8 @@ from django.contrib import  messages
 @login_required(login_url='user:logar_user')
 def phrase_list(request,pk):
     id = decrypt(pk)
+    parametro_page = request.GET.get('page', '1')
+    parametro_limit = request.GET.get('limit', '3')
     grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=id)
     grs_phrase = grammar_phrase.values('id', 'frase', 'traducao', 'explicacao', 'grammar_id', 'criado_por')
     
@@ -22,8 +25,19 @@ def phrase_list(request,pk):
         grp.append(i)
     print(grp)
 
+    if not(parametro_limit.isdigit() and int(parametro_limit) > 0):
+        parametro_limit = "3"
+    phrase_paginator = Paginator(grp, parametro_page)
+
+    try:
+        page = phrase_paginator.page(parametro_limit)
+    except (EmptyPage, PageNotAnInteger):
+        page = phrase_paginator.page(1)
+
     context = {
-        'grammar_phrase': grp
+        'quantidade_por_pagina':['3','5','10','15'],
+        'qnt_pagina': parametro_limit,
+        'grammar_phrase': page
     }
     return render(request, 'phrase_list.html', context)
 
