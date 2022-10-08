@@ -10,6 +10,11 @@ class Grammar_Phrase(models.Model):
     grammar_id = models.ForeignKey(Grammar, on_delete=models.CASCADE, null=True, blank=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     
+
+    class Meta:
+        verbose_name_plural = "Frases"
+        ordering = ('traducao', )
+
     def __str__(self):
         return self.frase
 
