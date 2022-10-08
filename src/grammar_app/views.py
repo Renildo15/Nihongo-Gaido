@@ -30,6 +30,8 @@ def grammar_list(request):
         page = grammar_paginator.page(1)
 
     context = {
+        'quantidade_por_pagina':['3','5','10','15'],
+        'qnt_pagina': parametro_limit,
         'grammar': page,
     }
 

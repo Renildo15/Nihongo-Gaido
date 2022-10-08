@@ -68,7 +68,7 @@
         <ul class="pagination">
           {% if grammar.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="{% url 'grammar:grammar_list'%}?page={{grammar.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
+                <a class="page-link" href="{% url 'grammar:grammar_list'%}?limit{{qnt_pagina}}&page={{grammar.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
             </li>
           {% else %}
             <li class="page-item disabled">
@@ -83,7 +83,7 @@
                 </li>
             {% else %}
               <li class="page-item">
-                <a class="page-link" href="{% url 'grammar:grammar_list' %}?page={{num}}">{{num}}</a>
+                <a class="page-link" href="{% url 'grammar:grammar_list' %}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
               </li>
             {% endif %}
 
@@ -92,7 +92,7 @@
 
           {% if grammar.has_next %}
             <li class="page-item">
-              <a class="page-link" href="{% url 'grammar:grammar_list'%}?page={{grammar.next_page_number}}">Próximo</a>
+              <a class="page-link" href="{% url 'grammar:grammar_list'%}?limit{{qnt_pagina}}&page={{grammar.next_page_number}}">Próximo</a>
             </li>
           {% else %}
             <li class="page-item disabled">
@@ -100,6 +100,19 @@
             </li>
           {% endif %}
           
+        </ul>
+      </div>
+
+      <div class="qtn-itens">
+        <span>Itens por página:</span>
+        <ul class="pagination pagination-sm">
+          {% for qnt in quantidade_por_pagina %}
+            {% if qnt == qnt_pagina %}
+              <li class="page-item active"><a class="page-link" href="#">{{qnt}}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="{% url 'grammar:grammar_list'%}?limit={{qnt}}">{{qnt}}</a></li>
+            {% endif %}
+          {% endfor %}
         </ul>
       </div>
     </div>
