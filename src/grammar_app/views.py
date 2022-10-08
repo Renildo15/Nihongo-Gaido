@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import Grammar
@@ -8,15 +9,21 @@ from django.contrib import  messages
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
+    paramentro_page = request.GET.get('page', '1')
+    parametro_limit = request.GET.get('limit', '3')
+
     grammar = Grammar.objects.filter(criado_por=request.user.id)
     grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
     g = []
+    
     for i in grs:
         i['encrypt_key']=encrypt(i['id'])
         i['id'] = i['id']
         g.append(i)
+    grammar_paginator = Paginator(g, parametro_limit)
+    page = grammar_paginator.page(paramentro_page)
     context = {
-        'grammar': g,
+        'grammar': page,
     }
 
     return render(request, 'grammar_list.html', context)
