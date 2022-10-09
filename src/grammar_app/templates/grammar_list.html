@@ -16,9 +16,55 @@
     <h2 class='h2 text-center mt-4'>Lista de Gramática</h2>
     <hr>
     <div class="div-buttons"><a class="btn-add" href="{% url 'grammar:add_grammar' %}"> <i class="fa fa-plus"></i> Add nova gramática</a></div>
+
+    <div class="search">
+      <form method="GET" action=".">
+        <div class="">
+          <div class="">
+              <div class="">
+                  <input class="" type="search" name="grammar_contains" placeholder="Pesquisar por gramática..." />
+                  <span class="">
+                      <div class="">
+                          <i class="fa fa-search"></i>
+                      </div>
+                  </span>
+              </div>
+          </div>        
+        </div>
+
+        <div class="">
+          <div class="">
+              <div class="">
+                  <input class="" type="search" name="estrutura_contains" placeholder="Pesquisar por estrutura..." />
+                  <span class="">
+                      <div class="">
+                          <i class="fa fa-search"></i>
+                      </div>
+                  </span>
+              </div>
+          </div>        
+        </div>
+
+        <div class="">
+          <div class="">
+              <div class="">
+                  <input class="" type="search" name="grammar_contains" placeholder="Pesquisar por nível..." />
+                  <span class="">
+                      <div class="">
+                          <i class="fa fa-search"></i>
+                      </div>
+                  </span>
+              </div>
+          </div>        
+        </div>
+
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+
   </div>
   <div class="div-table">
-    {% if grammar %}
+  {% if grammar %}
     <div class="qtn-itens">
       <span>Itens por página:</span>
       <ul class="pagination pagination-sm test">
@@ -120,7 +166,7 @@
     </div>
       
   </div>
-    {% else %}
+  {% else %}
       <div class='text-center mt-4'>
         <h2>Não há dados cadastrados</h2>
       </div>
