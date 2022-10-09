@@ -654,6 +654,10 @@ i{
 .search{
     width: 100%;
 }
+
+.form-busca{
+    width: 100%;
+}
 .div-search-add{
     display: flex;
     align-items: center;
