@@ -32,6 +32,41 @@ def grammar_list(request):
             page = grammar_paginator.page(paramentro_page)
         except (EmptyPage, PageNotAnInteger):
             page = grammar_paginator.page(1)
+    elif estrutura_contains_query != "" and estrutura_contains_query is not None:
+        grammar = Grammar.objects.filter(criado_por=request.user.id, estrutura__icontains = estrutura_contains_query)
+        grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+        g = []
+        for i in grs:
+            i['encrypt_key']=encrypt(i['id'])
+            i['id'] = i['id']
+            g.append(i)
+        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+            parametro_limit = '3'
+
+        grammar_paginator = Paginator(g, parametro_limit)
+
+        try:
+            page = grammar_paginator.page(paramentro_page)
+        except (EmptyPage, PageNotAnInteger):
+            page = grammar_paginator.page(1)
+
+    elif nivel_contains_query  != "" and nivel_contains_query  is not None:
+        grammar = Grammar.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_contains_query)
+        grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+        g = []
+        for i in grs:
+            i['encrypt_key']=encrypt(i['id'])
+            i['id'] = i['id']
+            g.append(i)
+        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+            parametro_limit = '3'
+
+        grammar_paginator = Paginator(g, parametro_limit)
+
+        try:
+            page = grammar_paginator.page(paramentro_page)
+        except (EmptyPage, PageNotAnInteger):
+            page = grammar_paginator.page(1)
     else:
         grammar = Grammar.objects.filter(criado_por=request.user.id)
         grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
