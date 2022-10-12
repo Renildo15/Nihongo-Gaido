@@ -651,6 +651,29 @@ i{
 }
 
 
+.search{
+    width: 100%;
+}
+
+.form-busca{
+    width: 100%;
+}
+.div-search-add{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.input-search{
+    width: 200px;
+    padding: 12px 20px;
+}
+
+
+
+
+
 img{
     width: 10rem;
 }

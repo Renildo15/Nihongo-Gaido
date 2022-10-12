@@ -9,33 +9,94 @@ from django.contrib import  messages
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
+    grammar_contains_query = request.GET.get('grammar_contains')
+    estrutura_contains_query = request.GET.get('estrutura_contains')
+    #nivel_contains_query = request.GET.get('nivel_contains')
     paramentro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '3')
-    grammar = Grammar.objects.filter(criado_por=request.user.id)
-    grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
-    g = []
-    
-    for i in grs:
-        i['encrypt_key']=encrypt(i['id'])
-        i['id'] = i['id']
-        g.append(i)
-    if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-        parametro_limit = '3'
+    nivel_query = request.GET.get('select')
+    print(type(nivel_query ))
 
-    grammar_paginator = Paginator(g, parametro_limit)
+    if grammar_contains_query != "" and grammar_contains_query is not None:
+        grammar = Grammar.objects.filter(criado_por=request.user.id, gramatica__icontains = grammar_contains_query)
+        grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+        g = []
+        for i in grs:
+            i['encrypt_key']=encrypt(i['id'])
+            i['id'] = i['id']
+            g.append(i)
+        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+            parametro_limit = '3'
 
-    try:
-        page = grammar_paginator.page(paramentro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = grammar_paginator.page(1)
+        grammar_paginator = Paginator(g, parametro_limit)
 
+        try:
+            page = grammar_paginator.page(paramentro_page)
+        except (EmptyPage, PageNotAnInteger):
+            page = grammar_paginator.page(1)
+    elif estrutura_contains_query != "" and estrutura_contains_query is not None:
+        grammar = Grammar.objects.filter(criado_por=request.user.id, estrutura__icontains = estrutura_contains_query)
+        grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+        g = []
+        for i in grs:
+            i['encrypt_key']=encrypt(i['id'])
+            i['id'] = i['id']
+            g.append(i)
+        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+            parametro_limit = '3'
+
+        grammar_paginator = Paginator(g, parametro_limit)
+
+        try:
+            page = grammar_paginator.page(paramentro_page)
+        except (EmptyPage, PageNotAnInteger):
+            page = grammar_paginator.page(1)
+
+    elif nivel_query  != "" and nivel_query   is not None:
+        grammar = Grammar.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_query )
+        grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+        g = []
+        for i in grs:
+            i['encrypt_key']=encrypt(i['id'])
+            i['id'] = i['id']
+            g.append(i)
+        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+            parametro_limit = '3'
+
+        grammar_paginator = Paginator(g, parametro_limit)
+
+        try:
+            page = grammar_paginator.page(paramentro_page)
+        except (EmptyPage, PageNotAnInteger):
+            page = grammar_paginator.page(1)
+    else:
+        grammar = Grammar.objects.filter(criado_por=request.user.id)
+        grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
+        g = []
+        for i in grs:
+            i['encrypt_key']=encrypt(i['id'])
+            i['id'] = i['id']
+            g.append(i)
+        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
+            parametro_limit = '3'
+
+        grammar_paginator = Paginator(g, parametro_limit)
+
+        try:
+            page = grammar_paginator.page(paramentro_page)
+        except (EmptyPage, PageNotAnInteger):
+            page = grammar_paginator.page(1)
     context = {
         'quantidade_por_pagina':['3','5','10','15'],
         'qnt_pagina': parametro_limit,
         'grammar': page,
     }
 
+    
     return render(request, 'grammar_list.html', context)
+
+
+
 
 @login_required(login_url='user:logar_user')
 def grammar_create(request):
