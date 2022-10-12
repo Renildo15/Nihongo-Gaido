@@ -14,6 +14,8 @@ def grammar_list(request):
     nivel_contains_query = request.GET.get('nivel_contains')
     paramentro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '3')
+    teste = request.GET.get('select')
+    print(type(teste))
 
     if grammar_contains_query != "" and grammar_contains_query is not None:
         grammar = Grammar.objects.filter(criado_por=request.user.id, gramatica__icontains = grammar_contains_query)
@@ -50,8 +52,8 @@ def grammar_list(request):
         except (EmptyPage, PageNotAnInteger):
             page = grammar_paginator.page(1)
 
-    elif nivel_contains_query  != "" and nivel_contains_query  is not None:
-        grammar = Grammar.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_contains_query)
+    elif teste != "" and teste  is not None:
+        grammar = Grammar.objects.filter(criado_por=request.user.id, nivel__icontains = teste)
         grs = grammar.values('id', 'gramatica', 'estrutura', 'nivel','criado_por')
         g = []
         for i in grs:
