@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
 from .forms import RegisterUserForm, PasswordChangingForm
@@ -108,6 +109,12 @@ def password_reset_request(request):
                     return redirect ("/auth/reset_password_sent/")
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="senha/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+
+
+def profile(request):
+    return render(request, "profile.html")
 
 
 
