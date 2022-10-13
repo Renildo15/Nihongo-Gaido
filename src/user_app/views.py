@@ -1,3 +1,4 @@
+from multiprocessing import context
 from urllib import request
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
@@ -12,6 +13,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
+from .models import Profile
 
 
 def logar_user(request):
@@ -114,7 +116,12 @@ def password_reset_request(request):
 
 
 def profile(request):
-    return render(request, "profile.html")
+    user = Profile.objects.all()
+    print(user)
+    context = {
+        "user": user
+    }
+    return render(request, "profile.html", context)
 
 
 
