@@ -115,13 +115,8 @@ def password_reset_request(request):
 
 
 
-def profile(request):
-    user = Profile.objects.all()
-    print(user)
-    context = {
-        "user": user
-    }
-    return render(request, "profile.html", context)
+def profile_page(request):
+    return render(request, "profile.html")
 
 
 
