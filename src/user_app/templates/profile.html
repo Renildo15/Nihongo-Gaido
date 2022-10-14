@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{{request.user.username}}{% endblock title %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Perfil</h1>
-                <p>Nome de usuário: {{request.user.username}}</p>        
-                <p>Nome: {{request.user.first_name}}</p>        
-                <p>Sobrenome: {{request.user.last_name}}</p>        
-                <p>Email: {{request.user.email}}</p>        
-                <p>Telefone: {{request.user.telefone}}</p>        
-            </div>
-        </div>
-    </div>
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="#"> &#8592; Back to Profile</a>
+			<hr>
+			<h3 style="text-align: center">Perfil</h3>
+			<hr>
+			<img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			Teste
+		</div>
+	</div>
+</div>
 {% endblock content %}
