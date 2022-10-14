@@ -2,7 +2,7 @@ from multiprocessing import context
 from urllib import request
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
-from .forms import RegisterUserForm, PasswordChangingForm
+from .forms import RegisterUserForm, PasswordChangingForm, ProfileForm, ProfileUserForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -14,7 +14,6 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
 from .models import Profile
-
 
 def logar_user(request):
     if request.method == "POST":
@@ -120,7 +119,26 @@ def profile_page(request):
     context = {
         "profile":profile_info
     }
-    return render(request, "profile.html", context)
+    return render(request, "profile/profile.html", context)
+
+def profile_update_info(request):
+    user_profile = request.user.profile
+    user = request.user
+    form = ProfileForm(instance=user_profile)
+    form_user = ProfileUserForm(instance=user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=user_profile)
+        form_user = ProfileForm(request.POST, instance=user)
+        if form.is_valid() and form_user.is_valid():
+            form.save()
+            form_user.save()
+    context = {
+        "form":form,
+        "form_user":form_user
+    }
+
+    return render(request, "profile/profile_form.html", context)
 
 
 

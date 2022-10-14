@@ -12,9 +12,9 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="card card-body">
-			<a class="btn btn-warning" href="#"> &#8592; Back to Profile</a>
+			<a class="btn btn-warning" href="{% url 'pages:home' %}"> &#8592; Voltar para Home</a>
 			<hr>
-			<h3 style="text-align: center">Perfil</h3>
+			<h3 style="text-align: center">{{request.user}}</h3>
 			<hr>
 			<img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" >
 		
@@ -59,6 +59,8 @@
                 </table>    
             {% endfor %}
 		</div>
+        <br>
+        <a class="btn btn-success" href="{% url 'user:profile_info' %}">Alterar informações</a>
 	</div>
 </div>
 {% endblock content %}
