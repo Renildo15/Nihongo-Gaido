@@ -6,7 +6,7 @@
 		max-width: 200px;
 		max-height:200px;
 		margin: 0 auto;
-		border-radius: 50%;
+		border-radius: 30%;
 	}
 </style>
 <div class="row">
@@ -21,8 +21,43 @@
 		</div>
 	</div>
 	<div class="col-md-9">
+        <h1>Informações sobre {{request.user.first_name}}  {{request.user.last_name}}</h1>
 		<div class="card card-body">
-			Teste
+			{% for p in profile %}
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Username</td>
+                            <td>{{p.user}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{p.user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nome</td>
+                            <td>{{p.nome}}</td>
+                        </tr>
+                        <tr>
+                            <td>Sobrenome</td>
+                            <td>{{p.user.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Telefone</td>
+                            <td>{{p.telefone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Data de Nascimento</td>
+                            <td>{{p.data_nascimento}}</td>
+                        </tr>
+                        <tr>
+                            <td>Data de criação</td>
+                            <td>{{p.date_created}}</td>
+                        </tr>
+                    </tbody>
+                </table>    
+            {% endfor %}
 		</div>
 	</div>
 </div>

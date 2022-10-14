@@ -116,7 +116,11 @@ def password_reset_request(request):
 
 
 def profile_page(request):
-    return render(request, "profile.html")
+    profile_info = Profile.objects.all()
+    context = {
+        "profile":profile_info
+    }
+    return render(request, "profile.html", context)
 
 
 
