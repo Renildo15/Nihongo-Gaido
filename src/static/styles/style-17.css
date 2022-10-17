@@ -678,7 +678,34 @@ i{
 }
 
 .btn-profile-voltar{
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-profile-voltar:hover{
+    background-color: #ca9a0b;
+    border-color: #ca9a0b;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.info-span{
+    font-weight: bold;
+    font-size: 25px;
+    color: #4F9D69;
+}
+
+.table-profile .td-profile{
+    font-weight: bold;
+    color: #4F9D69;
     
+}
+
+.btn-margin{
+    margin-top: 38px;
 }
 
 
