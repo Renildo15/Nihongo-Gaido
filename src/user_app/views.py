@@ -132,6 +132,7 @@ def profile_update_info(request):
         if form_profile .is_valid() and form_user.is_valid():
             form_profile .save()
             form_user.save()
+            messages.success(request, "Informações alteradas com sucesso!")
             return redirect("user:profile_page")
     context = {
         "form":form_profile ,
