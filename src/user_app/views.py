@@ -113,7 +113,7 @@ def password_reset_request(request):
 
 
 
-
+@login_required(login_url='user:logar_user')
 def profile_page(request):
     profile_info = Profile.objects.all()
     context = {
@@ -121,22 +121,23 @@ def profile_page(request):
     }
     return render(request, "profile/profile.html", context)
 
+@login_required(login_url='user:logar_user')
 def profile_update_info(request):
-    user_profile = request.user.profile
-    user = request.user
-    form = ProfileForm(instance=user_profile)
-    form_user = ProfileUserForm(instance=user)
+    form_profile = ProfileForm(instance=request.user.profile)
+    form_user = ProfileUserForm(instance=request.user)
 
     if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES, instance=user_profile)
-        form_user = ProfileForm(request.POST, instance=user)
-        if form.is_valid() and form_user.is_valid():
-            form.save()
+        form_profile = ProfileForm(request.POST or None, request.FILES, instance=request.user.profile)
+        form_user = ProfileUserForm(request.POST or None, instance=request.user)
+        if form_profile .is_valid() and form_user.is_valid():
+            form_profile .save()
             form_user.save()
+            return redirect("user:profile_page")
     context = {
-        "form":form,
+        "form":form_profile ,
         "form_user":form_user
     }
+
 
     return render(request, "profile/profile_form.html", context)
 
