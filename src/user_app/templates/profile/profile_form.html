@@ -1,13 +1,36 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Alterar informações{% endblock title %}
 
 {% block content %}
-<form method="POST" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form_user.as_p}}
-    {{form.as_p}}
+{% if form_usuario.errors %}
+    <div class="div-alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Preencha o formulário de forma correta!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+    </div>
 
-<input class="btn btn-primary" type="submit" name="Update Information">
-</form>
+{% endif %}
+<div class="form-container">
+    <form method="POST" action="" enctype="multipart/form-data">
+        <div class="mt-3 text-center">
+            <div class="col-sm-12 gl-text-center">
+              <img class="gl-w-10" alt="Nihongo Gaido" src="{{request.user.profile.profile_pic.url}}">
+              <h1 class="mb-1 gl-font-size-h2">{{user.username}}</h1>
+            </div>
+        </div>
+        {% csrf_token %}
+        {% for field in form_user%}
+            <div class="input-box">
+                <label>{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+       
+        {{form.as_p}}
+
+    <input class="btn-login" type="submit" name="Update Information">
+    </form>
 </div>
 {% endblock content %}
