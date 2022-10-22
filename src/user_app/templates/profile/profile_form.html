@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Alterar informações{% endblock title %}
+
+{% block content %}
+{% if form_usuario.errors %}
+    <div class="div-alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Preencha o formulário de forma correta!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+    </div>
+
+{% endif %}
+<div class="form-container shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="title-container text-center">
+        <h2 class="title-form ">Alterar informações</h2>
+    </div>
+    <form method="POST" action="" enctype="multipart/form-data">
+       
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="mt-3 text-center">
+                        <div class="col-sm-12 gl-text-center">
+                            <div class="container-img">
+                                <img class="img-perfil" alt="Nihongo Gaido" src="{{request.user.profile.foto_perfil.url}}">
+                                <div class="overlay">
+                                    <div class="text">{{user.username}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    {% for field in form_user%}
+                        <div class="input-box">
+                            <label>{{field.label}}</label>
+                            {{field}}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-sm">
+                    {% for field_p in form %}
+                        <div class="input-box">
+                            <label>{{field_p.label}}</label>
+                            {{field_p}}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+
+        
+       
+    <div class="div-btn-form">
+        <input class="btn-login" type="submit" name="Update Information" value="Atualizar">
+    </div>
+   
+    </form>
+</div>
+{% endblock content %}

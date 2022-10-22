@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}{{request.user.username}}{% endblock title %}
+{% block content %}
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 30%;
+	}
+</style>
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+{% endfor %}
+<div class="row row-margin">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-profile-voltar" href="{% url 'pages:home' %}"> &#8592; Voltar para Home</a>
+			<hr>
+			<h3 style="text-align: center">{{request.user}}</h3>
+			<hr>
+			<img class="profile-pic" src="{{request.user.profile.foto_perfil.url}}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+        <h1>{{request.user.first_name}}  {{request.user.last_name}}</h1>
+        <span class="info-span">Informações</span>
+		<div class="card card-body">
+			{% for p in profile %}
+
+                <table class="table-profile">
+                    <tbody>
+                        <tr>
+                            <td class="td-profile">Username</td>
+                            <td>{{p.user}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td-profile">Email</td>
+                            <td>{{p.user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td-profile">Nome</td>
+                            <td>{{p.user.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td-profile">Sobrenome</td>
+                            <td>{{p.user.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td-profile">Telefone</td>
+                            <td>{{p.telefone}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td-profile">Data de Nascimento</td>
+                            <td>{{p.data_nascimento}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td-profile">Data de criação</td>
+                            <td>{{p.date_created}}</td>
+                        </tr>
+                    </tbody>
+                </table>    
+            {% endfor %}
+		</div>
+        <a class=" btn-margin btn btn-success" href="{% url 'user:profile_info' %}">Alterar informações</a>
+	</div>
+</div>
+{% endblock content %}

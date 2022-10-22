@@ -1,6 +1,5 @@
 from django import forms
 from .models import Grammar_Phrase
-from urllib import request
 
 class GramarPhraseForm(forms.ModelForm):
     class Meta:

@@ -1,6 +1,8 @@
+from multiprocessing import context
+from urllib import request
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
-from .forms import RegisterUserForm, PasswordChangingForm
+from .forms import RegisterUserForm, PasswordChangingForm, ProfileForm, ProfileUserForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,7 +13,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import render_to_string
-
+from .models import Profile
 
 def logar_user(request):
     if request.method == "POST":
@@ -108,6 +110,37 @@ def password_reset_request(request):
                     return redirect ("/auth/reset_password_sent/")
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="senha/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+
+@login_required(login_url='user:logar_user')
+def profile_page(request):
+    profile_info = Profile.objects.all()
+    context = {
+        "profile":profile_info
+    }
+    return render(request, "profile/profile.html", context)
+
+@login_required(login_url='user:logar_user')
+def profile_update_info(request):
+    form_profile = ProfileForm(instance=request.user.profile)
+    form_user = ProfileUserForm(instance=request.user)
+
+    if request.method == "POST":
+        form_profile = ProfileForm(request.POST or None, request.FILES, instance=request.user.profile)
+        form_user = ProfileUserForm(request.POST or None, instance=request.user)
+        if form_profile .is_valid() and form_user.is_valid():
+            form_profile .save()
+            form_user.save()
+            messages.success(request, "Informações alteradas com sucesso!")
+            return redirect("user:profile_page")
+    context = {
+        "form":form_profile ,
+        "form_user":form_user
+    }
+
+
+    return render(request, "profile/profile_form.html", context)
 
 
 

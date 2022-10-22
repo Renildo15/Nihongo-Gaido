@@ -670,9 +670,110 @@ i{
     padding: 12px 20px;
 }
 
+/*Profile*/
 
+.row-margin{
+    margin: 50px;
+    padding: 20px;
+}
 
+.btn-profile-voltar{
+    color: white;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
 
+.btn-profile-voltar:hover{
+    background-color: #ca9a0b;
+    border-color: #ca9a0b;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.info-span{
+    font-weight: bold;
+    font-size: 25px;
+    color: #4F9D69;
+}
+
+.table-profile .td-profile{
+    font-weight: bold;
+    color: #4F9D69;
+    
+}
+
+.btn-margin{
+    margin-top: 38px;
+}
+
+/*Profile form*/
+.container-img{
+    position: relative;
+    width: 50%;
+}
+
+.img-perfil{
+    display: block;
+    width: 250px;
+    height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.overlay{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #4F9D69;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    transition: .5s ease;
+    opacity: .7;
+    
+}
+
+.container-img:hover .overlay{
+    width: 250px;
+}
+
+.text{
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.title-form{
+    font-size: 40px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #4F9D69;
+}
+
+input[type="file"] {
+    outline: none;
+    border: none;
+    background-color: #4F9D69;
+    color: white;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.div-btn-form{
+    width: 400px;
+    margin: 0 auto;
+}
 
 img{
     width: 10rem;
