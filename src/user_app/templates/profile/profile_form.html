@@ -12,7 +12,10 @@
     </div>
 
 {% endif %}
-<div class="form-container">
+<div class="form-container shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="title-container text-center">
+        <h2 class="title-form ">Alterar informações</h2>
+    </div>
     <form method="POST" action="" enctype="multipart/form-data">
        
         {% csrf_token %}
@@ -21,8 +24,12 @@
                 <div class="col-sm">
                     <div class="mt-3 text-center">
                         <div class="col-sm-12 gl-text-center">
-                          <img class="gl-w-10" alt="Nihongo Gaido" src="{{request.user.profile.foto_perfil.url}}">
-                          <h1 class="mb-1 gl-font-size-h2">{{user.username}}</h1>
+                            <div class="container-img">
+                                <img class="img-perfil" alt="Nihongo Gaido" src="{{request.user.profile.foto_perfil.url}}">
+                                <div class="overlay">
+                                    <div class="text">{{user.username}}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,8 +55,10 @@
 
         
        
-
-    <input class="btn-login" type="submit" name="Update Information">
+    <div class="div-btn-form">
+        <input class="btn-login" type="submit" name="Update Information" value="Atualizar">
+    </div>
+   
     </form>
 </div>
 {% endblock content %}
