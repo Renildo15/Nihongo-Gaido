@@ -1,5 +1,5 @@
-from dataclasses import field
-from pyexpat import model
+from ast import arg
+from django.forms import FileInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth.models import User
@@ -44,6 +44,13 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = "__all__"
         exclude = ['user']
+        widgets = {
+            "foto_perfil" : FileInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['foto_perfil'].widget.attrs = {'id':'selectedFile'}
 
 class ProfileUserForm(forms.ModelForm):
     class Meta:
