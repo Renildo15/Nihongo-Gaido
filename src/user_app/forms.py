@@ -51,6 +51,8 @@ class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['foto_perfil'].widget.attrs = {'id':'selectedFile'}
+        self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
+        self.fields['data_nascimento'].widget.attrs.update({'class': 'mask-data'})
 
 class ProfileUserForm(forms.ModelForm):
     class Meta:
