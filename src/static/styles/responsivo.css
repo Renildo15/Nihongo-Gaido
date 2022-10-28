@@ -1,0 +1,94 @@
+@media (max-width: 920px){
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    nav .menu-btn i{
+        display: block;
+    }
+
+    nav ul{
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        background-color: #68D89B;
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        display: block;
+        transition: all 0.3s ease;
+    }
+
+    nav ul.open{
+        left: 0;
+    }
+
+    nav ul li{
+        width: 100%;
+        margin: 50px 0;
+    }
+
+    nav ul li a{
+        font-size: 23px;
+    }
+
+    nav ul li a.active,
+    nav ul li a:hover{
+        background: none;
+        color: #4F9D69;
+    }
+  }
+
+/* Extra small devices (phones, 600px and down) */
+@media (min-width: 600px) and (max-width: 860px) {
+    nav .menu-btn i{
+        display: block;
+    }
+
+    nav ul{
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        background-color: #68D89B;
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        display: block;
+        transition: all 0.3s ease;
+    }
+
+    nav ul.open{
+        left: 0;
+    }
+
+    nav ul li{
+        width: 100%;
+        margin: 50px 0;
+    }
+
+    nav ul li a{
+        font-size: 23px;
+    }
+
+    nav ul li a.active,
+    nav ul li a:hover{
+        background: none;
+        color: #4F9D69;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .example {background: blue;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .example {background: orange;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .example {background: pink;}
+}
