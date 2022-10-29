@@ -7,60 +7,76 @@
     outline: none;
     font-family: Roboto Condensed;
 }
+/*header*/
 
-nav{
+header{
     display: flex;
-    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
     width: 100%;
     background-color: #68D89B;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px 0 100px;
-    flex-wrap: wrap;
 }
 
-nav .logo img{
-    width: 100px;
+.logo{
+    cursor: pointer;
 }
 
-nav .logo{
-    position: relative;
-    top: -10px;
-}
-
-nav ul{
-    display: flex;
-    flex-wrap: wrap;
+.nav-links{
     list-style: none;
 }
 
-nav ul li{
-    margin: 0 10px;
+.nav-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.nav-links li{
+    margin: 20px;
+    
+}
+.nav-links li a{
+    transition: all 0.3s ease 0s;
+    
 }
 
-nav ul li a{
+.nav-links li a:hover{
+    color: #4F9D69;
+}
+
+button{
+    padding: 9px  25px;
+    background-color: #4F9D69;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover{
+   border: 1px solid white;
+   background-color: #68D89B;
+}
+
+nav .nav-links li, a, button{
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-}
+    font-size: 25px;
+  }
 
-nav ul li a.active,
-nav ul li a:hover{
-    background-color: #4F9D69;
-    color: #fff;
-}
-
-nav .menu-btn i{
-    color: #fff;
-    cursor: pointer;
+.menu-btn{
     display: none;
 }
 
+
+
+
+
+
+
+
+/*forms*/
 form{
     background-color: white;
     max-width: 1000px;
