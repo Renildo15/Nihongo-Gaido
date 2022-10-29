@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'styles/style-19.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/responsivo.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/responsivo-1.css' %}">
     <link rel="icon" href="{% static 'imgs/Nihongo-Gaido-1.png' %}" type="image/gif" sizes="16x16">
 </head>
 <body>
@@ -16,28 +16,28 @@
             <a href="{% url 'pages:home' %}"><img src="{% static 'imgs/Nihongo-Gaido-1.png' %}"></a>
         </div>
 
-        <div class="menu-btn">
+        <div class="menu-btn" id="menu-btn">
             <i class="fa fa-bars fa 2x" onclick="menuShow()"></i>
         </div>
         <nav>
-            <ul class="nav-links">
-                <li><a class="active" href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-                <li><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Grammar</a></li>
-                <li><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
+            <ul class="nav-links-header" id="itens">
+                <li><a class="link-nav" class="active" href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                <li><a class="link-nav" href="{% url 'grammar:grammar_list'%}" ><i class="fa fa-book" aria-hidden="true"></i>Grammar</a></li>
+                <li><a class="link-nav" href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
                 <li class = "dropdown-nav">
                     {% if user.is_authenticated%}
-                        <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{user.username}} <i class="fa fa-caret-down"></i></a>
+                        <a class="link-nav" href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{user.username}} <i class="fa fa-caret-down"></i></a>
                     {% else %}
-                        <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Login <i class="fa fa-caret-down"></i></a>
+                        <a class="link-nav" href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Login <i class="fa fa-caret-down"></i></a>
                     {% endif %}
                     <div class = "dropdown-nav-content">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'user:profile_page' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Perfil</a>
-                            <a href="{% url 'user:mudar_senha' %}"><i class="fa fa-lock"></i></i>Mudar senha</a>
-                            <a href="{% url 'user:deslogar_user' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></i>Sair</a>
+                            <a class="link-nav" href="{% url 'user:profile_page' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Perfil</a>
+                            <a class="link-nav" href="{% url 'user:mudar_senha' %}"><i class="fa fa-lock"></i></i>Mudar senha</a>
+                            <a class="link-nav" href="{% url 'user:deslogar_user' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></i>Sair</a>
                         {% else %}
-                            <a href="{% url 'user:logar_user' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Entrar</a>
-                            <a href="{% url 'user:cadastro_user'%}"><i class="fa fa-user" aria-hidden="true"></i>Cadastrar-se</a>
+                            <a class="link-nav" href="{% url 'user:logar_user' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Entrar</a>
+                            <a class="link-nav" href="{% url 'user:cadastro_user'%}"><i class="fa fa-user" aria-hidden="true"></i>Cadastrar-se</a>
                         {% endif %}
                     </div>
                 </li>
@@ -78,16 +78,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-        var ul = document.querySelector('nav ul');
-        var menuBtn = document.querySelector('.menu-btn i');
-        
-        function menuShow(){
-            if(ul.classList.contains('open')){
-                ul.classList.remove('open');
-            }else{
-                ul.classList.add('open');
-            }
-        }
         /////grammar_app modal
         $(document).on('click', '.confirm-delete', function () {
             $("#confirmDeleteModal").attr("caller-id", $(this).attr("id"));
@@ -108,6 +98,16 @@
           window.location = $("#".concat(caller)).attr("href");
         });
        
+
+        function menuShow(){
+            var ele = document.getElementById("itens");
+            console.log(ele);
+            if(ele.style.display === "flex"){
+                ele.style.display = "none";
+            }else{
+                ele.style.display = "flex"
+            }
+        }
 
     </script>
     <script src="{% static 'jquery/jquery-3.6.1.min.js' %}"></script>
