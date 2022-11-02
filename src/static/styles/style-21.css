@@ -8,79 +8,89 @@
     font-family: Roboto Condensed;
 }
 /*header*/
-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background-color: #68D89B;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
-    padding: 20px 7%;
+nav{
     display: flex;
+    height: 80px;
+    width: 100%;
+    background-color: #68D89B;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
+    padding: 0 50px 0 100px;
+    flex-wrap: wrap;
 }
- header nav ul{
-    list-style: none;
- }
 
- header nav ul li{
+nav .logo img{
+    width: 100px;
+}
+
+nav .logo{
     position: relative;
-    float: left;
- }
+    top: -10px;
+}
 
- header nav ul li a{
-    font-size: 20px;
-    padding: 20px;
-    color: white;
-    display: block;
+nav ul{
+    display: flex;
+    flex-wrap: wrap;
     list-style: none;
+}
+
+nav ul li{
+    margin: 0 10px;
+}
+
+nav ul li a{
+    color: white;
     text-decoration: none;
- }
-
- header nav ul li a:hover{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
     letter-spacing: 1px;
-    transition: all 0.3s ease 0s;
-    color: white;
- }
+    transition: all 0.3s ease;
+}
 
- header nav ul li ul{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   position: absolute;
-   left: 0;
-   width: 300px;
-   background: #4F9D69;
-   display: none;
- }
+nav ul li a.active,
+nav ul li a:hover{
+    background-color: #4F9D69;
+    color: #fff;
+}
 
- header nav ul li ul li{
-    width: 100%;
- }
- header nav ul li ul li ul{
-    left: 200px;
-    top:0;
- }
-
- header nav ul li:hover > ul{
-    display: initial;
- }
-.menu-btn{
-    color: white;
-    font-size: 25px;
+nav .menu-btn i{
+    color: #fff;
     cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top:65px;
     display: none;
+}
+
+/*dropdown */
+
+li.dropdown-nav{
+    display: inline-block;
+}
+
+.dropdown-nav-content{
+    display: none;
+    position: absolute;
+    background-color: #68D89B;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 i{
     margin-right: 5px;
+}
+
+.dropdown-nav-content a{
+    color: white;
+    padding: 12px 16px;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-nav-content a:hover {background-color: #4F9D69;}
+
+.dropdown-nav:hover .dropdown-nav-content {
+  display: block;
 }
 
 
@@ -167,99 +177,6 @@ span{
 label{
     font-weight: bold
 }
-
-
-
-/* css register*/
-
-.inputs-register{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 1rem 0;
-    max-width:500px;
-    width: 70%;
-    margin: 0 auto;
-    padding: 10px;
-}
-
-.input-box{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.1rem;
-}
-
-
-.input-box .input{
-    margin: 0.6rem 0;
-    padding: 0.8rem 1.2rem;
-    box-shadow: 1px 1px 6px #0000001c;
-}
-
-.input-box .input:hover{
-   background-color: #ffff;
-}
-
-
-.home-btn{
-    text-decoration: none;
-    width: 100%;
-    height: 45px;
-    cursor: pointer;
-    background: #68D89B;
-    color: white;
-    border: 0;
-    border-radius: 10px;
-    font-size: 20px;
-    transition: 1s;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.home-btn:hover{
-    background: #4F9D69;
-    color: white;
-}
-
-.div-btn{
-    margin-top: 80px;
-}
-
-.h1-div{
-    margin-top: 40px;
-}
-
-
-.content-reset{
-    width: 50%;
-    margin: 0 auto;
-    padding: 30px;
-}
-
-.input-reset{
-    width: 100%;
-    padding: 10px;
-}
-
-.reset-btn{
-    text-decoration: none;
-    width: 100%;
-    height: 45px;
-    cursor: pointer;
-    background: #68D89B;
-    color: white;
-    border: 0;
-    border-radius: 10px;
-    font-size: 20px;
-    transition: 1s;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.reset-div-btn{
-    margin-top: 20px;
-}
-
 
 
 
@@ -847,27 +764,7 @@ img{
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media (min-width: 600px) and (max-width: 800px) {
-    header{
-        padding: 20px;
-    }
-
-    header nav{
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #68D89B;
-        border-top: 1px solid white;
-    }
-     
-    header nav ul li{
-        width: 100%;
-    }
-
-    header nav ul li ul{
-        position: relative;
-        width: 100%;
-    }
+    
 
 
     
