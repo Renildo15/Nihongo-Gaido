@@ -6,12 +6,12 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'styles/style-18.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style-21.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/responsivo-1.css' %}">
     <link rel="icon" href="{% static 'imgs/Nihongo-Gaido-1.png' %}" type="image/gif" sizes="16x16">
 </head>
 <body>
-
-       <nav>
+    <nav>
         <div class="logo">
             <a href="{% url 'pages:home' %}"><img src="{% static 'imgs/Nihongo-Gaido-1.png' %}"></a>
         </div>
@@ -42,7 +42,8 @@
                 </div>
             </li>
         </ul>
-       </nav>
+    </nav>
+       
     {% block content %}
     {% endblock content %}
 
@@ -75,16 +76,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-        var ul = document.querySelector('nav ul');
-        var menuBtn = document.querySelector('.menu-btn i');
-        
-        function menuShow(){
-            if(ul.classList.contains('open')){
-                ul.classList.remove('open');
-            }else{
-                ul.classList.add('open');
-            }
-        }
         /////grammar_app modal
         $(document).on('click', '.confirm-delete', function () {
             $("#confirmDeleteModal").attr("caller-id", $(this).attr("id"));
@@ -105,6 +96,16 @@
           window.location = $("#".concat(caller)).attr("href");
         });
        
+
+        function menuShow(){
+            var ele = document.getElementById("itens");
+            console.log(ele);
+            if(ele.style.display === "flex"){
+                ele.style.display = "none";
+            }else{
+                ele.style.display = "flex"
+            }
+        }
 
     </script>
     <script src="{% static 'jquery/jquery-3.6.1.min.js' %}"></script>
