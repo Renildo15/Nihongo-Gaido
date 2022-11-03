@@ -5,16 +5,14 @@ from .models import Grammar_Phrase
 from grammar_app.models import Grammar
 from .forms import GramarPhraseForm
 from django.contrib.auth.decorators import login_required
-from grammar_app.encryption_util import *
 from django.contrib import  messages
 
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def phrase_list(request,pk):
-    id = decrypt(pk)
     parametro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '3')
-    grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=id)
+    grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=pk)
     grs_phrase = grammar_phrase.values('id', 'frase', 'traducao', 'explicacao', 'grammar_id', 'criado_por')
     
     grp = []

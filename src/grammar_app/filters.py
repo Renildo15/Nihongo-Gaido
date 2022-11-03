@@ -1,4 +1,3 @@
-from dataclasses import fields
 import django_filters
 from .models import *
 
