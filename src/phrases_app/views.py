@@ -13,19 +13,10 @@ def phrase_list(request,pk):
     parametro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '3')
     grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=pk)
-    grs_phrase = grammar_phrase.values('id', 'frase', 'traducao', 'explicacao', 'grammar_id', 'criado_por')
     
-    grp = []
-
-    for i in grs_phrase:
-        i['encrypt_key']=encrypt(i['id'])
-        i['id'] = i['id']
-        grp.append(i)
-    print(grp)
-
     if not(parametro_limit.isdigit() and int(parametro_limit) > 0):
         parametro_limit = "3"
-    phrase_paginator = Paginator(grp, parametro_page)
+    phrase_paginator = Paginator(grammar_phrase, parametro_page)
 
     try:
         page = phrase_paginator.page(parametro_limit)
@@ -41,8 +32,7 @@ def phrase_list(request,pk):
 
 @login_required(login_url='user:logar_user')
 def phrase_view(request, pk):
-    id = decrypt(pk)
-    phrase = Grammar_Phrase.objects.get(pk=id)
+    phrase = Grammar_Phrase.objects.get(pk=pk)
     context = {
         'phrase':phrase
     }
@@ -73,9 +63,7 @@ def phrase_create(request):
 
 @login_required(login_url='user:logar_user')
 def phrase_update(request, pk):
-    #id = encrypt(pk)
-    id = decrypt(pk)
-    phrase = get_object_or_404(Grammar_Phrase, pk=id)
+    phrase = get_object_or_404(Grammar_Phrase, pk=pk)
     form = GramarPhraseForm(request.POST or None, instance=phrase)
     if request.method == 'POST':
         form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
@@ -93,8 +81,7 @@ def phrase_update(request, pk):
     
 @login_required(login_url='user:logar_user')
 def phrase_delete(request, pk):
-    id = decrypt(pk)
-    phrase = Grammar_Phrase.objects.get(id = id)
+    phrase = Grammar_Phrase.objects.get(id = pk)
     phrase.delete()
     messages.success(request,"Frase deletada com sucesso!")
     return redirect('grammar:grammar_list')
