@@ -10,24 +10,27 @@ from django.contrib import  messages
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def phrase_list(request,pk):
-    parametro_page = request.GET.get('page', '1')
-    parametro_limit = request.GET.get('limit', '3')
+    paramentro_page = request.GET.get('page', '1')
+    paramentro_limit = request.GET.get('limit', '3')
     grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=pk)
     
-    if not(parametro_limit.isdigit() and int(parametro_limit) > 0):
-        parametro_limit = "3"
-    phrase_paginator = Paginator(grammar_phrase, parametro_page)
+    if not( paramentro_limit.isdigit() and int( paramentro_limit) > 0):
+         paramentro_limit = "3"
+    phrase_paginator = Paginator(grammar_phrase, paramentro_limit)
 
     try:
-        page = phrase_paginator.page(parametro_limit)
+        page = phrase_paginator.page(paramentro_page)
     except (EmptyPage, PageNotAnInteger):
         page = phrase_paginator.page(1)
 
     context = {
         'quantidade_por_pagina':['3','5','10','15'],
-        'qnt_pagina': parametro_limit,
-        'grammar_phrase': page
+        'qnt_pagina':  paramentro_limit,
+        'grammar_phrase': page,
+        'id_grammar': pk
     }
+
+    print(grammar_phrase)
     return render(request, 'phrase_list.html', context)
 
 @login_required(login_url='user:logar_user')

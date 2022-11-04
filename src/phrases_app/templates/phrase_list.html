@@ -29,7 +29,7 @@
                 {% if qnt == qnt_pagina %}
                   <li class="page-item active"><a class="page-link" href="#">{{qnt}}</a></li>
                 {% else %}
-                  <li class="page-item"><a class="page-link" href="{% url 'phrase:phrase_list' %}?limit={{qnt}}">{{qnt}}</a></li>
+                  <li class="page-item"><a class="page-link" href="{% url 'phrase:phrases_list' id_grammar %}?limit={{qnt}}">{{qnt}}</a></li>
                 {% endif %}
               {% endfor %}
             </ul>
@@ -81,7 +81,7 @@
                         <ul class="pagination">
                         {% if grammar_phrase.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="{% url 'phrase:phrases_list'%}?limit{{qnt_pagina}}&page={{grammar_phrase.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
+                                <a class="page-link" href="{% url 'phrase:phrases_list' id_grammar%}?limit{{qnt_pagina}}&page={{grammar_phrase.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
                             </li>
                         {% else %}
                             <li class="page-item disabled">
@@ -96,7 +96,7 @@
                                 </li>
                             {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="{% url 'phrase:phrases_list'%}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
+                                <a class="page-link" href="{% url 'phrase:phrases_list' id_grammar%}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
                             </li>
                             {% endif %}
     
@@ -105,13 +105,14 @@
     
                         {% if grammar_phrase.has_next %}
                             <li class="page-item">
-                            <a class="page-link" href="{% url 'phrase:phrases_list'%}?limit{{qnt_pagina}}&page={{grammar.next_page_number}}">Próximo</a>
+                                <a class="page-link" href="{% url 'phrase:phrases_list' id_grammar %}?limit{{qnt_pagina}}&page={{grammar_phrase.next_page_number}}">Próximo</a>
                             </li>
-                        {% else %}
+                            {% else %}
                             <li class="page-item disabled">
-                            <a class="page-link" href="#">Próximo</a>
+                                <a class="page-link" href="#">Próximo</a>
                             </li>
                         {% endif %}
+            
                         
                         </ul>
                     </div>

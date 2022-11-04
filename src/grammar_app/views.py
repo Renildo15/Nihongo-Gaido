@@ -10,7 +10,6 @@ from django.contrib import  messages
 def grammar_list(request):
     grammar_contains_query = request.GET.get('grammar_contains')
     estrutura_contains_query = request.GET.get('estrutura_contains')
-    #nivel_contains_query = request.GET.get('nivel_contains')
     paramentro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '3')
     nivel_query = request.GET.get('select')
@@ -70,6 +69,7 @@ def grammar_list(request):
         'grammar': page,
     }
 
+    
     
     return render(request, 'grammar_list.html', context)
 
