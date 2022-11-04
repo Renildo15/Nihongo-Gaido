@@ -22,6 +22,18 @@
     </div>
     <div class="div-table-frase">
         {% if grammar_phrase %}
+        <div class="qtn-itens">
+            <span>Itens por página:</span>
+            <ul class="pagination pagination-sm test">
+              {% for qnt in quantidade_por_pagina %}
+                {% if qnt == qnt_pagina %}
+                  <li class="page-item active"><a class="page-link" href="#">{{qnt}}</a></li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="{% url 'phrase:phrases_list' id_grammar %}?limit={{qnt}}">{{qnt}}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
             <table class="table-css">
                 <thead>
                     <tr>
@@ -37,9 +49,9 @@
                         <td>{{f.frase}}</td>
                         <td>{{f.traducao}}</td>
                         <td class="btn-table">
-                            <a class="btn-edit" href="{% url 'phrase:update_phrase' f.encrypt_key %}"><i class="fa fa-edit"></i></a>
-                            <a class="btn-detail" href="{% url 'phrase:phrase_view' f.encrypt_key %}"><i class="fa fa-eye"></i></a>
-                            <a class="btn-delete confirm-delete-phrase" id="deleteButton{{f.id}}" href="{% url 'phrase:delete_phrase' f.encrypt_key %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
+                            <a class="btn-edit" href="{% url 'phrase:update_phrase' f.id %}"><i class="fa fa-edit"></i></a>
+                            <a class="btn-detail" href="{% url 'phrase:phrase_view' f.id %}"><i class="fa fa-eye"></i></a>
+                            <a class="btn-delete confirm-delete-phrase" id="deleteButton{{f.id}}" href="{% url 'phrase:delete_phrase' f.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <div class="modal fade" id="confirmDeleteModalPhrase" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -69,7 +81,7 @@
                         <ul class="pagination">
                         {% if grammar_phrase.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="{% url 'phrase:phrases_list'%}?limit{{qnt_pagina}}&page={{grammar_phrase.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
+                                <a class="page-link" href="{% url 'phrase:phrases_list' id_grammar%}?limit{{qnt_pagina}}&page={{grammar_phrase.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
                             </li>
                         {% else %}
                             <li class="page-item disabled">
@@ -84,7 +96,7 @@
                                 </li>
                             {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="{% url 'phrase:phrases_list' %}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
+                                <a class="page-link" href="{% url 'phrase:phrases_list' id_grammar%}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
                             </li>
                             {% endif %}
     
@@ -93,13 +105,14 @@
     
                         {% if grammar_phrase.has_next %}
                             <li class="page-item">
-                            <a class="page-link" href="{% url 'phrase:phrases_list'%}?limit{{qnt_pagina}}&page={{grammar.next_page_number}}">Próximo</a>
+                                <a class="page-link" href="{% url 'phrase:phrases_list' id_grammar %}?limit{{qnt_pagina}}&page={{grammar_phrase.next_page_number}}">Próximo</a>
                             </li>
-                        {% else %}
+                            {% else %}
                             <li class="page-item disabled">
-                            <a class="page-link" href="#">Próximo</a>
+                                <a class="page-link" href="#">Próximo</a>
                             </li>
                         {% endif %}
+            
                         
                         </ul>
                     </div>
