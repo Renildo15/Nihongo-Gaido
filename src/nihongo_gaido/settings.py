@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'nihongo_pages_app',
     'phrases_app',
     'user_app',
+    'text_app',
 ]
 
 
