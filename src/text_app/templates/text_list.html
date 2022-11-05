@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Nihongo Gaido - Textos{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% for text in texts %}
+                    <h1>{{text.titulo}}</h1>
+                    <span>{{text.date_created}}</span>
+                    <div>{{text.texto|safe}}</div>
+                    <hr>
+                    <div>
+                        {{text.comentario}}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

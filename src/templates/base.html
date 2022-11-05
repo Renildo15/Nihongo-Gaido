@@ -23,7 +23,7 @@
         <ul>
             <li><a class="active" href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
             <li><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Grammar</a></li> 
-            <li><a href="{% url 'text:add_text'%}"><i class="fa fa-pencil" aria-hidden="true"></i>Text</a></li> 
+            <li><a href="{% url 'text:text_list'%}"><i class="fa fa-pencil" aria-hidden="true"></i>Text</a></li> 
             <li><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
             <li class = "dropdown-nav">
                 {% if user.is_authenticated%}
