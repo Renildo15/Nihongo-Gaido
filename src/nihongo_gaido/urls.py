@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('nihongo_pages_app.urls', namespace='pages')),
     path('grammar/', include('grammar_app.urls', namespace='grammar')),
     path('phrase/', include('phrases_app.urls', namespace='phrase')),
+    path('text/', include('text_app.urls', namespace='text')),
     path('auth/', include('user_app.urls', namespace='user')),
     
 ]
