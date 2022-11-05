@@ -8,6 +8,7 @@ class Text(models.Model):
     texto = models.TextField(max_length=900)
     comentario = models.TextField(max_length=900, blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add = True, null=True, blank=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
@@ -28,6 +29,7 @@ class TextTraducao(models.Model):
     titulo_traducao = models.CharField(max_length=200, unique=True)
     texto_traducao = models.TextField(max_length=900)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add = True, null=True, blank=True)
     text_id = models.ForeignKey(Text,on_delete=models.CASCADE,blank=True, null=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
@@ -50,6 +52,7 @@ class TextWriting(models.Model):
     texto = models.TextField(max_length=900)
     comentario = models.TextField(max_length=900, blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add = True, null=True, blank=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
