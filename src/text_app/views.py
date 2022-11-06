@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from .forms import TextForm,TextTraducaoForm,TextWriting
 from .models import Text,TextTraducao, TextWriting
 from django.contrib.auth.decorators import login_required
@@ -48,3 +49,17 @@ def text_view(request, slug):
     }
 
     return render(request,"text_view.html", context)
+
+@login_required(login_url='user:logar_user')
+def text_update(request, slug):
+    text = get_object_or_404(Text, slug=slug)
+    text_form = TextForm(request.POST or None, instance=text)
+
+    if text_form.is_valid():
+        text_form.save()
+        return redirect('text:text_list')
+    context = {
+        "text_form":text_form
+    }
+
+    return render(request, "text_form.html", context)
