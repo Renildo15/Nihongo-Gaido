@@ -1,20 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Nihongo Gaido - Escrever Texto{% endblock title %}Nihongo Gaido - Escrever Texto
-
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+{% endfor %}
 {% block content %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <form method="post">
-                    {% csrf_token %}
-                    {{text_form.media}}
-                    {{text_form.as_p}}
-                    <div class="btn-div">
-                        <input type="submit" name="grammar" value="Salvar Gramatica"/>
+    <div class="form-container-form">
+        <form method="post">
+            {% csrf_token %}
+            <div class="inputs-grammar">
+                <h2>Adicionar nova gramatica</h2>
+               
+                {% for field in text_form %}
+                    <div class="inputs-grammar-box">
+                        {{text_form.media}} 
+                        <label>{{field.label}}</label>
+                        {{field}}
                     </div>
-                </form>
-            </div>
-        </div>
+                {% endfor %}
+                <div class="btn-div">
+                    <input type="submit" name="grammar" value="Salvar Gramatica"/>
+                </div>
+            </div> 
+        </form>
     </div>
 {% endblock content %}

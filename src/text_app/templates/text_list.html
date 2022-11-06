@@ -12,14 +12,14 @@
         </div>
         <hr>
         <div class="row mb-5 mt-5">
-            <div class="col-md-12">
+            <div class="col-12">
                 {% for text in texts %}
-                <div class="card" style="width: 18rem;">
+                <div class="card col-3" style="width: 18rem;">
                     <div class="card-body">
                       <h5 class="card-title">{{text.titulo}}</h5>
                       <h6 class="card-subtitle mb-2 text-muted">{{text.date_created}}</h6>
                       <div>{{text.texto|safe|truncatechars:100}}</div>
-                      <a class="btn btn-primary" href="#" class="card-link">Abrir texto</a>
+                      <a class="btn btn-primary" href="{% url 'text:text_view' text.slug %}" class="card-link">Abrir texto</a>
                       <a class="btn btn-danger" href="#" class="card-link">Excluir texto</a>
                     </div>
                   </div>

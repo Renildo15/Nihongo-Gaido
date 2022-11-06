@@ -8,6 +8,9 @@ from django.contrib import messages
 @login_required(login_url='user:logar_user')
 def text_options(request):
     return render(request, "text_options.html")
+
+
+
 @login_required(login_url='user:logar_user')
 def text_list(request):
     texts = Text.objects.filter(criado_por=request.user.id)
@@ -15,6 +18,8 @@ def text_list(request):
         "texts": texts
     }
     return render(request, 'text_list.html', context)
+
+
 
 @login_required(login_url='user:logar_user')
 def text_create(request):
@@ -33,3 +38,13 @@ def text_create(request):
         "text_form":text_form
     }
     return render(request, 'text_form.html', context)
+
+
+@login_required(login_url='user:logar_user')
+def text_view(request, slug):
+    text = Text.objects.get(slug=slug)
+    context = {
+        "text":text
+    }
+
+    return render(request,"text_view.html", context)
