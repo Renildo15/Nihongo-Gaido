@@ -3,16 +3,27 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
+        <div class="div-text-frase">
+            <h2 class='h2 text-center mt-4'>Lista de textos</h2>
+            <div class="div-buttons">
+                <a class="btn-add" href="{% url 'text:add_text' %}"><i class="fa fa-plus"></i> Add novo texto</a>
+                <a class="btn-back" href="{% url 'text:text_options' %}"><i class="fa fa-arrow-left"></i>Voltar</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row mb-5 mt-5">
             <div class="col-md-12">
                 {% for text in texts %}
-                    <h1>{{text.titulo}}</h1>
-                    <span>{{text.date_created}}</span>
-                    <div>{{text.texto|safe}}</div>
-                    <hr>
-                    <div>
-                        {{text.comentario}}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{text.titulo}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{text.date_created}}</h6>
+                      <div>{{text.texto|safe|truncatechars:100}}</div>
+                      <a class="btn btn-primary" href="#" class="card-link">Abrir texto</a>
+                      <a class="btn btn-danger" href="#" class="card-link">Excluir texto</a>
                     </div>
+                  </div>
+                    
                 {% endfor %}
             </div>
         </div>
