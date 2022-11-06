@@ -2,6 +2,12 @@
 {% block title %}Nihongo Gaido - Textos{% endblock title %}
 
 {% block content %}
+    {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{msg}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+    {% endfor %}
     <div class="container">
         <div class="div-text-frase">
             <h2 class='h2 text-center mt-4'>Lista de textos</h2>
@@ -11,21 +17,43 @@
             </div>
         </div>
         <hr>
-        <div class="row mb-5 mt-5">
-            <div class="col-12">
-                {% for text in texts %}
-                <div class="card col-3" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">{{text.titulo}}</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">{{text.date_created}}</h6>
-                      <div>{{text.texto|safe|truncatechars:100}}</div>
-                      <a class="btn btn-primary" href="{% url 'text:text_view' text.slug %}" class="card-link">Abrir texto</a>
-                      <a class="btn btn-danger" href="#" class="card-link">Excluir texto</a>
-                    </div>
-                  </div>
-                    
-                {% endfor %}
+        {% if texts %}
+            <div class="row mb-5 mt-5">
+                <div class="col-12">
+                    {% for text in texts %}
+                        <div class="card col-3" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{text.titulo}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{text.date_created}}</h6>
+                            <div>{{text.texto|safe|truncatechars:100}}</div>
+                            <a class="btn btn-primary" href="{% url 'text:text_view' text.slug %}" class="card-link">Abrir texto</a>
+                            <a class="btn btn-danger confirme-delete-text" id="deleteButton{{text.slug}}" href="{% url 'text:text_delete' text.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir texto</a>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="confirmDeleteModalText" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header text-danger">
+                                  <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body confirm-delete-text">
+                                  Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalText">Sim, desejo apagar</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>           
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        {% else %}
+        <div class='text-center mt-4'>
+            <h2>Não há dados cadastrados</h2>
+          </div>
+        {% endif %}
     </div>
 {% endblock content %}

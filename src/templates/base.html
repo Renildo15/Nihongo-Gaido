@@ -97,6 +97,16 @@
           window.location = $("#".concat(caller)).attr("href");
         });
        
+        /////text_app modal
+        $(document).on('click', '.confirm-delete-text', function () {
+            $("#confirmDeleteModalPhrase").attr("caller-id", $(this).attr("id"));
+          });
+    
+        $(document).on('click', '#confirmDeleteButtonModalPhrase', function () {
+          var caller = $("#confirmDeleteButtonModalPhrase").closest(".modal").attr("caller-id");
+          window.location = $("#".concat(caller)).attr("href");
+        });
+       
 
         function menuShow(){
             var ele = document.getElementById("itens");

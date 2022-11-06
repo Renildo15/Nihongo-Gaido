@@ -63,3 +63,10 @@ def text_update(request, slug):
     }
 
     return render(request, "text_form.html", context)
+
+@login_required(login_url='user:logar_user')
+def text_delete(request, slug):
+    text = Text.objects.get(slug=slug)
+    text.delete()
+    messages.success(request, "Texto deletado com sucesso!")
+    return redirect(reverse('text:text_list'))
