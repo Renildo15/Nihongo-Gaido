@@ -3,6 +3,8 @@ from .forms import TextForm,TextTraducaoForm,TextWriting
 from .models import Text,TextTraducao, TextWriting
 # Create your views here.
 
+def text_options(request):
+    return render(request, "text_options.html")
 
 def text_list(request):
     texts = Text.objects.filter(criado_por=request.user.id)
