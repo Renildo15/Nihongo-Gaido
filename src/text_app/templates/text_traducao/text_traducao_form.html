@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Nihongo Gaido - Escrever Texto{% endblock title %}
+{% block title %}Nihongo Gaido - Traduzir Texto{% endblock title %}
 {% for msg in messages %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{msg}}
@@ -11,18 +11,21 @@
         <form method="post">
             {% csrf_token %}
             <div class="inputs-text">
-                <h2>Adicionar novo texto</h2>
+                <h2>Traduzir texto</h2>
                 <hr>
-                {% for field in text_form %}
+                <div class="col-8">
+                    {{text.texto|safe}}
+                </div>
+                {% for field in text_traducao_form %}
                     <div class="inputs-text-box" >
-                        {{text_form.media}} 
+                        {{text_traducao_form.media}} 
                         <label>{{field.label}}</label>
                         {{field}}
                     </div>
                 {% endfor %}
                 <hr>
                 <div class="btn-div">
-                    <input type="submit" name="grammar" value="Salvar Texto"/>
+                    <input type="submit" name="grammar" value="Traduzir"/>
                 </div>
             </div> 
         </form>

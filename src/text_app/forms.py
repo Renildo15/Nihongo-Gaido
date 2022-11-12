@@ -25,9 +25,20 @@ class TextForm(forms.ModelForm):
         self.fields['comentario'].widget = forms.Textarea(attrs={'style':'width:100%; border-radius:10px; padding:10px;'})
 
 class TextTraducaoForm(forms.ModelForm):
+    texto = RichTextField()
     class Meta:
         model = TextTraducao
-        fields = '__all__'
+        fields = ('titulo_traducao', 'texto_traducao','text_id')
+        exclude = ['slug','criado_por']
+
+        labels={
+            'titulo_traducao':'Título:',
+            'texto_traducao':'Traducão:',
+        }
+
+        widgets = {
+            'texto_traducao':forms.Textarea(attrs={'class':'form-control', 'style':'width:600px;'}),
+        }
 
 
 class TextWritingForm(forms.ModelForm):

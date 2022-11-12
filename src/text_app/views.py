@@ -70,3 +70,28 @@ def text_delete(request, slug):
     text.delete()
     messages.success(request, "Texto deletado com sucesso!")
     return redirect(reverse('text:text_list'))
+
+################text tradução###############
+
+def text_traducao_create(request, slug):
+    text_texto = Text.objects.get(slug=slug)
+    print(request.user)
+    if request.method == "POST":
+        text_traducao_form = TextTraducaoForm(request.POST or None)
+        print( text_traducao_form)
+
+        if text_traducao_form.is_valid():
+            text = text_traducao_form.save(commit=False)
+            text.criado_por = request.user
+            text.save()
+            messages.success(request,"Texto traduzido com sucesso!")
+            return redirect(reverse("text:text_list"))
+    else:
+        text_traducao_form = TextTraducaoForm()
+
+    context = {
+        "text_traducao_form":text_traducao_form,
+        "text": text_texto
+    }
+
+    return render(request, "text_traducao/text_traducao_form.html", context)
