@@ -95,3 +95,12 @@ def text_traducao_create(request, slug):
     }
 
     return render(request, "text_traducao/text_traducao_form.html", context)
+
+
+def text_traducao_view(request, slug):
+    text_traducao = TextTraducao.objects.get(slug=slug)
+    context = {
+        "text_traducao": text_traducao
+    }
+
+    return render(request, "text_traducao/text_traducao_view.html", context)

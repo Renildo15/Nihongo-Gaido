@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    Detalhes - {{text_traducao.titulo_traducao}}
+{% endblock title %}
+
+{% block content %}
+
+{% if text_traducao %}
+    <div class="container">
+        <div class="row m-5">
+            <div class="col-8">
+                {{text_traducao.texto_traducao|safe}}
+            </div>
+            <hr>
+            <div class="col-12 mb-4">
+                <a class="btn btn-primary" href="#">Editar tradução</a>
+                <a class="btn btn-danger" href="#">Deletar tradução</a>
+                <a class="btn btn-primary" href="#">Voltar</a>
+            </div>
+        </div>
+    </div>
+{% else %}
+<div class='text-center mt-4'>
+    <h2>Não há traduções cadastradas</h2>
+</div> 
+{% endif %}
+    
+  
+    
+{% endblock content %}
