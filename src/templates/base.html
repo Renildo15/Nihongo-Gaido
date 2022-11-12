@@ -105,11 +105,11 @@
        
         /////text_app modal
         $(document).on('click', '.confirm-delete-text', function () {
-            $("#confirmDeleteModalPhrase").attr("caller-id", $(this).attr("id"));
+            $("#confirmDeleteModalText").attr("caller-id", $(this).attr("id"));
           });
     
-        $(document).on('click', '#confirmDeleteButtonModalPhrase', function () {
-          var caller = $("#confirmDeleteButtonModalPhrase").closest(".modal").attr("caller-id");
+        $(document).on('click', '#confirmDeleteButtonModalText', function () {
+          var caller = $("#confirmDeleteButtonModalText").closest(".modal").attr("caller-id");
           window.location = $("#".concat(caller)).attr("href");
         });
        
