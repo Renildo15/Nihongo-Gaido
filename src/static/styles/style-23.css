@@ -737,6 +737,7 @@ img{
 }
 
 
+
 @media (max-width: 600px){
     header,.nav-links-header{
         flex-direction: column;
