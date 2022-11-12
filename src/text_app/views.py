@@ -98,7 +98,10 @@ def text_traducao_create(request, slug):
 
 
 def text_traducao_view(request, slug):
-    text_traducao = TextTraducao.objects.get(slug=slug)
+    try:
+        text_traducao = TextTraducao.objects.get(slug=slug)
+    except TextTraducao.DoesNotExist:
+        text_traducao = None;
     context = {
         "text_traducao": text_traducao
     }
