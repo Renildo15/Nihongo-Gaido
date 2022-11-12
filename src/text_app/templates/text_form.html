@@ -10,18 +10,19 @@
     <div class="form-container-form">
         <form method="post">
             {% csrf_token %}
-            <div class="inputs-grammar">
-                <h2>Adicionar nova gramatica</h2>
-               
+            <div class="inputs-text">
+                <h2>Adicionar novo texto</h2>
+                <hr>
                 {% for field in text_form %}
-                    <div class="inputs-grammar-box">
+                    <div class="inputs-text-box" >
                         {{text_form.media}} 
                         <label>{{field.label}}</label>
                         {{field}}
                     </div>
                 {% endfor %}
+                <hr>
                 <div class="btn-div">
-                    <input type="submit" name="grammar" value="Salvar Gramatica"/>
+                    <input type="submit" name="grammar" value="Salvar Texto"/>
                 </div>
             </div> 
         </form>

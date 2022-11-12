@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'text_app',
 ]
 
+CKEDITOR_CONFIGS = {'default': {
+'removePlugins': 'stylesheetparser',
+'allowedContent': True,},}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

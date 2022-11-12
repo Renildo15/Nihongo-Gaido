@@ -1,12 +1,28 @@
 from django import forms
 from .models import Text, TextTraducao, TextWriting
+from ckeditor.fields import RichTextField
 
 class TextForm(forms.ModelForm):
+    texto = RichTextField()
     class Meta:
         model = Text
-        fields = '__all__'
+        fields = ('titulo', 'texto', 'comentario')
         exclude = ['slug','criado_por']
 
+        labels={
+            'titulo':'Título:',
+            'texto':'Texto:',
+            'comentario': 'Comentário:'
+        }
+
+        widgets = {
+            'text':forms.Textarea(attrs={'class':'form-control', 'style':'width:600px;'}),
+        }
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['comentario'].widget = forms.Textarea(attrs={'style':'width:100%; border-radius:10px; padding:10px;'})
 
 class TextTraducaoForm(forms.ModelForm):
     class Meta:

@@ -708,6 +708,35 @@ img{
 }
 
 
+
+/* text_app*/
+
+.inputs-text{
+    padding: 40px;
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    max-width: 100%;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+
+.inputs-text h2{
+    text-align: center;
+    text-transform: capitalize;
+    padding: 10px;
+    color: #68D89B;
+}
+
+.inputs-text-box{
+   
+    padding: 0 30px;
+    margin: 20px;
+}
+
+
 @media (max-width: 600px){
     header,.nav-links-header{
         flex-direction: column;
