@@ -53,6 +53,7 @@ def text_view(request, slug):
 @login_required(login_url='user:logar_user')
 def text_update(request, slug):
     text = get_object_or_404(Text, slug=slug)
+    print(text)
     text_form = TextForm(request.POST or None, instance=text)
 
     if text_form.is_valid():
@@ -108,7 +109,8 @@ def text_traducao_view(request, slug):
     try:
         text_traducao = TextTraducao.objects.get(slug=slug)
     except TextTraducao.DoesNotExist:
-        text_traducao = None;
+        text_traducao = None
+        
     context = {
         "text_traducao": text_traducao
     }
@@ -128,3 +130,9 @@ def text_traducao_update(request, slug):
     }
 
     return render(request,"text_traducao/text_traducao_form.html", context)
+
+def text_traducao_delete(request, slug):
+    text_traducao = TextTraducao.objects.get(slug=slug)
+    text_traducao.delete()
+    messages.success(request, "Texto deletado com sucesso!")
+    return redirect(reverse('text:text_view'), slug=slug)
