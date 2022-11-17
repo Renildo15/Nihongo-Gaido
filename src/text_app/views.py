@@ -76,10 +76,12 @@ def text_delete(request, slug):
 
 def text_traducao_create(request, slug):
     text_texto = Text.objects.get(slug=slug)
-   
+    initial_dict = {
+            "titulo_traducao" : text_texto 
+    }
     print(request.user)
     if request.method == "POST":
-        text_traducao_form = TextTraducaoForm(request.POST or None, initial={'titulo_traducao': 'teste'})
+        text_traducao_form = TextTraducaoForm(request.POST or None, initial= initial_dict)
         print( text_traducao_form)
 
         if text_traducao_form.is_valid():
@@ -90,7 +92,7 @@ def text_traducao_create(request, slug):
             messages.success(request,"Texto traduzido com sucesso!")
             return redirect(reverse("text:text_list"))
     else:
-        text_traducao_form = TextTraducaoForm()
+        text_traducao_form = TextTraducaoForm(initial= initial_dict)
 
     context = {
         "text_traducao_form":text_traducao_form,

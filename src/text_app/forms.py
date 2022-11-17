@@ -26,7 +26,7 @@ class TextForm(forms.ModelForm):
 
 class TextTraducaoForm(forms.ModelForm):
     texto = RichTextField()
-    text = Text.objects.all()
+   
     titulo_traducao = forms.CharField(max_length=200)
     class Meta:
         model = TextTraducao
