@@ -76,14 +76,10 @@ def text_delete(request, slug):
 
 def text_traducao_create(request, slug):
     text_texto = Text.objects.get(slug=slug)
-    #id = Text.objects.only('id').get(slug=slug).id
-    #text_id = Text.objects.get(titulo="Sukima Onna")
-    #id = Text.objects.filter(titulo='Sukima Onna').values('id')[0]['id']
-    #id = Text.objects.filter(titulo='Sukima Onna').values_list('id', flat=True).first()
-    print(id)
+   
     print(request.user)
     if request.method == "POST":
-        text_traducao_form = TextTraducaoForm(request.POST or None)
+        text_traducao_form = TextTraducaoForm(request.POST or None, initial={'titulo_traducao': 'teste'})
         print( text_traducao_form)
 
         if text_traducao_form.is_valid():
