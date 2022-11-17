@@ -112,6 +112,16 @@
           var caller = $("#confirmDeleteButtonModalText").closest(".modal").attr("caller-id");
           window.location = $("#".concat(caller)).attr("href");
         });
+
+        /////text_app:traducao
+        $(document).on('click', '.confirm-delete-text-traducao', function () {
+            $("#confirmDeleteModalTextTaducao").attr("caller-id", $(this).attr("id"));
+          });
+    
+        $(document).on('click', '#confirmDeleteButtonModalTextTraducao', function () {
+          var caller = $("#confirmDeleteButtonModalTextTraducao").closest(".modal").attr("caller-id");
+          window.location = $("#".concat(caller)).attr("href");
+        });
        
 
         function menuShow(){

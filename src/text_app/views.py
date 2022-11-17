@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from .forms import TextForm,TextTraducaoForm,TextWriting
 from .models import Text,TextTraducao, TextWriting
 from django.contrib.auth.decorators import login_required
@@ -135,4 +135,4 @@ def text_traducao_delete(request, slug):
     text_traducao = TextTraducao.objects.get(slug=slug)
     text_traducao.delete()
     messages.success(request, "Texto deletado com sucesso!")
-    return redirect(reverse('text:text_view'), slug=slug)
+    return redirect(reverse('text:text_list'))
