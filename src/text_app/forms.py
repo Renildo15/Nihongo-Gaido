@@ -28,8 +28,8 @@ class TextTraducaoForm(forms.ModelForm):
     texto = RichTextField()
     class Meta:
         model = TextTraducao
-        fields = ('titulo_traducao', 'texto_traducao','text_id')
-        exclude = ['slug','criado_por']
+        fields = ('titulo_traducao', 'texto_traducao')
+        exclude = ['slug','criado_por','text_id']
 
         labels={
             'titulo_traducao':'Título:',

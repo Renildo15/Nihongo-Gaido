@@ -76,8 +76,7 @@ def text_delete(request, slug):
 
 def text_traducao_create(request, slug):
     text_texto = Text.objects.get(slug=slug)
-    id = Text.objects.only('id').get(slug=slug).id
-
+    #id = Text.objects.only('id').get(slug=slug).id
     #text_id = Text.objects.get(titulo="Sukima Onna")
     #id = Text.objects.filter(titulo='Sukima Onna').values('id')[0]['id']
     #id = Text.objects.filter(titulo='Sukima Onna').values_list('id', flat=True).first()
@@ -90,7 +89,7 @@ def text_traducao_create(request, slug):
         if text_traducao_form.is_valid():
             text = text_traducao_form.save(commit=False)
             text.criado_por = request.user
-            id = text.text_id
+            text.text_id = text_texto
             text.save()
             messages.success(request,"Texto traduzido com sucesso!")
             return redirect(reverse("text:text_list"))
