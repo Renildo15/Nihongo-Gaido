@@ -51,7 +51,10 @@ INSTALLED_APPS = [
 
 CKEDITOR_CONFIGS = {'default': {
 'removePlugins': 'stylesheetparser',
-'allowedContent': True,},}
+'allowedContent': True,
+'width': 410,
+'height': 300},
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

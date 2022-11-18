@@ -7,27 +7,32 @@
     </div>
 {% endfor %}
 {% block content %}
-    <div class="form-container-form">
-        <form method="post">
-            {% csrf_token %}
-            <div class="inputs-text">
-                <h2>Traduzir texto</h2>
-                <hr>
-                <div class="col-8">
-                    {{text.texto|safe}}
-                </div>
-                {% for field in text_traducao_form %}
-                    <div class="inputs-text-box" >
-                        {{text_traducao_form.media}} 
-                        <label>{{field.label}}</label>
-                        {{field}}
+   <div class="container mt-5 mb-5">
+    <h2 class="text-center">Traduzir texto</h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="col-8">
+                {{text.texto|safe}}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+            <form method="post">
+                {% csrf_token %}
+                <div>
+                    {% for field in text_traducao_form %}
+                        <div class="inputs-text-box" >
+                            {{text_traducao_form.media}} 
+                            <label>{{field.label}}</label>
+                            {{field}}
+                        </div>
+                    {% endfor %}
+                    <div class="btn-div">
+                        <input type="submit" name="grammar" value="Traduzir"/>
                     </div>
-                {% endfor %}
-                <hr>
-                <div class="btn-div">
-                    <input type="submit" name="grammar" value="Traduzir"/>
-                </div>
-            </div> 
-        </form>
+                </div> 
+            </form>
+        </div>
     </div>
+   </div>
 {% endblock content %}

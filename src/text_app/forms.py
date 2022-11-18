@@ -28,7 +28,7 @@ class TextTraducaoForm(forms.ModelForm):
     texto = RichTextField()
     class Meta:
         model = TextTraducao
-        fields = ('titulo_traducao','texto_traducao',)
+        fields = ('texto_traducao','titulo_traducao')
         exclude = ['slug','criado_por','text_id']
 
         labels={
