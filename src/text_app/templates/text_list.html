@@ -27,8 +27,8 @@
                 <h5 class="card-title">{{t.titulo}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{t.date_created}}</h6>
                 <div>{{t.texto|safe|truncatechars:100}}</div>
-                <a class="btn btn-primary" href="{% url 'text:text_view' t.slug %}" class="card-link">Abrir texto</a>
-                <a class="btn btn-danger confirm-delete-text" id="deleteButton{{t.slug}}" href="{% url 'text:text_delete' t.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir texto</a>
+                <a class="btn-open" href="{% url 'text:text_view' t.slug %}" class="card-link">Abrir texto</a>
+                <a class="btn-delete confirm-delete-text" id="deleteButton{{t.slug}}" href="{% url 'text:text_delete' t.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir texto</a>
                 </div>
             </div>
             <div class="modal fade" id="confirmDeleteModalText" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">

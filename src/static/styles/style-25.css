@@ -736,7 +736,84 @@ img{
     margin: 20px;
 }
 
+.btn-open{
+    width: 190px;
+    background-color: #68D89B;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
 
+.btn-edit{
+    width: 190px;
+    background-color: #664e00;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-translate{
+    width: 190px;
+    background-color: #660066;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-delete{
+    width: 190px;
+    background-color: #dc3545;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-open:hover{
+    background-color: #4F9D69;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+.btn-edit:hover{
+    background-color: #493800;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-delete:hover{
+    background-color: #992833;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-translate:hover{
+    background-color: #3f003f;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
 
 @media (max-width: 600px){
     header,.nav-links-header{

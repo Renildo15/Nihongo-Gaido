@@ -109,7 +109,7 @@ def text_traducao_view(request, slug):
         text_traducao = None
         
     context = {
-        "text_traducao": text_traducao
+        "text_traducao": text_traducao,
     }
 
     return render(request, "text_traducao/text_traducao_view.html", context)
@@ -118,12 +118,14 @@ def text_traducao_view(request, slug):
 def text_traducao_update(request, slug):
     text_traducao = get_object_or_404(TextTraducao, slug=slug)
     text_traducao_form = TextTraducaoForm(request.POST or None, instance=text_traducao)
+    text_texto = Text.objects.get(slug=slug)
 
     if  text_traducao_form.is_valid():
         text_traducao_form.save()
         return redirect("text:text_view", slug=slug)
     context = {
-        'text_traducao_form':text_traducao_form
+        'text_traducao_form':text_traducao_form,
+         "text": text_texto
     }
 
     return render(request,"text_traducao/text_traducao_form.html", context)
