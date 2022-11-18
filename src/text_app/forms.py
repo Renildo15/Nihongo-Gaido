@@ -26,22 +26,22 @@ class TextForm(forms.ModelForm):
 
 class TextTraducaoForm(forms.ModelForm):
     texto = RichTextField()
-   
-    titulo_traducao = forms.CharField(max_length=200)
     class Meta:
         model = TextTraducao
-        fields = ('titulo_traducao', 'texto_traducao')
+        fields = ('titulo_traducao','texto_traducao',)
         exclude = ['slug','criado_por','text_id']
 
         labels={
-            'titulo_traducao':'Título:',
-            'texto_traducao':'Traducão:',
+            'titulo_traducao': '',
+            'texto_traducao':'Traducão:'
         }
 
         widgets = {
             'texto_traducao':forms.Textarea(attrs={'class':'form-control', 'style':'width:600px;'}),
+            'titulo_traducao': forms.HiddenInput()
         }
 
+       
 
 class TextWritingForm(forms.ModelForm):
     class Meta:
