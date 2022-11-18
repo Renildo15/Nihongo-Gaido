@@ -73,7 +73,7 @@ def text_delete(request, slug):
     return redirect(reverse('text:text_list'))
 
 ################text tradução###############
-
+@login_required(login_url='user:logar_user')
 def text_traducao_create(request, slug):
     text_texto = Text.objects.get(slug=slug)
     initial_dict = {
@@ -101,7 +101,7 @@ def text_traducao_create(request, slug):
 
     return render(request, "text_traducao/text_traducao_form.html", context)
 
-
+@login_required(login_url='user:logar_user')
 def text_traducao_view(request, slug):
     try:
         text_traducao = TextTraducao.objects.get(slug=slug)
@@ -114,7 +114,7 @@ def text_traducao_view(request, slug):
 
     return render(request, "text_traducao/text_traducao_view.html", context)
 
-
+@login_required(login_url='user:logar_user')
 def text_traducao_update(request, slug):
     text_traducao = get_object_or_404(TextTraducao, slug=slug)
     text_traducao_form = TextTraducaoForm(request.POST or None, instance=text_traducao)
@@ -130,8 +130,20 @@ def text_traducao_update(request, slug):
 
     return render(request,"text_traducao/text_traducao_form.html", context)
 
+@login_required(login_url='user:logar_user')
 def text_traducao_delete(request, slug):
     text_traducao = TextTraducao.objects.get(slug=slug)
     text_traducao.delete()
     messages.success(request, "Texto deletado com sucesso!")
     return redirect(reverse('text:text_list'))
+
+
+###############################Texto escrita############################################
+@login_required(login_url='user:logar_user')
+def text_list_w(request):
+    texts = TextWriting.objects.filter(criado_por=request.user.id)
+    context = {
+        "texts":texts
+    }
+
+    return render(request, "text_escrita/text_list_w.html", context)
