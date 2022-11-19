@@ -4,6 +4,12 @@
 {% endblock title %}
 
 {% block content %}
+    {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{msg}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+    {% endfor %}
     <div class="container">
         <div class="row m-5">
             <hr>
@@ -16,7 +22,7 @@
                 <p>{{texts.comentario}}</p>
                 <hr>
                 <div class="col-12 mb-4">
-                    <a class="btn-edit-text" href="#">Editar texto</a>
+                    <a class="btn-edit-text" href="{% url 'text:text_escrito_w' texts.slug %}">Editar texto</a>
                 </div>
             </div>
             
