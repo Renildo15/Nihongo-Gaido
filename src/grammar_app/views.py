@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import Grammar
 from .forms import GrammarForm
-from django.contrib import  messages
+from django.contrib import messages
 # Create your views here.
 @login_required(login_url='user:logar_user')
 def grammar_list(request):

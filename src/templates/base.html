@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'styles/style-21.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style-26.css' %}">
     <link rel="stylesheet" href="{% static 'styles/responsivo-1.css' %}">
     <link rel="icon" href="{% static 'imgs/Nihongo-Gaido-1.png' %}" type="image/gif" sizes="16x16">
 </head>
@@ -22,7 +22,14 @@
 
         <ul>
             <li><a class="active" href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-            <li><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Grammar</a></li>
+            <li><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Gramática</a></li> 
+            <li class = "dropdown-nav">
+                <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Texto <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-nav-content">
+                    <a href="{% url 'text:text_list' %}">Tradução</a>
+                    <a href="{% url 'text:text_escrito_list' %}">Escrita</a>
+                </div>
+            </li> 
             <li><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
             <li class = "dropdown-nav">
                 {% if user.is_authenticated%}
@@ -93,6 +100,26 @@
     
         $(document).on('click', '#confirmDeleteButtonModalPhrase', function () {
           var caller = $("#confirmDeleteButtonModalPhrase").closest(".modal").attr("caller-id");
+          window.location = $("#".concat(caller)).attr("href");
+        });
+       
+        /////text_app modal
+        $(document).on('click', '.confirm-delete-text', function () {
+            $("#confirmDeleteModalText").attr("caller-id", $(this).attr("id"));
+          });
+    
+        $(document).on('click', '#confirmDeleteButtonModalText', function () {
+          var caller = $("#confirmDeleteButtonModalText").closest(".modal").attr("caller-id");
+          window.location = $("#".concat(caller)).attr("href");
+        });
+
+        /////text_app:traducao
+        $(document).on('click', '.confirm-delete-text-traducao', function () {
+            $("#confirmDeleteModalTextTaducao").attr("caller-id", $(this).attr("id"));
+          });
+    
+        $(document).on('click', '#confirmDeleteButtonModalTextTraducao', function () {
+          var caller = $("#confirmDeleteButtonModalTextTraducao").closest(".modal").attr("caller-id");
           window.location = $("#".concat(caller)).attr("href");
         });
        
