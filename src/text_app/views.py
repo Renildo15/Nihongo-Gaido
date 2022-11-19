@@ -181,7 +181,7 @@ def text_create_w(request):
         if text_form.is_valid():
             text = text_form.save(commit=False)
             text.criado_por = request.user
-            messages.success(request,"Texto traduzido com sucesso!")
+            messages.success(request,"Texto salvo com sucesso!")
             text.save()
             return redirect(reverse("text:text_escrito_form"))
     else:
