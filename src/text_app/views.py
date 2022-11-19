@@ -4,6 +4,7 @@ from .forms import TextForm,TextTraducaoForm,TextWritingForm
 from .models import Text,TextTraducao, TextWriting
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import requests , random
 # Create your views here.
 
 @login_required(login_url='user:logar_user')
@@ -53,7 +54,6 @@ def text_view(request, slug):
 @login_required(login_url='user:logar_user')
 def text_update(request, slug):
     text = get_object_or_404(Text, slug=slug)
-    print(text)
     text_form = TextForm(request.POST or None, instance=text)
 
     if text_form.is_valid():
@@ -139,6 +139,29 @@ def text_traducao_delete(request, slug):
 
 
 ###############################Texto escrita############################################
+
+def theme_choose(request):
+    api = "https://api-temas.herokuapp.com/temas"
+
+    requisicao = requests.get(api)
+
+    try:
+        lista = requisicao.json()
+    except ValueError:
+          print("A resposta não chegou com o formato esperado.")
+
+    dic = {}
+
+    for i, value in enumerate(lista):
+        dic[i] = value
+
+    theme = random.choice(list(dic.values()))
+
+    return theme['tema']
+
+
+
+
 @login_required(login_url='user:logar_user')
 def text_list_w(request):
     texts = TextWriting.objects.filter(criado_por=request.user.id)
@@ -148,7 +171,10 @@ def text_list_w(request):
 
     return render(request, "text_escrita/text_list_w.html", context)
 
+
+@login_required(login_url='user:logar_user')
 def text_create_w(request):
+    theme = theme_choose(request)
     if request.method == "POST":
         text_form = TextWritingForm(request.POST or None)
 
@@ -159,10 +185,14 @@ def text_create_w(request):
             text.save()
             return redirect(reverse("text:text_escrito_form"))
     else:
+         
          text_form = TextWritingForm()
 
     context = {
-        'text_form': text_form
+        'text_form': text_form,
+        'theme': theme
     }
 
     return render(request, "text_escrita/text_form_w.html", context)
+
+
