@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from .forms import TextForm,TextTraducaoForm,TextWriting
+from .forms import TextForm,TextTraducaoForm,TextWritingForm
 from .models import Text,TextTraducao, TextWriting
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -147,3 +147,22 @@ def text_list_w(request):
     }
 
     return render(request, "text_escrita/text_list_w.html", context)
+
+def text_create_w(request):
+    if request.method == "POST":
+        text_form = TextWritingForm(request.POST or None)
+
+        if text_form.is_valid():
+            text = text_form.save(commit=False)
+            text.criado_por = request.user
+            messages.success(request,"Texto traduzido com sucesso!")
+            text.save()
+            return redirect(reverse("text:text_escrito_form"))
+    else:
+         text_form = TextWritingForm()
+
+    context = {
+        'text_form': text_form
+    }
+
+    return render(request, "text_escrita/text_form_w.html", context)
