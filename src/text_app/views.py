@@ -220,3 +220,10 @@ def text_update_w(request, slug):
     }
 
     return render(request, "text_escrita/text_edit_w.html", context)
+
+@login_required(login_url='user:logar_user')
+def text_delete_w(request, slug):
+    text = TextWriting.objects.get(slug=slug)
+    text.delete()
+    messages.success(request, "Texto deletado com sucesso!")
+    return redirect(reverse("text:text_escrito_list"))

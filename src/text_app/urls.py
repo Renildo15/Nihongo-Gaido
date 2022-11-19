@@ -17,5 +17,6 @@ urlpatterns = [
     path('text_escrito_list/', views.text_list_w, name="text_escrito_list"),
     path('text_escrito_form/', views.text_create_w, name="text_escrito_form"),
     path('text_escrito_view/<slug:slug>', views.text_view_w, name="text_escrito_view"),
-    path('text_escrito_w/<slug:slug>', views.text_update_w, name="text_escrito_w")
+    path('text_escrito_w/<slug:slug>', views.text_update_w, name="text_escrito_w"),
+    path('text_escrito_delete_w/<slug:slug>', views.text_delete_w, name="text_escrito_delete_w")
 ]
