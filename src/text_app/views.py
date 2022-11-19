@@ -196,3 +196,14 @@ def text_create_w(request):
     return render(request, "text_escrita/text_form_w.html", context)
 
 
+def text_view_w(request, slug):
+    try:
+        texts = TextWriting.objects.get(slug=slug)
+    except TextWriting.DoesNotExist:
+        texts = None
+
+    context = {
+        "texts": texts
+    }
+
+    return render(request,"text_escrita/text_view_w.html", context)

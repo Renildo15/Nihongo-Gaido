@@ -48,9 +48,9 @@ class TextWritingForm(forms.ModelForm):
         model = TextWriting
         fields = ('titulo', 'texto', 'comentario')
         labels ={
-            'titulo': 'Título',
-            'texto': 'Texto',
-            'comentario': 'Comentário'
+            'titulo': 'Título:',
+            'texto': 'Texto:',
+            'comentario': 'Comentário:'
         }
 
         exclude = ['slug', 'criado_por']

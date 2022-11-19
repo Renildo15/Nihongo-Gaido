@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{texts.titulo}}
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row m-5">
+            <hr>
+            <div class="col-8">
+                {{texts.texto|safe}}
+            </div>
+            <hr>
+            <div class="col-8" style="background-color: #efefef">
+                <h5>Comentário</h5>
+                <p>{{texts.comentario}}</p>
+                <hr>
+                <div class="col-12 mb-4">
+                    <a class="btn-edit-text" href="#">Editar texto</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  
+    
+{% endblock content %}
