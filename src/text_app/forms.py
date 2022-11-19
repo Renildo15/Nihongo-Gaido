@@ -46,4 +46,14 @@ class TextTraducaoForm(forms.ModelForm):
 class TextWritingForm(forms.ModelForm):
     class Meta:
         model = TextWriting
-        fields = '__all__'
+        fields = ('titulo', 'texto', 'comentario')
+        labels ={
+            'titulo': 'Título',
+            'texto': 'Texto',
+            'comentario': 'Comentário'
+        }
+
+        exclude = ['slug', 'criado_por']
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['comentario'].widget = forms.Textarea(attrs={'style':'width:100%; border-radius:10px; padding:10px;'})
