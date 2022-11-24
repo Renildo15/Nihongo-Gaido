@@ -5,7 +5,15 @@ from .models import *
 import datetime
 
 # Create your tests here.
+class LoginTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
+    def testLogin(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('testlogin-view'))
+        self.assertEqual(response.status_code, 200)
 
 class TextTests(TestCase):
     @classmethod
@@ -43,8 +51,5 @@ class TextTests(TestCase):
 
     def test_post_detailview(self):
         response = self.client.get(reverse("text:text_view", args=(self.text.slug,)))
-        no_response = self.client.get("/text_view/100000/")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(no_response.status_code, 404)
-        self.assertContains(response, "Lista De Textos")
         self.assertTemplateUsed(response, "text_view.html")
