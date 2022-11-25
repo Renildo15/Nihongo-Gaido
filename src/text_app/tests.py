@@ -5,15 +5,6 @@ from .models import *
 import datetime
 
 # Create your tests here.
-class LoginTestCase(TestCase):
-    def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-
-    def testLogin(self):
-        self.client.login(username='john', password='johnpassword')
-        response = self.client.get(reverse('testlogin-view'))
-        self.assertEqual(response.status_code, 200)
 
 class TextTests(TestCase):
     @classmethod

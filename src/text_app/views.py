@@ -7,15 +7,15 @@ from django.contrib import messages
 import requests , random
 # Create your views here.
 
-@login_required(login_url='user:logar_user')
-def text_options(request):
-    return render(request, "text_options.html")
-
-
 
 @login_required(login_url='user:logar_user')
 def text_list(request):
     texts = Text.objects.filter(criado_por=request.user.id)
+    text_contains_query = request.GET.get('text_contains')
+
+    if text_contains_query != '' and text_contains_query is not None:
+        texts = Text.objects.filter(criado_por=request.user.id, titulo__icontains = text_contains_query)
+
     context = {
         "texts": texts
     }
@@ -162,6 +162,10 @@ def theme_choose(request):
 @login_required(login_url='user:logar_user')
 def text_list_w(request):
     texts = TextWriting.objects.filter(criado_por=request.user.id)
+    text_contains_query = request.GET.get("text_w_contains")
+
+    if text_contains_query != '' and text_contains_query is not None:
+        texts = TextWriting.objects.filter(criado_por=request.user.id, titulo__icontains=text_contains_query)
     context = {
         "texts":texts
     }
