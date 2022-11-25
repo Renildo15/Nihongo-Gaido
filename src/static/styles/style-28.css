@@ -7,6 +7,10 @@
     outline: none;
     font-family: Roboto Condensed;
 }
+
+body{
+    overflow-x: hidden;
+}
 /*header*/
 nav{
     display: flex;
