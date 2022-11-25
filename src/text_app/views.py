@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import TextForm,TextTraducaoForm,TextWritingForm
 from .models import Text,TextTraducao, TextWriting
 from django.contrib.auth.decorators import login_required
@@ -12,12 +13,26 @@ import requests , random
 def text_list(request):
     texts = Text.objects.filter(criado_por=request.user.id)
     text_contains_query = request.GET.get('text_contains')
+    paramentro_page = request.GET.get("page", "1")
+    paramentro_limit = request.GET.get("limit", "6")
 
     if text_contains_query != '' and text_contains_query is not None:
         texts = Text.objects.filter(criado_por=request.user.id, titulo__icontains = text_contains_query)
 
+        if not (paramentro_limit.isdigit() and int(paramentro_limit) > 0):
+            paramentro_limit = "6"
+
+    text_paginator = Paginator(texts, paramentro_limit)
+
+    try:
+        page = text_paginator.page(paramentro_page)
+    except (EmptyPage, PageNotAnInteger):
+        page = text_paginator.page(1)
+
     context = {
-        "texts": texts
+        "quantidade_por_pagina":['3','6','12','24'],
+        "qtn_pagina" : paramentro_limit,
+        "texts": page
     }
     return render(request, 'text_list.html', context)
 
