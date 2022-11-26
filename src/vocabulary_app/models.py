@@ -9,7 +9,7 @@ class Category(models.Model):
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "Nomes"
+        verbose_name_plural = "Categorias"
         ordering = ('nome', )
 
     def __str__(self):

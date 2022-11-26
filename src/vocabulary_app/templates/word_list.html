@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Nihongo Gaido - Vocabuário
+{% endblock%}
+
+{% block content %}
+    {% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <div class="div-text">
+            <h2 class='h2 text-center mt-4'>Vocabulário</h2>
+            <hr>
+            <div class = "div-search-add">
+        
+              <div class="div-buttons"><a class="btn-add" href="#"> <i class="fa fa-plus"></i> Add nova palavra</a></div>
+              
+        
+              <div class="search">
+                <form method="GET" action="." class="form-busca">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="input-group mt-2">
+                            <input class="form-control py-2 border-right-0 border" type="search" name="palavra_contains" placeholder="Pesquisar por palavra..." />
+                            <span class="input-group-append">
+                                <div class="input-group-text bg-transparent p-3">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>        
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="input-group mt-2">
+                            <input class="form-control py-2 border-right-0 border" type="search" name="categoria_contains" placeholder="Pesquisar por categoria..." />
+                            <span class="input-group-append">
+                                <div class="input-group-text bg-transparent p-3">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>        
+                  </div>
+        
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="input-group mt-2 mb-2">
+                          <select name="select" class="form-control py-2 border-right-0 border">
+                            <option value="">Nível</option>
+                            <option value="N5">N5</option>
+                            <option value="N4">N4</option>
+                            <option value="N3">N3</option>
+                            <option value="N2">N2</option>
+                            <option value="N1">N1</option>
+                            <option value="UNKNOW">UNKNOW</option>
+                            
+                          </select>
+                          <!---<input class="form-control py-2 border-right-0 border" type="search" name="nivel_contains" placeholder="Pesquisar por nível..." />!-->
+                          <span class="input-group-append">
+                              <div class="input-group-text bg-transparent p-3">
+                                  <i class="fa fa-search"></i>
+                              </div>
+                          </span>
+                        </div>
+                    </div>        
+                  </div>
+        
+                  <button type="submit" class="btn-search">Buscar</button>
+                </form>
+              </div>
+            </div>
+        </div>
+
+        <div class="div-table">
+            {% if words %}
+            <table class="table-css">
+                <thead>
+                  <tr>
+                    <th>Palavra</th>
+                    <th>Leitura</th>
+                    <th>Tradução</th>
+                    <th>Nível</th>
+                    <th>Categoria</th>
+                    <th>Opções</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for word in words%}
+                  <tr>
+                    <td>{{word.palavra}}</td>
+                    <td>{{word.leitura}}</td>
+                    <td>{{word.traducao}}</td>
+                    <td>{{word.nivel}}</td>
+                    <td>{{word.categoria}}</td>
+                    <td><a class="btn-frase" href="#">Ver frases <i class="fa fa-eye"></i></a></td>
+                    <td class="btn-table">
+                      <a class="btn-edit" href="#"><i class="fa fa-edit"></i></a>
+                      <a id="deleteButton{{word.id}}" class="btn-delete confirm-delete" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
+                      
+                    </td>
+                  </tr>
+                  <div class="modal fade" id="confirmDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header text-danger">
+                          <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body confirm-delete">
+                          Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModal">Sim, desejo apagar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+                <div class='text-center mt-4'>
+                    <h2>Não há dados cadastrados</h2>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
