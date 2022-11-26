@@ -50,7 +50,7 @@ class Word(models.Model):
     traducao = models.CharField(max_length=20)
     tipo = models.CharField(max_length=20, choices= tipo_choice)
     nivel = models.CharField(max_length=6, choices=nivel_choices)
-    antonimo = models.CharField(max_length=20, blank=True, null=True)
+    antonimo = models.CharField(max_length=20, blank=True, null=True, default="---")
     slug = models.SlugField(unique=True, blank=True, null=True)
     imagem = models.ImageField(default="profile.png", null=True, blank=True)
     grupo = models.CharField(max_length=20, choices=grupo_choice, blank=True, null=True)
@@ -92,7 +92,7 @@ class Conjugation(models.Model):
         ordering = ("palavra",)
 
     def __str__(self):
-        return self.palavra
+        return self.present
 
     def save(self, *args, **kwargs):
         if not self.slug:

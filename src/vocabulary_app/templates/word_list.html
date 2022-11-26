@@ -105,7 +105,7 @@
                             <div class="buttons">
                                 <a class="btn-edit" href="#">Editar palavra</a>
                                 <a class="btn-delete" href="#">Excluir palavra</a>
-                                <a class="btn-conjugation" href="#">Ver conjugação</a>
+                                <a class="btn-conjugation" href="{% url 'vocabulary:conjugation_list' word.slug %}">Ver conjugação</a>
                                 <a class="btn-exemple" href="#">Ver exemplos</a>
                             </div>
                         </div>
