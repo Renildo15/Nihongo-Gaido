@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    Nihongo Gaido - Vocabuário
+    Nihongo Gaido - Vocabulário
 {% endblock%}
 
 {% block content %}
@@ -80,53 +80,30 @@
 
         <div class="div-table">
             {% if words %}
-            <table class="table-css">
-                <thead>
-                  <tr>
-                    <th>Palavra</th>
-                    <th>Leitura</th>
-                    <th>Tradução</th>
-                    <th>Nível</th>
-                    <th>Categoria</th>
-                    <th>Opções</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for word in words%}
-                  <tr>
-                    <td>{{word.palavra}}</td>
-                    <td>{{word.leitura}}</td>
-                    <td>{{word.traducao}}</td>
-                    <td>{{word.nivel}}</td>
-                    <td>{{word.categoria}}</td>
-                    <td><a class="btn-frase" href="#">Ver frases <i class="fa fa-eye"></i></a></td>
-                    <td class="btn-table">
-                      <a class="btn-edit" href="#"><i class="fa fa-edit"></i></a>
-                      <a id="deleteButton{{word.id}}" class="btn-delete confirm-delete" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
-                      
-                    </td>
-                  </tr>
-                  <div class="modal fade" id="confirmDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header text-danger">
-                          <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body confirm-delete">
-                          Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModal">Sim, desejo apagar</button>
+                {% for word in words %}
+                <div class="accordion accordion-flush shadow p-3 mb-5 bg-body rounded" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{word.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                            {{word.palavra}}
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOne{{word.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                           <ul>
+                            <li><strong>Leitura</strong> : {{word.leitura}}</li>
+                            <li><strong>Tradução</strong> : {{word.traducao}}</li>
+                            <li><strong>Nível</strong> : {{word.nivel}}</li>
+                            <li><strong>Tipo</strong> : {{word.tipo}}</li>
+                            <li><strong>Antônimo</strong> : {{word.antonimo}}</li>
+                            <li><strong>Grupo</strong> : {{word.grupo}}</li>
+                            <li><strong>Categoria</strong> : {{word.categoria}}</li>
+                           </ul>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {% endfor %}
-                </tbody>
-              </table>
+                {% endfor %}
             {% else %}
                 <div class='text-center mt-4'>
                     <h2>Não há dados cadastrados</h2>
