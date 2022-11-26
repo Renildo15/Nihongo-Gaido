@@ -90,15 +90,24 @@
                       </h2>
                       <div id="flush-collapseOne{{word.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                           <ul>
-                            <li><strong>Leitura</strong> : {{word.leitura}}</li>
-                            <li><strong>Tradução</strong> : {{word.traducao}}</li>
-                            <li><strong>Nível</strong> : {{word.nivel}}</li>
-                            <li><strong>Tipo</strong> : {{word.tipo}}</li>
-                            <li><strong>Antônimo</strong> : {{word.antonimo}}</li>
-                            <li><strong>Grupo</strong> : {{word.grupo}}</li>
-                            <li><strong>Categoria</strong> : {{word.categoria}}</li>
-                           </ul>
+                            <div class="accordion-list">
+                                <ul>
+                                    <li><strong>Leitura</strong> : {{word.leitura}}</li>
+                                    <li><strong>Tradução</strong> : {{word.traducao}}</li>
+                                    <li><strong>Nível</strong> : {{word.nivel}}</li>
+                                    <li><strong>Tipo</strong> : {{word.tipo}}</li>
+                                    <li><strong>Antônimo</strong> : {{word.antonimo}}</li>
+                                    <li><strong>Grupo</strong> : {{word.grupo}}</li>
+                                    <li><strong>Categoria</strong> : {{word.categoria}}</li>
+                                </ul>
+                            </div>    
+                            
+                            <div class="buttons">
+                                <a class="btn-edit" href="#">Editar palavra</a>
+                                <a class="btn-delete" href="#">Excluir palavra</a>
+                                <a class="btn-conjugation" href="#">Ver conjugação</a>
+                                <a class="btn-exemple" href="#">Ver exemplos</a>
+                            </div>
                         </div>
                       </div>
                     </div>
