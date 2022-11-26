@@ -14,13 +14,13 @@ def text_list(request):
     texts = Text.objects.filter(criado_por=request.user.id)
     text_contains_query = request.GET.get('text_contains')
     paramentro_page = request.GET.get("page", "1")
-    paramentro_limit = request.GET.get("limit", "6")
+    paramentro_limit = request.GET.get("limit", "3")
 
     if text_contains_query != '' and text_contains_query is not None:
         texts = Text.objects.filter(criado_por=request.user.id, titulo__icontains = text_contains_query)
 
         if not (paramentro_limit.isdigit() and int(paramentro_limit) > 0):
-            paramentro_limit = "6"
+            paramentro_limit = "3"
 
     text_paginator = Paginator(texts, paramentro_limit)
 
@@ -31,7 +31,7 @@ def text_list(request):
 
     context = {
         "quantidade_por_pagina":['3','6','12','24'],
-        "qtn_pagina" : paramentro_limit,
+        "qnt_pagina" : paramentro_limit,
         "texts": page
     }
     return render(request, 'text_list.html', context)
