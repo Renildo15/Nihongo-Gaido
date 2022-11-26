@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth import settings
+from django.template.defaultfilters import slugify
 # Create your models here.
 
 class Category(models.Model):
-    nome = models.CharField(max_length=20)
+    nome = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
@@ -12,6 +14,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.nome)
+        return super().save(*args,**kwargs)
 
 
 class Word(models.Model):
@@ -39,15 +46,30 @@ class Word(models.Model):
         ("Não é verbo", "Não é verbo")
     )
     palavra = models.CharField(max_length=20)
-    leitura = models.CharField(max_length=20)
+    leitura = models.CharField(max_length=20, unique=True)
     traducao = models.CharField(max_length=20)
     tipo = models.CharField(max_length=20, choices= tipo_choice)
     nivel = models.CharField(max_length=6, choices=nivel_choices)
     antonimo = models.CharField(max_length=20, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     imagem = models.ImageField(default="profile.png", null=True, blank=True)
     grupo = models.CharField(max_length=20, choices=grupo_choice, blank=True, null=True)
     categoria = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
+
+
+    class Meta:
+        verbose_name_plural = "Palavras"
+        ordering = ('palavra',)
+
+    def __str__(self):
+        return self.palavra
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.leitura)
+        return super().save(*args, **kwargs)
+
 
 class Conjugation(models.Model):
     palavra = models.OneToOneField(Word, on_delete=models.CASCADE)
@@ -61,3 +83,18 @@ class Conjugation(models.Model):
     causative = models.CharField(max_length=20, blank=True, null=True)
     conditional = models.CharField(max_length=20, blank=True, null=True)
     passive = models.CharField(max_length=20, blank=True, null=True)
+    leitura = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Conjugações"
+        ordering = ("palavra",)
+
+    def __str__(self):
+        return self.palavra
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.leitura)
+        return super().save(*args, **kwargs)

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'phrases_app',
     'user_app',
     'text_app',
+    'vocabulary_app',
 ]
 
 CKEDITOR_CONFIGS = {'default': {
