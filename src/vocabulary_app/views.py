@@ -56,6 +56,15 @@ def word_edit(request, slug):
     return render(request, "word_edit.html", context)
 
 @login_required(login_url='user:logar_user')
+def word_delete(request, slug):
+    word = Word.objects.get(slug=slug)
+    word.delete()
+    messages.success(request, "Palavra deletada com sucesso!")
+    return redirect(reverse("vocabulary:word_list"))
+
+
+
+@login_required(login_url='user:logar_user')
 def category_form(request):
     if request.method == "POST":
         form_category = CategoryForm(request.POST or None)
