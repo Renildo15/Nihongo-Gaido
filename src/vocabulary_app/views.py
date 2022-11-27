@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -39,6 +39,23 @@ def word_create(request):
 
     return render(request, "word_form.html", context)
 
+@login_required(login_url='user:logar_user')
+def word_edit(request, slug):
+    word = get_object_or_404(Word, slug=slug)
+    form_word = WordForm(request.POST or None, instance=word)
+
+    if form_word.is_valid():
+        form_word.save()
+        messages.success(request, "Palavra alterada com sucesso!")
+        return redirect('vocabulary:word_list')
+
+    context = {
+        "form_vocabulary" : form_word
+    }
+
+    return render(request, "word_edit.html", context)
+
+@login_required(login_url='user:logar_user')
 def category_form(request):
     if request.method == "POST":
         form_category = CategoryForm(request.POST or None)
