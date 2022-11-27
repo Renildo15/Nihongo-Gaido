@@ -37,4 +37,18 @@ class CategoryForm(forms.ModelForm):
 class ConjugationForm(forms.ModelForm):
     class Meta:
         model =  Conjugation
-        fields = '__all__'
+        fields = ('present','negative','past','te_form','volitional','potential','imperative','causative','conditional','passive','leitura')
+        exclude = ['slug','criado_por', 'palavra']
+        labels = {
+            'present': 'Presente: ',
+            'negative': 'Negativo',
+            'past': 'Passado: ',
+            'te_form': 'Forma-TE: ',
+            'volitional': 'Volotiva: ',
+            'potential': 'Potencial: ',
+            'imperative': 'Imperativo: ',
+            'causative': 'Causativa: ',
+            'conditional': 'Condicional: ',
+            'passive': 'Passiva: ',
+            'leitura': 'Leitura: '
+        }

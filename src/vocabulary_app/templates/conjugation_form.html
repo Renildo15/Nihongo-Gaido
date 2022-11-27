@@ -15,7 +15,7 @@ Adicionar conjugação - Nihongo Gaido
     <form method="post">
         {% csrf_token %}
         <div class="inputs-grammar">
-            <h2>Adicionar conjugação</h2>
+            <h2>{{word.palavra}}</h2>
             {% for field in form_conjugation %}
                 <div class="inputs-grammar-box">
                     <label>{{field.label}}</label>

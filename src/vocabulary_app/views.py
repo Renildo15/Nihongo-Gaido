@@ -116,5 +116,6 @@ def conjugation_create(request,slug):
 
     context = {
         'form_conjugation': form_conjugation,
+        'word': word
     }
     return render(request, "conjugation_form.html", context)
