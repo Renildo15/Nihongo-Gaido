@@ -77,10 +77,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="div-table col-8">
+            <div class="div-table col-8 shadow p-3 mb-5 bg-body rounded">
                 {% if words %}
                     {% for word in words %}
-                    <div class="accordion accordion-flush shadow p-3 mb-5 bg-body rounded" id="accordionFlushExample">
+                    <div class="accordion accordion-flush " id="accordionFlushExample">
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="flush-headingOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{word.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -118,16 +118,42 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="col-4">
+            <div class="col-4 shadow p-3 mb-5 bg-body rounded">
                 <ul class="list-group">
                     <h3>Categorias: </h3>
                     {% for categoria in categorias %}
                         <li class="list-group-item">{{categoria.nome}}</li>
                     {% endfor %}
                     <div class="div-btn-cat">
-                        <a class="btn-categoria" href="">Adicionar categoria</a>
+                        <a class="btn-categoria" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Adicionar categoria</a>
                     </div>
                   </ul>
+            </div>
+        </div>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar Categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in cat_form %}
+                            <div class="inputs-grammar-box">
+                                <label>{{field.label}}</label>
+                                {{field}}
+                            </div>
+                        {% endfor %}
+                        <div class="btn-div">
+                            <input type="submit" name="vocabulary" value="Salvar palavra"/>
+                        </div>    
+                    </form>
+                </div>
+            </div>
             </div>
         </div>
         

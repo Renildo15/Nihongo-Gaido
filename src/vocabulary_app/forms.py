@@ -22,3 +22,11 @@ class WordForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(WordForm, self).__init__(*args, **kwargs)    
         self.fields['tipo'].empty_label = "Selecione"
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('nome',)
+        labels = {
+            'nome': 'Nome: '
+        }

@@ -10,10 +10,11 @@ from .forms import *
 def word_list(request):
     word = Word.objects.filter(criado_por=request.user.id)
     categoria = Category.objects.filter(criado_por=request.user.id)
-
+    cat_form = category_form(request)
     context = {
         "words": word,
-        "categorias": categoria
+        "categorias": categoria,
+        "cat_form": cat_form
     }
 
     return render(request, "word_list.html", context)
@@ -37,6 +38,20 @@ def word_create(request):
     }
 
     return render(request, "word_form.html", context)
+
+def category_form(request):
+    if request.method == "POST":
+        form_category = CategoryForm(request.POST or None)
+        if form_category.is_valid():
+            category = form_category.save(commit=False)
+            category.criado_por = request.user
+            category.save()
+            messages.success(request,"Categoria adicionada com sucesso!")
+            return redirect(reverse('vocabulary:word_list'))
+    else:
+        form_category = CategoryForm(request.POST or None)
+
+    return form_category
 
 
 @login_required(login_url='user:logar_user')
