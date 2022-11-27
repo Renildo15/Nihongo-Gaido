@@ -1013,6 +1013,21 @@ img{
     box-shadow: 6px 6px 1px #0000001c;
     transition: 0.6s ease;
 }
+
+
+/*conjugation*/
+
+.btn-table-con .btn-edit{
+    text-decoration: none;
+    width: 190px;
+    background-color: #4F9D69;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+
+}
 @media (max-width: 600px){
     header,.nav-links-header{
         flex-direction: column;

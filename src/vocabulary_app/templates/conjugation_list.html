@@ -21,7 +21,7 @@
             </div>
 
             <div class="content">
-                <div class="list">
+                <div class="list mb-5 mt-5">
                     <table class="table-css">
                         <thead>
                           <tr>
@@ -50,8 +50,8 @@
                             <td>{{conjugations.causative}}</td>
                             <td>{{conjugations.conditional}}</td>
                             <td>{{conjugations.passive}}</td>
-                            <td class="btn-table">
-                              <a class="btn-edit" href="#">Editar</a>       
+                            <td class="btn-table-con">
+                              <a class="btn-edit" href="{% url 'vocabulary:edit_conjugation' conjugations.slug %}">Editar</a>       
                             </td>
                           </tr>
                         </tbody>

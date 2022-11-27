@@ -119,3 +119,21 @@ def conjugation_create(request,slug):
         'word': word
     }
     return render(request, "conjugation_form.html", context)
+
+
+@login_required(login_url='user:logar_user')
+def conjugation_edit(request, slug):
+    conjugation = get_object_or_404(Conjugation, slug=slug)
+    form_conjugation = ConjugationForm(request.POST or None, instance=conjugation)
+
+    if form_conjugation.is_valid():
+        form_conjugation.save()
+        messages.success(request, "Conjugação alterada com sucesso!")
+        return redirect('vocabulary:conjugation_list', slug=slug)
+
+    context = {
+        'form_conjugation': form_conjugation
+    }
+
+    return render(request, 'conjugation_edit.html', context)
+
