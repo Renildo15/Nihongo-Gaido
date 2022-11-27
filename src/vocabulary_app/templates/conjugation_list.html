@@ -22,19 +22,40 @@
 
             <div class="content">
                 <div class="list">
-                    <ul>
-                        <li><strong>Presente</strong>: {{conjugations.present}}</li>
-                        <li><strong>Negativo</strong>: {{conjugations.negative}}</li>
-                        <li><strong>Passado</strong>: {{conjugations.past}}</li>
-                        <li><strong>Forma - て</strong>: {{conjugations.te_form}}</li>
-                        <li><strong>Volotiva</strong>: {{conjugations.volitional}}</li>
-                        <li><strong>Potencial</strong>: {{conjugations.potential}}</li>
-                        <li><strong>Imperativo</strong>: {{conjugations.imperative}}</li>
-                        <li><strong>Causativo</strong>: {{conjugations.causative}}</li>
-                        <li><strong>Condicional</strong>: {{conjugations.conditional}}</li>
-                        <li><strong>Passivo</strong>: {{conjugations.passive}}</li>
-                        
-                    </ul>
+                    <table class="table-css">
+                        <thead>
+                          <tr>
+                            <th>Presente</th>
+                            <th>Negativo</th>
+                            <th>Passado</th>
+                            <th>Forma - て</th>
+                            <th>Volotiva</th>
+                            <th>Potencial</th>
+                            <th>Imperativo</th>
+                            <th>Causativo</th> 
+                            <th>Condicional</th> 
+                            <th>Passivo</th> 
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{conjugations.present}}</td>
+                            <td>{{conjugations.negative}}</td>
+                            <td>{{conjugations.past}}</td>
+                            <td>{{conjugations.te_form}}</td>
+                            <td>{{conjugations.volitional}}</td>
+                            <td>{{conjugations.potential}}</td>
+                            <td>{{conjugations.imperative}}</td>
+                            <td>{{conjugations.causative}}</td>
+                            <td>{{conjugations.conditional}}</td>
+                            <td>{{conjugations.passive}}</td>
+                            <td class="btn-table">
+                              <a class="btn-edit" href="#">Editar</a>       
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </div>
             </div>
         {% else %}
