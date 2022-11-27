@@ -6,14 +6,19 @@ class WordForm(forms.ModelForm):
 
     class Meta:
         model = Word
-        fields = ('palavra','traducao','tipo', 'nivel', 'antonimo', 'grupo', 'categoria')
+        fields = ('palavra', 'leitura','traducao','tipo', 'nivel', 'antonimo', 'grupo', 'categoria')
         exclude = ['slug','image','criado_por']
         labels = {
             'palavra': 'Palavra: ',
+            'leitura': 'Leitura: ',
             'traducao': 'Tradução: ',
             'tipo': 'Tipo: ',
             'nivel': 'Nível: ',
             'antonimo': 'Antônimo: ',
             'grupo': 'Grupo: ',
-            'categoria' :'Categotia: ',
+            'categoria' :'Categoria: ',
         }
+
+    def __init__(self, *args, **kwargs):
+        super(WordForm, self).__init__(*args, **kwargs)    
+        self.fields['tipo'].empty_label = "Selecione"
