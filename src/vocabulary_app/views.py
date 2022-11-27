@@ -9,9 +9,11 @@ from .forms import *
 @login_required(login_url='user:logar_user')
 def word_list(request):
     word = Word.objects.filter(criado_por=request.user.id)
+    categoria = Category.objects.filter(criado_por=request.user.id)
 
     context = {
-        "words": word
+        "words": word,
+        "categorias": categoria
     }
 
     return render(request, "word_list.html", context)
@@ -35,6 +37,7 @@ def word_create(request):
     }
 
     return render(request, "word_form.html", context)
+
 
 @login_required(login_url='user:logar_user')
 def conjugation_list(request, slug):
