@@ -72,7 +72,7 @@ class Word(models.Model):
 
 
 class Conjugation(models.Model):
-    palavra = models.OneToOneField(Word, on_delete=models.CASCADE)
+    palavra = models.OneToOneField(Word, on_delete=models.CASCADE, blank=True, null=True)
     present = models.CharField(max_length=20, blank=True, null=True)
     negative = models.CharField(max_length=20, blank=True, null=True)
     past = models.CharField(max_length=20, blank=True, null=True)

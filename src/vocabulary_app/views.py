@@ -11,10 +11,11 @@ def word_list(request):
     word = Word.objects.filter(criado_por=request.user.id)
     categoria = Category.objects.filter(criado_por=request.user.id)
     cat_form = category_form(request)
+
     context = {
         "words": word,
         "categorias": categoria,
-        "cat_form": cat_form
+        "cat_form": cat_form,
     }
 
     return render(request, "word_list.html", context)
@@ -82,13 +83,38 @@ def category_form(request):
 
 @login_required(login_url='user:logar_user')
 def conjugation_list(request, slug):
+    word = Word.objects.get(slug=slug)
     try:
         conjugations = Conjugation.objects.get(criado_por=request.user.id,slug=slug)
     except Conjugation.DoesNotExist:
         conjugations = None
 
     context = {
-        "conjugations" : conjugations
+        "conjugations" : conjugations,
+        "word": word
     }
 
     return render(request, "conjugation_list.html", context)
+
+@login_required(login_url='user:logar_user')
+def conjugation_create(request,slug):
+    word = Word.objects.get(slug=slug)
+    initial_dict = {
+            "leitura" : word.leitura
+    }
+    if request.method == "POST":
+        form_conjugation = ConjugationForm(request.POST or None, initial = initial_dict)
+        if form_conjugation.is_valid():
+            conjugation = form_conjugation.save(commit=False)
+            conjugation.criado_por = request.user
+            conjugation.palavra = word
+            conjugation.save()
+            messages.success(request,"Conjugação adicionada com sucesso!")
+            return redirect(reverse('vocabulary:word_list'))
+    else:
+        form_conjugation = ConjugationForm(initial= initial_dict)
+
+    context = {
+        'form_conjugation': form_conjugation,
+    }
+    return render(request, "conjugation_form.html", context)

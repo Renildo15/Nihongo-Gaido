@@ -30,3 +30,11 @@ class CategoryForm(forms.ModelForm):
         labels = {
             'nome': 'Nome: '
         }
+
+
+
+
+class ConjugationForm(forms.ModelForm):
+    class Meta:
+        model =  Conjugation
+        fields = '__all__'
