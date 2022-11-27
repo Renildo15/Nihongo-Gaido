@@ -10,6 +10,7 @@ urlpatterns = [
     path('phrase/', include('phrases_app.urls', namespace='phrase')),
     path('text/', include('text_app.urls', namespace='text')),
     path('auth/', include('user_app.urls', namespace='user')),
+    path('vocabulary/', include('vocabulary_app.urls', namespace='vocabulary')),
     
 ]
 

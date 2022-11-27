@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Nihongo Gaido - Vocabulário
+{% endblock%}
+
+{% block content %}
+    {% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <div class="div-text">
+            <h2 class='h2 text-center mt-4'>Vocabulário</h2>
+            <hr>
+            <div class = "div-search-add">
+        
+              <div class="div-buttons"><a class="btn-add" href="{% url 'vocabulary:add_word' %}"> <i class="fa fa-plus"></i> Add nova palavra</a></div>
+              
+        
+              <div class="search">
+                <form method="GET" action="." class="form-busca">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="input-group mt-2">
+                            <input class="form-control py-2 border-right-0 border" type="search" name="palavra_contains" placeholder="Pesquisar por palavra..." />
+                            <span class="input-group-append">
+                                <div class="input-group-text bg-transparent p-3">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>        
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="input-group mt-2">
+                            <input class="form-control py-2 border-right-0 border" type="search" name="categoria_contains" placeholder="Pesquisar por categoria..." />
+                            <span class="input-group-append">
+                                <div class="input-group-text bg-transparent p-3">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>        
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="input-group mt-2 mb-2">
+                          <select name="select" class="form-control py-2 border-right-0 border">
+                            <option value="">Nível</option>
+                            <option value="N5">N5</option>
+                            <option value="N4">N4</option>
+                            <option value="N3">N3</option>
+                            <option value="N2">N2</option>
+                            <option value="N1">N1</option>
+                            <option value="UNKNOW">UNKNOW</option>
+                            
+                          </select>
+                          <!---<input class="form-control py-2 border-right-0 border" type="search" name="nivel_contains" placeholder="Pesquisar por nível..." />!-->
+                          <span class="input-group-append">
+                              <div class="input-group-text bg-transparent p-3">
+                                  <i class="fa fa-search"></i>
+                              </div>
+                          </span>
+                        </div>
+                    </div>        
+                  </div>
+        
+                  <button type="submit" class="btn-search">Buscar</button>
+                </form>
+              </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="div-table col-8 shadow p-3 mb-5  bg-body rounded">
+                {% if words %}
+                    {% for word in words %}
+                    <div class="accordion accordion-flush " id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{word.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                {{word.palavra}}
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne{{word.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="accordion-list">
+                                    <ul>
+                                        <li><strong>Leitura</strong> : {{word.leitura}}</li>
+                                        <li><strong>Tradução</strong> : {{word.traducao}}</li>
+                                        <li><strong>Nível</strong> : {{word.nivel}}</li>
+                                        <li><strong>Tipo</strong> : {{word.tipo}}</li>
+                                        <li><strong>Antônimo</strong> : {{word.antonimo}}</li>
+                                        <li><strong>Grupo</strong> : {{word.grupo}}</li>
+                                        <li><strong>Categoria</strong> : {{word.categoria}}</li>
+                                    </ul>
+                                </div>    
+                                
+                                <div class="buttons">
+                                    {% if "Substantivo" in word.tipo or "Adjetivo-I" in word.tipo or "Adjetivo-NA" in word.tipo %}
+                                        <a class="btn-edit" href="{% url 'vocabulary:edit_word' word.slug %}">Editar palavra</a>
+                                        <a id="deleteButton{{word.slug}}" class="btn-delete confirm-delete-text" href="{% url 'vocabulary:delete_word' word.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir palavra</a>
+                                        <a class="btn-exemple" href="#">Ver exemplos</a>
+                                    {% else %}
+                                        <a class="btn-edit" href="{% url 'vocabulary:edit_word' word.slug%}">Editar palavra</a>
+                                        <a id="deleteButton{{word.slug}}" class="btn-delete confirm-delete-text" href="{% url 'vocabulary:delete_word' word.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir palavra</a>
+                                        <a class="btn-conjugation" href="{% url 'vocabulary:conjugation_list' word.slug %}">Ver conjugação</a>
+                                        <a class="btn-exemple" href="#">Ver exemplos</a>
+                                    {% endif %}
+                                    
+                                   
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                {% else %}
+                    <div class='text-center mt-4'>
+                        <h2>Não há dados cadastrados</h2>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-4 shadow p-3 mb-5 bg-body rounded">
+                <ul class="list-group">
+                    <h3>Categorias: </h3>
+                    {% for categoria in categorias %}
+                        <li class="list-group-item">{{categoria.nome}}</li>
+                    {% endfor %}
+                    <div class="div-btn-cat">
+                        <a class="btn-categoria" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Adicionar categoria</a>
+                    </div>
+                  </ul>
+            </div>
+        </div>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adicionar Categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in cat_form %}
+                            <div class="inputs-grammar-box">
+                                <label>{{field.label}}</label>
+                                {{field}}
+                            </div>
+                        {% endfor %}
+                        <div class="btn-div">
+                            <input type="submit" name="vocabulary" value="Salvar palavra"/>
+                        </div>    
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmDeleteModalText" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header text-danger">
+                  <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body confirm-delete-text">
+                  Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalText">Sim, desejo apagar</button>
+                </div>
+              </div>
+            </div>
+        </div>  
+        
+    </div>
+{% endblock content %}
