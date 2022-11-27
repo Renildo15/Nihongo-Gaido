@@ -8,9 +8,21 @@ from .forms import *
 
 @login_required(login_url='user:logar_user')
 def word_list(request):
-    word = Word.objects.filter(criado_por=request.user.id)
     categoria = Category.objects.filter(criado_por=request.user.id)
     cat_form = category_form(request)
+    palavra_contains_query = request.GET.get('palavra_contains')
+    categoria_contains_query = request.GET.get('categoria_contains')
+    nivel_query = request.GET.get('select')
+
+
+    if palavra_contains_query != '' and palavra_contains_query is not None:
+        word = Word.objects.filter(criado_por=request.user.id, palavra__icontains = palavra_contains_query)
+    elif categoria_contains_query != '' and categoria_contains_query is not None:
+        word = Word.objects.filter(criado_por=request.user.id, categoria__nome__icontains = categoria_contains_query)
+    elif nivel_query  != "" and nivel_query   is not None:
+         word = Word.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_query)
+    else:
+        word = Word.objects.filter(criado_por=request.user.id)
 
     context = {
         "words": word,
