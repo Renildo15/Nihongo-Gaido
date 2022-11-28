@@ -118,7 +118,7 @@
                                     {% if "Substantivo" in word.tipo or "Adjetivo-I" in word.tipo or "Adjetivo-NA" in word.tipo %}
                                         <a class="btn-edit" href="{% url 'vocabulary:edit_word' word.slug %}">Editar palavra</a>
                                         <a id="deleteButton{{word.slug}}" class="btn-delete confirm-delete-text" href="{% url 'vocabulary:delete_word' word.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir palavra</a>
-                                        <a class="btn-exemple" href="#">Ver exemplos</a>
+                                        <a class="btn-exemple" href="{% url 'example:example_list' word.slug %}">Ver exemplos</a>
                                     {% else %}
                                         <a class="btn-edit" href="{% url 'vocabulary:edit_word' word.slug%}">Editar palavra</a>
                                         <a id="deleteButton{{word.slug}}" class="btn-delete confirm-delete-text" href="{% url 'vocabulary:delete_word' word.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir palavra</a>
@@ -131,7 +131,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
                     {% endfor %}
                 {% else %}
                     <div class='text-center mt-4'>

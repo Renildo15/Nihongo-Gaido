@@ -5,8 +5,76 @@
 {% endblock%}
 
 {% block content %}
-{% for example in examples %}
-    {{example.traducao}}
-{% endfor %}
+    {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{msg}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+        </div>
+    {% endfor %}
+    <div class="container">
+        <div class="div-text">
+            <h2 class='h2 text-center mt-4'>Exemplos</h2>
+            <hr>
+            <div class="div-search-add">
+                <div class="div-text-frase">
+                   
+                    <div class="div-buttons">
+                        <a class="btn-add" href=""><i class="fa fa-plus"></i> Add exemplo</a>
+                    </div>
+                </div>
+            
+                <div class="search">
+                    <form action="" method="get" class="form-busca">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="input-group mt-2">
+                                    <input class="form-control-search" type="search" name="text_contains" placeholder="Pesquisar frase..." />
+                                    <button type="submit" class="btn-search">Buscar</button>
+                                </div>
+                            </div>        
+                          </div>    
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div  class="mb-2">
+                <h4>Lista de frases:</h4>
+            </div>
+            <div class="div-table shadow p-3 mb-5  bg-body rounded">
+                {% if examples %}
+                    
+                    {% for example in examples %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header " id="flush-headingOne">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{example.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                {{example.frase}}
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne{{example.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="accordion-list">
+                                    <ul>
+                                        <li><strong>Tradução</strong> : {{example.traducao}}</li>
+                                        <li><strong>Anotação</strong> : {{example.anotacao}}</li>                          
+                                    </ul>
+                                </div>    
+                                <div class="buttons">
+                                    <a class="btn-edit" href="#">Editar exemplo</a>
+                                    <a id="deleteButton{{example.slug}}" class="btn-delete confirm-delete-text" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir exemplo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class='text-center mt-4'>
+                        <h2>Não há dados cadastrados</h2>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
     
 {% endblock content %}
