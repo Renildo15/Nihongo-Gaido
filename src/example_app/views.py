@@ -29,8 +29,8 @@ def example_create(request,slug):
             example.palavra = word
             example.criado_por = request.user
             example.save()
-            messages.success(request,"Palavra adicionada com sucesso!")
-            return redirect(reverse('example:add_example'))
+            messages.success(request,"Exemplo adicionada com sucesso!")
+            return redirect(reverse('vocabulary:word_list'))
     else:
         form_example = ExampleForm(initial=initial_dict)
 
