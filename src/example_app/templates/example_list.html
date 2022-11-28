@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Nihongo Gaido - Exemplos
+{% endblock%}
+
+{% block content %}
+{% for example in examples %}
+    {{example.traducao}}
+{% endfor %}
+    
+{% endblock content %}
