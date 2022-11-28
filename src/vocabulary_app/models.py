@@ -4,7 +4,7 @@ from django.template.defaultfilters import slugify
 # Create your models here.
 
 class Category(models.Model):
-    nome = models.CharField(max_length=20, unique=True)
+    nome = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
@@ -47,10 +47,10 @@ class Word(models.Model):
     )
     palavra = models.CharField(max_length=20)
     leitura = models.CharField(max_length=20, unique=True)
-    traducao = models.CharField(max_length=20)
+    traducao = models.CharField(max_length=200)
     tipo = models.CharField(max_length=20, choices= tipo_choice)
     nivel = models.CharField(max_length=6, choices=nivel_choices)
-    antonimo = models.CharField(max_length=20, blank=True, null=True, default="---")
+    antonimo = models.CharField(max_length=200, blank=True, null=True, default="---")
     slug = models.SlugField(unique=True, blank=True, null=True)
     imagem = models.ImageField(default="profile.png", null=True, blank=True)
     grupo = models.CharField(max_length=20, choices=grupo_choice, blank=True, null=True)
