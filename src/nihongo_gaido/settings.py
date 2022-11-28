@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'user_app',
     'text_app',
     'vocabulary_app',
+    'example_app',
 ]
 
 CKEDITOR_CONFIGS = {'default': {
