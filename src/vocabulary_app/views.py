@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 from .forms import *
 # Create your views here.
@@ -13,21 +14,64 @@ def word_list(request):
     palavra_contains_query = request.GET.get('palavra_contains')
     categoria_contains_query = request.GET.get('categoria_contains')
     nivel_query = request.GET.get('select')
+    parametro_limit = request.GET.get('limit', '12')
+    parametro_page = request.GET.get('page','1')
 
 
     if palavra_contains_query != '' and palavra_contains_query is not None:
         word = Word.objects.filter(criado_por=request.user.id, palavra__icontains = palavra_contains_query)
+        if not(parametro_limit.isdigit() and int(parametro_limit)>0):
+            parametro_limit = '12'
+
+        word_paginator = Paginator(word, parametro_limit)
+
+        try:
+            page = word_paginator.page(parametro_page)
+        except(EmptyPage, PageNotAnInteger):
+            page = word_paginator.page(1)
+
     elif categoria_contains_query != '' and categoria_contains_query is not None:
         word = Word.objects.filter(criado_por=request.user.id, categoria__nome__icontains = categoria_contains_query)
+        if not(parametro_limit.isdigit() and int(parametro_limit)>0):
+            parametro_limit = '12'
+
+        word_paginator = Paginator(word, parametro_limit)
+
+        try:
+            page = word_paginator.page(parametro_page)
+        except(EmptyPage, PageNotAnInteger):
+            page = word_paginator.page(1)
+
     elif nivel_query  != "" and nivel_query   is not None:
          word = Word.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_query)
+         if not(parametro_limit.isdigit() and int(parametro_limit)>0):
+            parametro_limit = '12'
+
+         word_paginator = Paginator(word, parametro_limit)
+
+         try:
+            page = word_paginator.page(parametro_page)
+         except(EmptyPage, PageNotAnInteger):
+            page = word_paginator.page(1)
     else:
         word = Word.objects.filter(criado_por=request.user.id)
 
+        if not(parametro_limit.isdigit() and int(parametro_limit)>0):
+            parametro_limit = '12'
+
+        word_paginator = Paginator(word, parametro_limit)
+
+        try:
+            page = word_paginator.page(parametro_page)
+        except(EmptyPage, PageNotAnInteger):
+            page = word_paginator.page(1)
+
     context = {
-        "words": word,
+        "words": page,
         "categorias": categoria,
         "cat_form": cat_form,
+        'quantidade_por_pagina':['12','24','48'],
+        'qnt_pagina': parametro_limit,
     }
 
     return render(request, "word_list.html", context)
