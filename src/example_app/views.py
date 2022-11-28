@@ -9,9 +9,10 @@ from django.contrib import messages
 
 def example_list(request, slug):
     example = Example.objects.filter(criado_por=request.user.id, slug=slug)
-
+    word = Word.objects.get(slug=slug)
     context = {
-        "examples" : example
+        "examples" : example,
+        'word': word
     }
 
     return render(request, "example_list.html", context)
@@ -34,7 +35,8 @@ def example_create(request,slug):
         form_example = ExampleForm(initial=initial_dict)
 
     context = {
-        "form_example": form_example
+        "form_example": form_example,
+       
     }
 
     return render(request,'example_form.html', context)
