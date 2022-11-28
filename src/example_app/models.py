@@ -13,11 +13,16 @@ class Example(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
+
+    class Meta:
+        verbose_name_plural = "Exemplos"
+        ordering = ('frase',)
+
     def __str__(self):
         return self.frase
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.nome)
+            self.slug = slugify(self.leitura)
         return super().save(*args,**kwargs)
 
