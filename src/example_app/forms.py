@@ -9,9 +9,10 @@ class ExampleForm(forms.ModelForm):
         labels = {
             'frase': 'Frase: ',
             'traducao': 'Tradução: ',
-            'anotacao': 'Anotações'
+            'anotacao': 'Anotações',
+            
         }
-        exclude = ['slug','criado_por', 'palavra','leitura']
+        exclude = ['slug','criado_por','leitura' ]
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['anotacao'].widget = forms.Textarea(attrs={'style':'width:100%; border-radius:10px; padding:10px;'})

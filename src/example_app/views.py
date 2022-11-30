@@ -22,11 +22,13 @@ def example_create(request,slug):
     initial_dict = {
             "leitura" : word.leitura
     }
+    
     if request.method == "POST":
         form_example = ExampleForm(request.POST or None, initial=initial_dict)
         if form_example.is_valid():
             example = form_example.save(commit=False)
             example.palavra = word
+            example.leitura = initial_dict['leitura']
             example.criado_por = request.user
             example.save()
             messages.success(request,"Exemplo adicionada com sucesso!")
