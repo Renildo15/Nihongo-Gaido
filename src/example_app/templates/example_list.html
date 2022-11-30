@@ -61,7 +61,7 @@
                                     </ul>
                                 </div>    
                                 <div class="buttons">
-                                    <a class="btn-edit" href="#">Editar exemplo</a>
+                                    <a class="btn-edit" href="{% url 'example:example_edit' example.slug %}">Editar exemplo</a>
                                     <a id="deleteButton{{example.slug}}" class="btn-delete confirm-delete-text" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir exemplo</a>
                                 </div>
                             </div>

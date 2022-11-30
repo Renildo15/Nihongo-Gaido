@@ -5,8 +5,11 @@ from vocabulary_app.models import Word
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ExampleForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
+@login_required(login_url='user:logar_user')
 def example_list(request, slug):
     example = Example.objects.filter(criado_por=request.user.id, slug=slug)
     word = Word.objects.get(slug=slug)
@@ -17,6 +20,7 @@ def example_list(request, slug):
 
     return render(request, "example_list.html", context)
 
+@login_required(login_url='user:logar_user')
 def example_create(request,slug):
     word = Word.objects.get(slug=slug)
     initial_dict = {
@@ -42,3 +46,21 @@ def example_create(request,slug):
     }
 
     return render(request,'example_form.html', context)
+
+
+@login_required(login_url='user:logar_user')
+def example_edit(request, slug):
+    example = get_object_or_404(Example, slug=slug)
+    form_example = ExampleForm(request.POST or None, instance=example)
+
+    if form_example.is_valid():
+        form_example.save()
+        messages.success(request, "Exemplo alterado com sucesso!")
+        return redirect("example:example_list", slug=slug)
+
+
+    context = {
+        "form_example" : form_example
+    }
+
+    return render(request, "example_edit.html", context)
