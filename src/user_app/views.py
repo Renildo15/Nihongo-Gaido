@@ -115,7 +115,7 @@ def password_reset_request(request):
 
 @login_required(login_url='user:logar_user')
 def profile_page(request):
-    profile_info = Profile.objects.all()
+    profile_info = Profile.objects.filter(user = request.user.id )
     context = {
         "profile":profile_info
     }
