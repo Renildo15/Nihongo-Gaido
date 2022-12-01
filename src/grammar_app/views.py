@@ -96,8 +96,8 @@ def grammar_create(request):
     return render(request, 'grammar_form.html', context)
 
 @login_required(login_url='user:logar_user')
-def grammar_update(request, pk):
-    grammar = get_object_or_404(Grammar, pk=pk)
+def grammar_update(request, slug):
+    grammar = get_object_or_404(Grammar, slug=slug)
     form_grammar = GrammarForm(request.POST or None, instance=grammar)
 
     if form_grammar.is_valid():
@@ -110,8 +110,8 @@ def grammar_update(request, pk):
     return render(request, 'grammar_edit.html', context)
 
 @login_required(login_url='user:logar_user')
-def grammar_delete(request, pk):
-    grammar = Grammar.objects.get(id = pk)
+def grammar_delete(request, slug):
+    grammar = Grammar.objects.get(slug=slug)
     grammar.delete()
     messages.success(request, "Grámatica deletada com sucesso!")
     return redirect(reverse('grammar:grammar_list'))

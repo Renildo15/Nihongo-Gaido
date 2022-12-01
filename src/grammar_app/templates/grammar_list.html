@@ -110,8 +110,8 @@
           <td>{{g.nivel}}</td>
           <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases <i class="fa fa-eye"></i></a></td>
           <td class="btn-table">
-            <a class="btn-edit" href="{% url 'grammar:grammar_edit' g.id %}"><i class="fa fa-edit"></i></a>
-            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:grammar_delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
+            <a class="btn-edit" href="{% url 'grammar:grammar_edit' g.slug %}"><i class="fa fa-edit"></i></a>
+            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:grammar_delete' g.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
             
           </td>
         </tr>
