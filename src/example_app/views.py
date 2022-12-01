@@ -36,7 +36,7 @@ def example_create(request,slug):
             example.criado_por = request.user
             example.save()
             messages.success(request,"Exemplo adicionada com sucesso!")
-            return redirect(reverse('vocabulary:word_list'))
+            return redirect(reverse("vocabulary:word_list"))
     else:
         form_example = ExampleForm(initial=initial_dict)
 
@@ -64,3 +64,11 @@ def example_edit(request, slug):
     }
 
     return render(request, "example_edit.html", context)
+
+
+@login_required(login_url='user:logar_user')
+def example_delete(request, pk):
+    example = Example.objects.get(pk=pk)
+    example.delete()
+    messages.success(request, "Exemplo deletado com sucesso!")
+    return redirect(reverse("vocabulary:word_list"))

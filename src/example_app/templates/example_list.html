@@ -62,11 +62,29 @@
                                 </div>    
                                 <div class="buttons">
                                     <a class="btn-edit" href="{% url 'example:example_edit' example.slug %}">Editar exemplo</a>
-                                    <a id="deleteButton{{example.slug}}" class="btn-delete confirm-delete-text" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir exemplo</a>
+                                    <a id="deleteButton{{example.slug}}" class="btn-delete confirm-delete-text" href="{% url 'example:example_delete' example.pk %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir exemplo</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="confirmDeleteModalText" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header text-danger">
+                              <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body confirm-delete-text">
+                              Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalText">Sim, desejo apagar</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>   
+                    
                     {% endfor %}
                 {% else %}
                     <div class='text-center mt-4'>
