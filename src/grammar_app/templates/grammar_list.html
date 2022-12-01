@@ -51,7 +51,7 @@
           <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group mt-2 mb-2">
-                  <select name="select" class="form-control py-2 border-right-0 border">
+                  <select name="select" class="form-control py-2 border-right-0 border" style = "color: #4F9D69;">
                     <option value="">Nível</option>
                     <option value="N5">N5</option>
                     <option value="N4">N4</option>
@@ -110,8 +110,8 @@
           <td>{{g.nivel}}</td>
           <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases <i class="fa fa-eye"></i></a></td>
           <td class="btn-table">
-            <a class="btn-edit" href="{% url 'grammar:update' g.id %}"><i class="fa fa-edit"></i></a>
-            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
+            <a class="btn-edit" href="{% url 'grammar:grammar_edit' g.id %}"><i class="fa fa-edit"></i></a>
+            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:grammar_delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
             
           </td>
         </tr>
