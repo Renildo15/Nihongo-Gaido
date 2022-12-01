@@ -28,7 +28,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="input-group mt-2">
-                                    <input class="form-control-search" type="search" name="text_contains" placeholder="Pesquisar frase..." />
+                                    <input class="form-control-search" type="search" name="example_contains" placeholder="Pesquisar frase..." />
                                     <button type="submit" class="btn-search">Buscar</button>
                                 </div>
                             </div>        
@@ -61,7 +61,7 @@
                                     </ul>
                                 </div>    
                                 <div class="buttons">
-                                    <a class="btn-edit" href="{% url 'example:example_edit' example.slug %}">Editar exemplo</a>
+                                    <a class="btn-edit" href="{% url 'example:example_edit' example.pk %}">Editar exemplo</a>
                                     <a id="deleteButton{{example.slug}}" class="btn-delete confirm-delete-text" href="{% url 'example:example_delete' example.pk %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir exemplo</a>
                                 </div>
                             </div>

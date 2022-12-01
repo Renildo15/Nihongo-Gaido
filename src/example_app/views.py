@@ -11,8 +11,15 @@ from django.contrib import messages
 
 @login_required(login_url='user:logar_user')
 def example_list(request, slug):
-    example = Example.objects.filter(criado_por=request.user.id, slug=slug)
+    example_contains_query = request.GET.get("example_contains")
     word = Word.objects.get(slug=slug)
+
+    if example_contains_query != '' and example_contains_query is not None:
+        example = Example.objects.filter(criado_por=request.user.id, slug=slug, frase__icontains = example_contains_query)
+    else:
+         example = Example.objects.filter(criado_por=request.user.id, slug=slug)
+
+    
     context = {
         "examples" : example,
         'word': word
@@ -49,14 +56,14 @@ def example_create(request,slug):
 
 
 @login_required(login_url='user:logar_user')
-def example_edit(request, slug):
-    example = get_object_or_404(Example, slug=slug)
+def example_edit(request, pk):
+    example = get_object_or_404(Example, pk=pk)
     form_example = ExampleForm(request.POST or None, instance=example)
 
     if form_example.is_valid():
         form_example.save()
         messages.success(request, "Exemplo alterado com sucesso!")
-        return redirect("example:example_list", slug=slug)
+        return redirect("example:example_list", pk=pk)
 
 
     context = {
