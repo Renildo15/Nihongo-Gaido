@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from .models import Example
 from vocabulary_app.models import Word
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ExampleForm
 from django.contrib import messages
@@ -12,6 +13,8 @@ from django.contrib import messages
 @login_required(login_url='user:logar_user')
 def example_list(request, slug):
     example_contains_query = request.GET.get("example_contains")
+    paramentro_page = request.GET.get('page', "1")
+    paramentro_limit = request.GET.get('limit', "10")
     word = Word.objects.get(slug=slug)
 
     if example_contains_query != '' and example_contains_query is not None:
@@ -19,10 +22,22 @@ def example_list(request, slug):
     else:
          example = Example.objects.filter(criado_por=request.user.id, slug=slug)
 
+    if not(paramentro_limit.isdigit() and int(paramentro_limit)>0):
+        paramentro_limit = "10"
+
+    example_paginator = Paginator(example, paramentro_limit)
+
+    try:
+        page = example_paginator.page(paramentro_page)
+    except (EmptyPage, PageNotAnInteger):
+        page = example_paginator.page(1)
+
     
     context = {
-        "examples" : example,
-        'word': word
+        "examples" : page,
+        'word': word,
+        "quantidade_por_pagina":['10','20','30','40'],
+        "qnt_pagina" : paramentro_limit
     }
 
     return render(request, "example_list.html", context)
@@ -63,7 +78,7 @@ def example_edit(request, pk):
     if form_example.is_valid():
         form_example.save()
         messages.success(request, "Exemplo alterado com sucesso!")
-        return redirect("example:example_list", pk=pk)
+        return redirect("vocabulary:word_list")
 
 
     context = {
