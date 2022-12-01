@@ -5,7 +5,6 @@ class GrammarForm(forms.ModelForm):
     class Meta:
         model = Grammar
         fields = "__all__"
-        exclude = ['slug']
         
     
     def __init__(self, *args, **kwargs):
