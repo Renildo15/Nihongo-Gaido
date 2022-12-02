@@ -12,8 +12,8 @@ from django.contrib import  messages
 def phrase_list(request,pk):
     paramentro_page = request.GET.get('page', '1')
     paramentro_limit = request.GET.get('limit', '3')
-    grammar_phrase = Grammar_Phrase.objects.filter(grammar_id=pk)
-    
+    grammar_phrase = Grammar_Phrase.objects.filter(criado_por= request.user.id, grammar_id=pk)
+    grammar = get_object_or_404(Grammar, pk=pk)
     if not( paramentro_limit.isdigit() and int( paramentro_limit) > 0):
          paramentro_limit = "3"
     phrase_paginator = Paginator(grammar_phrase, paramentro_limit)
@@ -27,10 +27,9 @@ def phrase_list(request,pk):
         'quantidade_por_pagina':['3','5','10','15'],
         'qnt_pagina':  paramentro_limit,
         'grammar_phrase': page,
-        'id_grammar': pk
+        'id_grammar': pk,
+        'g': grammar
     }
-
-    print(grammar_phrase)
     return render(request, 'phrase_list.html', context)
 
 @login_required(login_url='user:logar_user')
@@ -43,23 +42,26 @@ def phrase_view(request, pk):
     return render(request, "phrase_view.html", context)
 
 @login_required(login_url='user:logar_user')
-def phrase_create(request):
+def phrase_create(request, pk):
     form = GramarPhraseForm()
+    g = get_object_or_404(Grammar, pk=pk)
     form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
     if request.method == 'POST':
         form_phrase = GramarPhraseForm(request.POST or None)
         if form_phrase.is_valid():
             grammar = form_phrase.save(commit=False)
+            grammar.grammar_id = g
             grammar.criado_por = request.user
             grammar.save()
             messages.success(request,"Frase adicionada com sucesso!")
-            return redirect(reverse('phrase:add_phrase'))
+            return redirect(reverse('phrase:add_phrase', kwargs={'pk': pk}))
 
     else:
         form_phrase = GramarPhraseForm()
     context = {
         'form_phrase': form_phrase,
-        'form' : form
+        'form' : form,
+        'g': g
     }
 
     return render(request, 'phrase_form.html', context)
@@ -70,7 +72,6 @@ def phrase_update(request, pk):
     form = GramarPhraseForm(request.POST or None, instance=phrase)
     if request.method == 'POST':
         form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
-        print(phrase.grammar_id)
         if form.is_valid():
             form.save()
             ##TODO:Fazer com que seja redirecionadp para a tela Phrase list

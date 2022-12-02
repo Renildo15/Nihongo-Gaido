@@ -16,7 +16,7 @@
         <h2 class='h2 text-center mt-4'>Lista de frases</h2>
         <hr>
         <div class="div-buttons">
-            <a class="btn-add" href="{% url 'phrase:add_phrase' %}"><i class="fa fa-plus"></i> Add nova frase</a>
+            <a class="btn-add" href="{% url 'phrase:add_phrase' g.id %}"><i class="fa fa-plus"></i> Add nova frase</a>
             <a class="btn-back" href="{% url 'grammar:grammar_list' %}"><i class="fa fa-arrow-left"></i>Voltar</a>
         </div>
     </div>
