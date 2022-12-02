@@ -5,6 +5,11 @@ class GrammarForm(forms.ModelForm):
     class Meta:
         model = Grammar
         fields = "__all__"
+        labels = {
+            'gramatica': 'Gramática: ',
+            'estrutura': 'Estrutura: ',
+            'nivel': 'Nível: '
+        }
         
     
     def __init__(self, *args, **kwargs):
