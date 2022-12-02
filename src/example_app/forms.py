@@ -12,7 +12,7 @@ class ExampleForm(forms.ModelForm):
             'anotacao': 'Anotações',
             
         }
-        exclude = ['slug','criado_por','leitura' ]
+        exclude = ['slug','criado_por', 'leitura']
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['anotacao'].widget = forms.Textarea(attrs={'style':'width:100%; border-radius:10px; padding:10px;'})

@@ -48,7 +48,6 @@ def example_create(request,slug):
     initial_dict = {
             "leitura" : word.leitura
     }
-    
     if request.method == "POST":
         form_example = ExampleForm(request.POST or None, initial=initial_dict)
         if form_example.is_valid():
@@ -68,7 +67,6 @@ def example_create(request,slug):
     }
 
     return render(request,'example_form.html', context)
-
 
 @login_required(login_url='user:logar_user')
 def example_edit(request, pk):
