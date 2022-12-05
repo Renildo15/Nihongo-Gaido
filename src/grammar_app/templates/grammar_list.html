@@ -18,6 +18,7 @@
     <div class = "div-search-add">
 
       <div class="div-buttons"><a class="btn-add" href="{% url 'grammar:add_grammar' %}"> <i class="fa fa-plus"></i> Add nova gramática</a></div>
+      
 
       <div class="search">
         <form method="GET" action="." class="form-busca">
@@ -33,7 +34,7 @@
                 </div>
             </div>        
           </div>
-
+          
           <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group mt-2">
@@ -50,7 +51,7 @@
           <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group mt-2 mb-2">
-                  <select name="select" class="form-control py-2 border-right-0 border">
+                  <select name="select" class="form-control py-2 border-right-0 border" style = "color: #4F9D69;">
                     <option value="">Nível</option>
                     <option value="N5">N5</option>
                     <option value="N4">N4</option>
@@ -70,7 +71,7 @@
             </div>        
           </div>
 
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn-search">Buscar</button>
         </form>
       </div>
     </div>
@@ -94,9 +95,9 @@
     <table class="table-css">
       <thead>
         <tr>
-          <th>Gramatica</th>
+          <th>Gramática</th>
           <th>Estrutura</th>
-          <th>Nivel</th>
+          <th>Nível</th>
           <th>Frases</th>
           <th>Opções</th>
         </tr>
@@ -107,10 +108,10 @@
           <td>{{g.gramatica}}</td>
           <td>{{g.estrutura}}</td>
           <td>{{g.nivel}}</td>
-          <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.encrypt_key %}">Ver frases <i class="fa fa-eye"></i></a></td>
+          <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}">Ver frases <i class="fa fa-eye"></i></a></td>
           <td class="btn-table">
-            <a class="btn-edit" href="{% url 'grammar:update' g.encrypt_key %}"><i class="fa fa-edit"></i></a>
-            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:delete' g.encrypt_key %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
+            <a class="btn-edit" href="{% url 'grammar:grammar_edit' g.id %}"><i class="fa fa-edit"></i></a>
+            <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:grammar_delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
             
           </td>
         </tr>

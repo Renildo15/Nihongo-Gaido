@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Editar exemplo - Nihongo Gaido
+{% endblock title %}
+
+{% block content %}
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+{% endfor %}
+<div class="form-container-form">
+    <form method="post">
+        {% csrf_token %}
+        <div class="inputs-grammar">
+            <h2>Editar exemplo</h2>
+            {% for field in form_example %}
+                <div class="inputs-grammar-box">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+            <div class="btn-div">
+                <input type="submit" name="vocabulary" value="Salvar exemplo"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+

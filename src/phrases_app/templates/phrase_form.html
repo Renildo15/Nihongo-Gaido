@@ -15,7 +15,9 @@ Nihongo Gaido - Adicionar Frase
     <form class="" method="POST">
         {% csrf_token %}
         <div class="inputs-grammar">
-            <h2>Adicionar nova frase</h2>
+            <h2>{{g.estrutura}}</h2>
+            <h5 class="text-center">{{g.gramatica}}</h5>
+            <hr>
             {% for field in form %}
                 <div class="inputs-grammar-box">
                     <label>{{field.label}}</label>

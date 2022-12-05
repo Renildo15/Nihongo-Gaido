@@ -7,6 +7,10 @@
     outline: none;
     font-family: Roboto Condensed;
 }
+
+body{
+    overflow-x: hidden;
+}
 /*header*/
 nav{
     display: flex;
@@ -708,6 +712,322 @@ img{
 }
 
 
+
+/* text_app*/
+
+.inputs-text{
+    padding: 40px;
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    max-width: 100%;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+
+.inputs-text h2{
+    text-align: center;
+    text-transform: capitalize;
+    padding: 10px;
+    color: #68D89B;
+}
+
+.inputs-text-box{
+   
+    padding: 0 30px;
+    margin: 20px;
+}
+
+.btn-open{
+    width: 190px;
+    background-color: #68D89B;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-edit-text{
+    width: 190px;
+    background-color: #664e00;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-translate{
+    width: 190px;
+    background-color: #660066;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-delete-text{
+    width: 190px;
+    background-color: #dc3545;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.btn-open:hover{
+    background-color: #4F9D69;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+.btn-edit-text:hover{
+    background-color: #493800;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-delete-text:hover{
+    background-color: #992833;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.btn-translate:hover{
+    background-color: #3f003f;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+
+
+
+/*search text*/
+
+
+.form-control-search {
+    display: block;
+    width: 90%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #4F9D69;
+    background-color: #ffff;
+    border: 1px solid #4F9D69;
+}
+
+.input-group input::placeholder {
+    color: #4F9D69;
+  }
+
+.btn-search{
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #4F9D69;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-search:hover{
+    background-color: #3f7a53;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.div-comment{
+    background-color: #efefef;
+    border-radius: 30px;
+    padding: 15px;
+}
+
+/* vocabulary*/
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.buttons a{
+    text-decoration: none;
+}
+
+.buttons .btn-delete{
+    width: 190px;
+    background-color: #dc3545;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.buttons .btn-edit{
+    width: 190px;
+    background-color: #4F9D69;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.buttons .btn-conjugation{
+    width: 190px;
+    background-color: #3f003f;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.buttons .btn-exemple{
+    width: 190px;
+    background-color: #ca9a0b;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.buttons .btn-delete:hover{
+    background-color: #992833;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.buttons .btn-exemple:hover{
+    background-color: #a37d0a;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+.buttons .btn-conjugation:hover{
+    background-color: #310131;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+.buttons .btn-edit:hover{
+    background-color: #3d7e53;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #3d7e53;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: black;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(29, 238, 29, 0.25);
+}
+
+/*categoria*/
+
+
+.div-btn-cat{
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.div-btn-cat a{
+    text-decoration: none;
+    width: 190px;
+    background-color: #4F9D69;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+
+}
+
+.div-btn-cat a:hover{
+    background-color: #3d7e53;
+    color: white;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
+
+/*conjugation*/
+
+.btn-table-con .btn-edit{
+    text-decoration: none;
+    width: 190px;
+    background-color: #4F9D69;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+
+}
 @media (max-width: 600px){
     header,.nav-links-header{
         flex-direction: column;

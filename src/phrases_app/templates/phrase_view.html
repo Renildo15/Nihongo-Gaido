@@ -17,8 +17,8 @@
                 </ul>
                 <div class="card-body d-flex justify-content-around mt-3">
                   <!--#TODO Tentar corrigir os links-->
-                  <a href="#" class="btn-card-edit">Editar</a>
-                  <a href="#" class="btn-card-delete"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Excluir</a>
+                  <a href="{% url 'phrase:update_phrase' phrase.id%}" class="btn-card-edit">Editar</a>
+                  <a href="{% url 'phrase:delete_phrase' phrase.id%}" class="btn-card-delete"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Excluir</a>
                 </div> 
               </div>
         </div>

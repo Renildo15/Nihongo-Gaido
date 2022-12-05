@@ -24,7 +24,7 @@ def logar_user(request):
         if usuario is not None:
             login(request, usuario)
             messages.success(request,"Usuário logado com sucesso!")
-            return redirect('/home/')
+            return redirect('/')
         else:
             messages.error(request,"Username ou senha incorretos! Tente novamente!")
             return redirect('/auth/login/')
@@ -47,7 +47,7 @@ def cadastrar_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,("Cadastrado com sucesso!"))
-            return redirect('/home/')
+            return redirect('/')
     else:
         form_usuario = RegisterUserForm()
     context = {
@@ -60,7 +60,7 @@ def cadastrar_user(request):
 def deslogar_user(request):
     logout(request)
     messages.success(request, "Usuário deslogado com sucesso!")
-    return redirect('/home/')
+    return redirect('/')
 
 @login_required(login_url='user:logar_user')
 def mudar_senha(request):
@@ -115,7 +115,7 @@ def password_reset_request(request):
 
 @login_required(login_url='user:logar_user')
 def profile_page(request):
-    profile_info = Profile.objects.all()
+    profile_info = Profile.objects.filter(user = request.user.id )
     context = {
         "profile":profile_info
     }

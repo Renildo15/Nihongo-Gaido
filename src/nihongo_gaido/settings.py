@@ -41,11 +41,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'grammar_app',
     'nihongo_pages_app',
     'phrases_app',
     'user_app',
+    'text_app',
+    'vocabulary_app',
+    'example_app',
 ]
+
+CKEDITOR_CONFIGS = {'default': {
+'resize_enabled': False,
+'allowedContent': True,
+'width': 410,
+'height': 300,
+ 'width': 'auto'},
+}
 
 
 MIDDLEWARE = [
