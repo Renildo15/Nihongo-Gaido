@@ -6,6 +6,9 @@ from apps_count.text import get_text, get_text_translate, get_text_writing
 from apps_count.vocabulary import get_word, get_category, get_conjugation
 from django.contrib.auth.decorators import login_required
 
+import requests
+from bs4 import BeautifulSoup
+
 @login_required(login_url='user:logar_user')
 def home(request):
     grammar = get_grammar(request)
@@ -35,3 +38,5 @@ def home(request):
 @login_required(login_url='user:logar_user')
 def sobre(request):
     return render(request, 'pages/sobre.html')
+
+
