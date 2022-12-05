@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Adicionar gramática - Nihongo Gaido
+Editar gramatica - Nihongo Gaido
 {% endblock title %}
 
 {% block content %}
@@ -15,8 +15,7 @@ Adicionar gramática - Nihongo Gaido
     <form method="post">
         {% csrf_token %}
         <div class="inputs-grammar">
-            <h2>Adicionar nova gramática</h2>
-            <hr>
+            <h2>Alterar gramatica</h2>
             {% for field in form_grammar %}
                 <div class="inputs-grammar-box">
                     <label>{{field.label}}</label>
@@ -24,7 +23,7 @@ Adicionar gramática - Nihongo Gaido
                 </div>
             {% endfor %}
             <div class="btn-div">
-                <input type="submit" name="grammar" value="Salvar Gramática"/>
+                <input type="submit" name="grammar" value="Salvar alterações"/>
             </div>
         </div>
     </form>

@@ -25,7 +25,7 @@
                     <div class="mt-3 text-center">
                         <div class="col-sm-12 gl-text-center">
                             <div class="container-img">
-                                <img class="img-perfil" alt="Nihongo Gaido" src="{{request.user.profile.foto_perfil.url}}">
+                                <img class="profile-pic" src="{{request.user.profile.foto_perfil.url}}" >
                                 <div class="overlay">
                                     <div class="text">{{user.username}}</div>
                                 </div>
@@ -51,14 +51,61 @@
                 </div>
             </div>
         </div>
-        
-
-        
-       
     <div class="div-btn-form">
         <input class="btn-login" type="submit" name="Update Information" value="Atualizar">
     </div>
    
     </form>
+
+    <script>
+        var telefone = document.getElementById("telefone");
+        var data = document.getElementById("data");
+        var username = document.getElementById("user");
+        var f_name = document.getElementById("f_name");
+        var l_name = document.getElementById("l_name");
+        var email = document.getElementById("email");
+    
+        telefone.addEventListener("focus", ()=>{
+            telefone.style.borderColor = "#68D89B"
+        })
+        telefone.addEventListener("blur", ()=>{
+            telefone.style.borderColor = "black"
+        })
+    
+        data.addEventListener("focus", ()=>{
+            data.style.borderColor = "#68D89B"
+        })
+        data.addEventListener("blur", ()=>{
+            data.style.borderColor = "black"
+        })
+    
+        username.addEventListener("focus", ()=>{
+            username.style.borderColor = "#68D89B"
+        })
+        username.addEventListener("blur", ()=>{
+            username.style.borderColor = "black"
+        })
+
+        f_name.addEventListener("focus", ()=>{
+            f_name.style.borderColor = "#68D89B"
+        })
+        f_name.addEventListener("blur", ()=>{
+            f_name.style.borderColor = "black"
+        })
+
+        l_name.addEventListener("focus", ()=>{
+            l_name.style.borderColor = "#68D89B"
+        })
+        l_name.addEventListener("blur", ()=>{
+            l_name.style.borderColor = "black"
+        })
+
+        email.addEventListener("focus", ()=>{
+            email.style.borderColor = "#68D89B"
+        })
+        email.addEventListener("blur", ()=>{
+            email.style.borderColor = "black"
+        })
+    </script>
 </div>
 {% endblock content %}

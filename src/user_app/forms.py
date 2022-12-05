@@ -34,10 +34,22 @@ class RegisterUserForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'input'
 
 class PasswordChangingForm(PasswordChangeForm):
+    old_password = forms.EmailField(widget=forms.EmailInput(attrs={'id': 'email', 'placeholder': 'Digite a senha antiga...', 'class': 'input'}), label="Senha antiga: ")
+    new_password1 = forms.CharField(widget=forms.TextInput(attrs={'id': 'nome', 'placeholder': 'Digite sua nova senha...', 'class': 'input'}), label="Nova senha: ")
+    new_password2 = forms.CharField(widget=forms.TextInput(attrs={'id': 'sobrenome', 'placeholder': 'Digite sua noa senha novamente...', 'class': 'input'}), label="Confirme a senha: ")
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
 
+    def __init__(self, *args, **kwargs):
+        super(PasswordChangingForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs['id'] = 'old_p'
+        self.fields['old_password'].widget.attrs['class'] = 'input'
+        self.fields['new_password1'].widget.attrs['id'] = 'new_p'
+        self.fields['new_password1'].widget.attrs['class'] = 'input'
+        self.fields['new_password2'].widget.attrs['id'] = 'new_p2'
+        self.fields['new_password2'].widget.attrs['class'] = 'input'
+      
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -52,10 +64,19 @@ class ProfileForm(forms.ModelForm):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['foto_perfil'].widget.attrs = {'id':'selectedFile'}
         self.fields['telefone'].widget.attrs.update({'class': 'mask-telefone'})
+        self.fields['telefone'].widget.attrs['id'] = 'telefone'
         self.fields['data_nascimento'].widget.attrs.update({'class': 'mask-data'})
+        self.fields['data_nascimento'].widget.attrs['id'] = 'data'
 
 class ProfileUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
         exclude = ['password']
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileUserForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['id'] = 'user'
+        self.fields['first_name'].widget.attrs['id'] = 'f_name'
+        self.fields['last_name'].widget.attrs['id'] = 'l_name'
+        self.fields['email'].widget.attrs['id'] = 'email'

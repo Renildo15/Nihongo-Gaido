@@ -78,7 +78,7 @@ def text_update(request, slug):
         "text_form":text_form
     }
 
-    return render(request, "text_form.html", context)
+    return render(request, "text_edit.html", context)
 
 @login_required(login_url='user:logar_user')
 def text_delete(request, slug):
@@ -140,7 +140,7 @@ def text_traducao_update(request, slug):
          "text": text_texto
     }
 
-    return render(request,"text_traducao/text_traducao_form.html", context)
+    return render(request,"text_traducao/text_traducao_edit.html", context)
 
 @login_required(login_url='user:logar_user')
 def text_traducao_delete(request, slug):
@@ -153,16 +153,78 @@ def text_traducao_delete(request, slug):
 ###############################Texto escrita############################################
 
 def theme_choose(request):
-    api = "https://api-temas.herokuapp.com/temas"
-
-    requisicao = requests.get(api)
-
+    #api = "https://api-temas.herokuapp.com/temas"
+    #requisicao = requests.get(api)
+    
     try:
-        lista = requisicao.json()
+        lista = [
+            {
+                "id": "1",
+                "tema": "Anime"
+            },
+            {
+                "id": "2",
+                "tema": "Faculdade"
+            },
+            {
+                "id": "3",
+                "tema": "Filme"
+            },
+            {
+                "id": "4",
+                "tema": "Estudos"
+            },
+            {
+                "id": "5",
+                "tema": "Amizade"
+            },
+            {
+                "id": "6",
+                "tema": "Sonhos"
+            },
+            {
+                "id": "7",
+                "tema": "Infância"
+            },
+            {
+                "id": "8",
+                "tema": "Comida"
+            },
+            {
+                "id": "9",
+                "tema": "Lembranças"
+            },
+            {
+                "id": "10",
+                "tema": "Sobre Hoje"
+            },
+            {
+                "id": "11",
+                "tema": "Programação"
+            },
+            
+            {
+                "id": "12",
+                "tema": "Música"
+            },
+            {
+                "id": "13",
+                "tema": "Astronomia"
+            },
+            {
+                "id": "14",
+                "tema": "Hobby"
+            },
+            {
+                "id": "15",
+                "tema": "Cultura"
+            }    
+        ]
     except ValueError:
-          print("A resposta não chegou com o formato esperado.")
+        print("A resposta não chegou com o formato esperado.")
 
     dic = {}
+    
 
     for i, value in enumerate(lista):
         dic[i] = value

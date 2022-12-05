@@ -107,7 +107,7 @@ def grammar_update(request, pk):
     context = {
         "form_grammar":form_grammar
     }
-    return render(request, 'grammar_form.html', context)
+    return render(request, 'grammar_edit.html', context)
 
 @login_required(login_url='user:logar_user')
 def grammar_delete(request, pk):
