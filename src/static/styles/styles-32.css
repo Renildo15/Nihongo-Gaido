@@ -266,8 +266,22 @@ label{
 }
 
 .input-box{
-   
     text-align: left;
+}
+
+.inputs-register{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
 }
 
 
