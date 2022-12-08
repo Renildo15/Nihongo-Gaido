@@ -53,10 +53,16 @@ nav ul li a{
     transition: all 0.3s ease;
 }
 
-nav ul li a.active,
 nav ul li a:hover{
     background-color: #4F9D69;
     color: #fff;
+}
+
+.navbar-ul > .active{
+    background-color: #4F9D69;
+    color: #fff;
+    border-radius: 5px;
+    
 }
 
 nav .menu-btn i{

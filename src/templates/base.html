@@ -20,19 +20,19 @@
             <i class="fa fa-bars fa 2x" onclick="menuShow()"></i>
         </div>
 
-        <ul>
-            <li><a class="active" href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-            <li><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Gramática</a></li> 
-            <li class = "dropdown-nav">
+        <ul class="navbar-ul ">
+            <li id="home"><a href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+            <li id="gramatica"><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Gramática</a></li> 
+            <li id="texto" class = "dropdown-nav">
                 <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Texto <i class="fa fa-caret-down"></i></a>
                 <div class="dropdown-nav-content">
                     <a href="{% url 'text:text_list' %}">Tradução</a>
                     <a href="{% url 'text:text_escrito_list' %}">Escrita</a>
                 </div>
             </li> 
-            <li><a href="{% url 'vocabulary:word_list' %}"><i class="fa fa-tag" aria-hidden="true"></i>Vocabulário</a></li>
-            <li><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
-            <li class = "dropdown-nav">
+            <li id="vocabulario"><a href="{% url 'vocabulary:word_list' %}"><i class="fa fa-tag" aria-hidden="true"></i>Vocabulário</a></li>
+            <li id="sobre"><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
+            <li id="profile" class = "dropdown-nav">
                 {% if user.is_authenticated%}
                     <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{user.username}} <i class="fa fa-caret-down"></i></a>
                 {% else %}
