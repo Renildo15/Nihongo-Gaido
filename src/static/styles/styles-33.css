@@ -291,6 +291,30 @@ label{
 }
 
 
+/*div-img*/
+
+.div-img img{
+    width: 300px;
+}
+
+.div-h3 h3{
+    text-decoration: underline;
+    color: #4F9D69;
+}
+
+.div-content{
+    background-color: #68D89B;
+    padding: 5px;
+    border-radius: 5px;
+    color: #FFF;
+    text-align: justify;
+    text-indent: 30px;
+}
+
+
+.bg-primary {
+    background-color: #3d7e53!important;
+}
 /* list table */
 
 .container .div-text{
