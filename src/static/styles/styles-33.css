@@ -104,8 +104,27 @@ i{
   display: block;
 }
 
+/*Sobre*/
 
 
+ul.links-sobre li a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #4F9D69;
+    cursor: pointer;
+}
+
+ul.links-sobre li a:hover{
+    letter-spacing: 2px;
+}
+
+.img img{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    background-color: #4F9D69;
+}
 
 
 
@@ -604,13 +623,13 @@ label{
 
 .btn-profile-voltar{
     color: white;
-    background-color: #ffc107;
-    border-color: #ffc107;
+    background-color: #660066;
+    border-color: #660066;
 }
 
 .btn-profile-voltar:hover{
-    background-color: #ca9a0b;
-    border-color: #ca9a0b;
+    background-color: #420042;
+    border-color: #420042;
 }
 
 .btn:hover {
