@@ -10,6 +10,7 @@
 {% endfor %}
 
 <div class="container">
+  <div class="div-text">
     <h2 class='h2 text-center mt-4'>Lista de textos</h2>
     <div class="div-search-add">
         <div class="div-text-frase">
@@ -46,8 +47,8 @@
     </div>
    
     <hr>
-</div>
-{% if texts %}
+  </div>
+  {% if texts %}
     <div class="row">
         {% for t in texts %}
         <div class="col-12 col-md-6 col-lg-4 p-5">
@@ -123,11 +124,17 @@
           </div>
         </div>            
     </div>
-{% else %}
-  <div class='text-center mt-4'>
-    <h2>Não há dados cadastrados</h2>
+  {% else %}
+  <div class="row m-5">
+    <div class='text-center mt-4'>
+      <h2>Não há dados cadastrados</h2>
+      <p>Para adicionar algum dado, basta clicar no botão "add" e preencher o formulário.</p>
+    </div>
   </div>
 {% endif %}
+    
+</div>
+
 <script>
   document.getElementById('home').classList.remove('active'); // Adiciona classe
 

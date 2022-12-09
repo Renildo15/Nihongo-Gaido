@@ -27,11 +27,6 @@
                     <div class="form-group col-12">
                         <div class="input-group mt-2">
                             <input class="form-control py-2 border-right-0 border" type="search" name="palavra_contains" placeholder="Pesquisar por palavra..." />
-                            <span class="input-group-append">
-                                <div class="input-group-text bg-transparent p-3">
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </span>
                         </div>
                     </div>        
                   </div>
@@ -40,11 +35,6 @@
                     <div class="form-group col-12">
                         <div class="input-group mt-2">
                             <input class="form-control py-2 border-right-0 border" type="search" name="categoria_contains" placeholder="Pesquisar por categoria..." />
-                            <span class="input-group-append">
-                                <div class="input-group-text bg-transparent p-3">
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </span>
                         </div>
                     </div>        
                   </div>
@@ -61,12 +51,6 @@
                             <option value="UNKNOW">UNKNOW</option>
                             
                           </select>
-                          <!---<input class="form-control py-2 border-right-0 border" type="search" name="nivel_contains" placeholder="Pesquisar por nível..." />!-->
-                          <span class="input-group-append">
-                              <div class="input-group-text bg-transparent p-3">
-                                  <i class="fa fa-search"></i>
-                              </div>
-                          </span>
                         </div>
                     </div>        
                   </div>
@@ -134,9 +118,12 @@
                     </div>
                     {% endfor %}
                 {% else %}
-                    <div class='text-center mt-4'>
-                        <h2>Não há dados cadastrados</h2>
-                    </div>
+                <div class="row m-5">
+                  <div class='text-center mt-4'>
+                    <h2>Não há dados cadastrados</h2>
+                    <p>Para adicionar algum dado, basta clicar no botão "add" e preencher o formulário.</p>
+                  </div>
+                </div>
                 {% endif %}
             </div>
             <div class="col-4 shadow p-3 mb-5 bg-body rounded">

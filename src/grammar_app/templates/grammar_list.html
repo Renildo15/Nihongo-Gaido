@@ -26,11 +26,6 @@
             <div class="form-group col-12">
                 <div class="input-group mt-2">
                     <input class="form-control py-2 border-right-0 border" type="search" name="grammar_contains" placeholder="Pesquisar por gramática..." />
-                    <span class="input-group-append">
-                        <div class="input-group-text bg-transparent p-3">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </span>
                 </div>
             </div>        
           </div>
@@ -39,11 +34,6 @@
             <div class="form-group col-12">
                 <div class="input-group mt-2">
                     <input class="form-control py-2 border-right-0 border" type="search" name="estrutura_contains" placeholder="Pesquisar por estrutura..." />
-                    <span class="input-group-append">
-                        <div class="input-group-text bg-transparent p-3">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </span>
                 </div>
             </div>        
           </div>
@@ -61,12 +51,6 @@
                     <option value="UNKNOW">UNKNOW</option>
                     
                   </select>
-                  <!---<input class="form-control py-2 border-right-0 border" type="search" name="nivel_contains" placeholder="Pesquisar por nível..." />!-->
-                  <span class="input-group-append">
-                      <div class="input-group-text bg-transparent p-3">
-                          <i class="fa fa-search"></i>
-                      </div>
-                  </span>
                 </div>
             </div>        
           </div>
@@ -182,9 +166,12 @@
       
   </div>
   {% else %}
+    <div class="row">
       <div class='text-center mt-4'>
         <h2>Não há dados cadastrados</h2>
+        <p>Para adicionar algum dado, basta clicar no botão "add" e preencher o formulário.</p>
       </div>
+    </div>
     {% endif %}
     </div>
 </div>
