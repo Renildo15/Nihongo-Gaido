@@ -21,9 +21,9 @@
         {% csrf_token %}
         <div class="container">
             <div class="row">
-                <div class="col-sm">
+                <div class="col-md-4">
                     <div class="mt-3 text-center">
-                        <div class="col-sm-12 gl-text-center">
+                        <div class="col-sm">
                             <div class="container-img">
                                 <img class="profile-pic" src="{{request.user.profile.foto_perfil.url}}" >
                                 <div class="overlay">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-md-4">
                     {% for field in form_user%}
                         <div class="input-box">
                             <label>{{field.label}}</label>
@@ -41,7 +41,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <div class="col-sm">
+                <div class="col-md-4">
                     {% for field_p in form %}
                         <div class="input-box">
                             <label>{{field_p.label}}</label>

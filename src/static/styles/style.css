@@ -699,7 +699,7 @@ label{
 }
 
 .container-img:hover .overlay{
-    width: 250px;
+    width: 160px;
 }
 
 .text{
@@ -1213,7 +1213,7 @@ img{
     }
 
     .input-box{
-       width: 50%;
+       width:100%;
        margin: 0 auto;
     }
 
@@ -1337,7 +1337,7 @@ img{
     .navbar-ul > .active{
         background-color: #4F9D69;
         color: #fff;
-        width: 40%;
+        width: 50%;
         margin: 0 auto;
         border-radius: 5px;
         
@@ -1435,6 +1435,63 @@ img{
         padding: 0 0px;
         margin: 20px;
     }
+
+    .card-body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .div-btn-cat{
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .inputs-grammar-box{
+        width: 100%;
+    }
+
+    .btn-table-con .btn-edit{
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .div-text h2{
+        font-size: 25px;
+    }
+
+    .perfil{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .container-img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+    
+    .div-btn-form{
+        width: 50%;
+        margin: 8px auto;
+       
+    }
+   
     
 }
 
@@ -1495,4 +1552,66 @@ img{
         margin-top: 0;
    }
     
+   .inputs-grammar-box{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .profile-pic{
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .perfil{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    .container-img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+    .overlay{
+        position: absolute;
+        bottom: 0;
+        left: 37px;
+        right: 0;
+        background-color: #4F9D69;
+        overflow: hidden;
+        width: 0;
+        height: 100%;
+        transition: .5s ease;
+        opacity: .7;
+        border-radius: 50%;
+        
+    }
+
+    .text{
+        font-size: 10px;
+    }
+    .container-img:hover .overlay{
+        width: 50px;
+    }
+
+    .div-btn-form{
+        width: 50%;
+        margin: 8px auto;
+       
+    }
+
+    .div-btn-form input{
+        font-size: 15px;
+    }
+
+    .title-form{
+        font-size: 20px;
+    }
 }
