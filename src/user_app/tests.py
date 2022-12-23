@@ -1,17 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 # Create your tests here.
-
-class LoginTest(TestCase):
-    def setUp(self):
-        self.credentials = {
-            'username': 'testuser',
-            'password': 'secret'
-        }
-        User.objects.create_user(**self.credentials)
-
-    def test_login(self):
-        response = self.client.post("login/", self.credentials, follow=True)
-        print(response)
-
