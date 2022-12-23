@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from django.contrib.messages import constants
 import os
 from decouple import config
 from pathlib import Path
@@ -40,11 +41,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'grammar_app',
     'nihongo_pages_app',
     'phrases_app',
     'user_app',
+    'text_app',
+    'vocabulary_app',
+    'example_app',
 ]
+
+CKEDITOR_CONFIGS = {'default': {
+'resize_enabled': False,
+'allowedContent': True,
+'width': 410,
+'height': 300,
+ 'width': 'auto'},
+}
 
 
 MIDDLEWARE = [
@@ -127,6 +140,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+MEDIA_URL = '/imgs/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/imgs')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -140,4 +155,12 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
+
+MESSAGE_TAGS ={
+    constants.DEBUG: 'alert-primary',
+    constants.ERROR: 'alert-danger',
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
+    constants.WARNING: 'alert-warning'
+}
 

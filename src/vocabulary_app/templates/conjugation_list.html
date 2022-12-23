@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Nihongo Gaido - Conjugação {{conjugations.present}}
+{% endblock%}
+
+{% block content %}
+    {% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+    {% endfor %}
+
+
+    <div class="container">
+        {% if conjugations %}
+            <div class="div-text">
+                <h2 class='h2 text-center mt-4'>Conjugações - {{conjugations.present}}</h2>
+                <hr>
+            </div>
+
+            <div class="content">
+                <div class="list mb-5 mt-5">
+                    <table class="table-css">
+                        <thead>
+                          <tr>
+                            <th>Presente</th>
+                            <th>Negativo</th>
+                            <th>Passado</th>
+                            <th>Forma - て</th>
+                            <th>Volotiva</th>
+                            <th>Potencial</th>
+                            <th>Imperativo</th>
+                            <th>Causativo</th> 
+                            <th>Condicional</th> 
+                            <th>Passivo</th> 
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{conjugations.present}}</td>
+                            <td>{{conjugations.negative}}</td>
+                            <td>{{conjugations.past}}</td>
+                            <td>{{conjugations.te_form}}</td>
+                            <td>{{conjugations.volitional}}</td>
+                            <td>{{conjugations.potential}}</td>
+                            <td>{{conjugations.imperative}}</td>
+                            <td>{{conjugations.causative}}</td>
+                            <td>{{conjugations.conditional}}</td>
+                            <td>{{conjugations.passive}}</td>
+                            <td class="btn-table-con">
+                              <a class="btn-edit" href="{% url 'vocabulary:edit_conjugation' conjugations.slug %}">Editar</a>       
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        {% else %}
+            <div class="div-text">
+                <h2 class='h2 text-center mt-4'>Conjugações</h2>
+                <div class="div-buttons"><a class="btn-add" href="{% url 'vocabulary:add_conjugation' word.slug %}"> <i class="fa fa-plus"></i> Add conjugação</a></div>
+                <hr>
+            </div>
+            <div class='text-center mt-4'>
+                <h2>Não há dados cadastrados</h2>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
