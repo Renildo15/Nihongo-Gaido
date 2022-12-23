@@ -89,11 +89,11 @@
       <tbody>
         {% for g in grammar%}
         <tr>
-          <td>{{g.gramatica}}</td>
-          <td>{{g.estrutura}}</td>
-          <td>{{g.nivel}}</td>
-          <td><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}"><i class="fa fa-eye"></i></a></td>
-          <td class="btn-table">
+          <td data-label="Gramática">{{g.gramatica}}</td>
+          <td data-label="Estrutura">{{g.estrutura}}</td>
+          <td data-label="Nível">{{g.nivel}}</td>
+          <td data-label="Frases"><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}"><i class="fa fa-eye"></i></a></td>
+          <td data-label="Opções" class="btn-table">
             <a class="btn-edit" href="{% url 'grammar:grammar_edit' g.id %}"><i class="fa fa-edit"></i></a>
             <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:grammar_delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>
             

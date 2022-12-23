@@ -1176,6 +1176,12 @@ img{
         transition: all 0.3s ease;
     }
 
+    
+
+    .div-search-add{
+        flex-direction: column;
+    }
+
 }
 
 @media (max-width: 930px){
@@ -1343,13 +1349,50 @@ img{
         width: 100%;
     }
 
+
+    .input-group button{
+        display: block;
+        margin-top: 10px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .search .btn-search{
+       display: block;
+    }
+
+    .search input{
+        display: block;
+    }
+
+    .form-busca{
+        width: 100%;
+        margin: 0 auto;
+    }
+
     .div-table{
         width: 100%;
     }
     
-    .table-css td{
-        width: 50%;
+    .table-css thead{
+        display: none;
     }
+
+    .table-css, .table-css tbody, .table-css tr, .table-css td{
+        display: block;
+        width: 100%;
+    }
+
+    .table-css tr{
+        margin-bottom: 15px;
+    }
+    
+    .table-css td{
+        text-align: right;
+        padding: 5%;
+        position: relative;
+        text-align: justify;
+    }
+
 
     .inputs-grammar{
         padding: 40px;
@@ -1361,6 +1404,12 @@ img{
         max-width: 100%;
         box-shadow: 1px 1px 6px #0000001c;
     }
+
+    
+
+   .div-pagination{
+        width: 50%;
+   }
 }
 
 
@@ -1401,6 +1450,7 @@ img{
     
     .table-css td{
         width: 80%;
+        text-align: justify;
     }
 
     .inputs-grammar{
@@ -1413,5 +1463,10 @@ img{
         max-width: 100%;
         box-shadow: 1px 1px 6px #0000001c;
     }
+
+    .div-pagination{
+        width: 100%;
+        margin-top: 0;
+   }
     
 }
