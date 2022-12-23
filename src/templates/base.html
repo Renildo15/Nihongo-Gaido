@@ -20,12 +20,12 @@
             <i class="fa fa-bars fa 2x" onclick="menuShow()"></i>
         </div>
 
-        <ul class="navbar-ul ">
+        <ul class="navbar-ul" id="ul">
             <li id="home"><a href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
             <li id="gramatica"><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Gramática</a></li> 
             <li id="texto" class = "dropdown-nav">
                 <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Texto <i class="fa fa-caret-down"></i></a>
-                <div class="dropdown-nav-content">
+                <div id="content" class="dropdown-nav-content" >
                     <a href="{% url 'text:text_list' %}">Tradução</a>
                     <a href="{% url 'text:text_escrito_list' %}">Escrita</a>
                 </div>
@@ -38,7 +38,7 @@
                 {% else %}
                     <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Login <i class="fa fa-caret-down"></i></a>
                 {% endif %}
-                <div class = "dropdown-nav-content">
+                <div class = "dropdown-nav-content" id="content">
                     {% if user.is_authenticated %}
                         <a href="{% url 'user:profile_page' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Perfil</a>
                         <a href="{% url 'user:mudar_senha' %}"><i class="fa fa-lock"></i></i>Mudar senha</a>
@@ -139,13 +139,13 @@
        
 
         function menuShow(){
-            var ele = document.getElementById("itens");
-            console.log(ele);
-            if(ele.style.display === "flex"){
+            var ele = document.getElementById("ul");
+            if(ele.style.display === "block"){
                 ele.style.display = "none";
             }else{
-                ele.style.display = "flex"
+                ele.style.display = "block"
             }
+            
         }
 
     </script>
