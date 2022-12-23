@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Adicionar conjugação - Nihongo Gaido
+Nihongo Gaido - Alterar Frase
 {% endblock title %}
 
 {% block content %}
@@ -12,31 +12,32 @@ Adicionar conjugação - Nihongo Gaido
     </div>
 {% endfor %}
 <div class="form-container-form">
-    <form method="post">
+    <form class="" method="POST">
         {% csrf_token %}
         <div class="inputs-grammar">
-            <h2>{{word.palavra}}</h2>
-            {% for field in form_conjugation %}
+            <h2>Alterar frase</h2>
+            <hr>
+            {% for field in form %}
                 <div class="inputs-grammar-box">
                     <label>{{field.label}}</label>
                     {{field}}
                 </div>
             {% endfor %}
             <div class="btn-div">
-                <input type="submit" name="vocabulary" value="Salvar conjugação"/>
+                <input type="submit" name="phrase" value="Alterar Frase"/>
             </div>
         </div>
+        
     </form>
 </div>
 <script>
     document.getElementById('home').classList.remove('active'); // Adiciona classe
   
-    document.getElementById('gramatica').classList.remove('active'); // Remove classe
+    document.getElementById('gramatica').classList.add('active'); // Remove classe
     document.getElementById('texto').classList.remove('active'); // Remove classe
-    document.getElementById('vocabulario').classList.add('active'); // Remove classe
+    document.getElementById('vocabulario').classList.remove('active'); // Remove classe
     document.getElementById('sobre').classList.remove('active'); // Remove classe
     document.getElementById('profile').classList.remove('active'); // Remove classe
   </script>
-
 {% endblock content %}
 

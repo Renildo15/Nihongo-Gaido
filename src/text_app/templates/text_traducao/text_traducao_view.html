@@ -7,12 +7,12 @@
 
 {% if text_traducao %}
     <div class="container">
-        <div class="row m-5">
-            <div class="col-8">
+        <div class="row mt-4">
+            <div class="col-md-8" style="text-align:justify;">
                 {{text_traducao.texto_traducao|safe}}
             </div>
             <hr>
-            <div class="col-12 mb-4">
+            <div class="text-buttons mb-4 ">
                 <a class="btn-edit-text" href="{% url 'text:text_traducao_update' text_traducao.slug %}">Editar tradução</a>
                 <a class="btn-delete-text confirm-delete-text" id="deleteButton{{text_traducao.slug}}" href="{% url 'text:text_traducao_delete' text_traducao.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Deletar Tradução</a>
                 <a class="btn-translate" href="{% url 'text:text_view' text_traducao.slug %}">Voltar</a>
@@ -41,6 +41,15 @@
     <h2>Não há traduções cadastradas</h2>
 </div> 
 {% endif %}
+<script>
+  document.getElementById('home').classList.remove('active'); // Adiciona classe
+
+  document.getElementById('gramatica').classList.remove('active'); // Remove classe
+  document.getElementById('texto').classList.add('active'); // Remove classe
+  document.getElementById('vocabulario').classList.remove('active'); // Remove classe
+  document.getElementById('sobre').classList.remove('active'); // Remove classe
+  document.getElementById('profile').classList.remove('active'); // Remove classe
+</script>
     
   
     

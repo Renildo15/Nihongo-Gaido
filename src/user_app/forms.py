@@ -34,9 +34,13 @@ class RegisterUserForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'input'
 
 class PasswordChangingForm(PasswordChangeForm):
+<<<<<<< HEAD
     old_password = forms.EmailField(widget=forms.EmailInput(attrs={'id': 'email', 'placeholder': 'Digite a senha antiga...', 'class': 'input'}), label="Senha antiga: ")
     new_password1 = forms.CharField(widget=forms.TextInput(attrs={'id': 'nome', 'placeholder': 'Digite sua nova senha...', 'class': 'input'}), label="Nova senha: ")
     new_password2 = forms.CharField(widget=forms.TextInput(attrs={'id': 'sobrenome', 'placeholder': 'Digite sua noa senha novamente...', 'class': 'input'}), label="Confirme a senha: ")
+=======
+   
+>>>>>>> responsividade
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')

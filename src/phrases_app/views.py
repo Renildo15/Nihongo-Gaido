@@ -81,7 +81,7 @@ def phrase_update(request, pk):
         "form": form
     }
 
-    return render(request, 'phrase_form.html', context)
+    return render(request, 'phrase_edit.html', context)
     
 @login_required(login_url='user:logar_user')
 def phrase_delete(request, pk):

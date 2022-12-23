@@ -24,19 +24,18 @@
             </div>
           </div>
         {% csrf_token %}
-        <div class="inputs-register">
+        <div class="inputs-register content-reset">
             {% for field in form_usuario %}
             <div class="input-box">
                 <label>{{field.label}}</label>
                 {{field}}
             </div>
             {% endfor %}
-                
-                
-            <button class="btn-login">Cadastre-se</button>
-            <div class="text-center m-2">
-                <span>Já tem um login e senha? <a href="{% url 'user:logar_user' %}" class="link">Faça o login!</a></span>
-            </div>
+            <button class="btn-cadastro">Cadastre-se</button>
+        </div>
+       
+        <div class="text-center">
+            <span>Já tem um login e senha? <a href="{% url 'user:logar_user' %}" class="link">Faça o login!</a></span>
         </div>
        
         

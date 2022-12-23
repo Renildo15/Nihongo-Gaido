@@ -5,24 +5,37 @@
 
 {% block content %}
     <div class="container">
-        <div class="row m-5">
-            <div class="col-12 mb-4">
+        <div class="row">
+            <hr>
+            <div class="col-md-8 mt-3">
+                {{text.texto|safe}}
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="text-buttons mb-4 ">
                 <a class="btn-open" href="{% url 'text:add_text_traducao' text.slug %}">Traduzir texto</a>
                 <a class="btn-edit-text" href="{% url 'text:text_update' text.slug%}">Editar texto</a>
                 <a class="btn-translate" href="{% url 'text:text_traducao_view' text.slug %}">Ver tradução</a>
-            </div>
-            <hr>
-            <div class="col-8">
-                {{text.texto|safe}}
-            </div>
-            <hr>
-            <div class="col-8 div-comment">
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-md-8 div-comment">
                 <h5>Comentário</h5>
                 <p>{{text.comentario}}</p>
             </div>
-            
         </div>
+
+        
     </div>
-  
+    <script>
+        document.getElementById('home').classList.remove('active'); // Adiciona classe
+      
+        document.getElementById('gramatica').classList.remove('active'); // Remove classe
+        document.getElementById('texto').classList.add('active'); // Remove classe
+        document.getElementById('vocabulario').classList.remove('active'); // Remove classe
+        document.getElementById('sobre').classList.remove('active'); // Remove classe
+        document.getElementById('profile').classList.remove('active'); // Remove classe
+      </script>
     
 {% endblock content %}

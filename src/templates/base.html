@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'styles/style-31.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="stylesheet" href="{% static 'styles/responsivo-1.css' %}">
     <link rel="icon" href="{% static 'imgs/Nihongo-Gaido-1.png' %}" type="image/gif" sizes="16x16">
 </head>
@@ -20,25 +20,25 @@
             <i class="fa fa-bars fa 2x" onclick="menuShow()"></i>
         </div>
 
-        <ul>
-            <li><a class="active" href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-            <li><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Gramática</a></li> 
-            <li class = "dropdown-nav">
+        <ul class="navbar-ul" id="ul">
+            <li id="home"><a href="{% url 'pages:home' %}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+            <li id="gramatica"><a href="{% url 'grammar:grammar_list'%}"><i class="fa fa-book" aria-hidden="true"></i>Gramática</a></li> 
+            <li id="texto" class = "dropdown-nav">
                 <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Texto <i class="fa fa-caret-down"></i></a>
-                <div class="dropdown-nav-content">
+                <div id="content" class="dropdown-nav-content" >
                     <a href="{% url 'text:text_list' %}">Tradução</a>
                     <a href="{% url 'text:text_escrito_list' %}">Escrita</a>
                 </div>
             </li> 
-            <li><a href="{% url 'vocabulary:word_list' %}"><i class="fa fa-tag" aria-hidden="true"></i>Vocabulário</a></li>
-            <li><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
-            <li class = "dropdown-nav">
+            <li id="vocabulario"><a href="{% url 'vocabulary:word_list' %}"><i class="fa fa-tag" aria-hidden="true"></i>Vocabulário</a></li>
+            <li id="sobre"><a href="{% url 'pages:sobre' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>Sobre</a></li>
+            <li id="profile" class = "dropdown-nav">
                 {% if user.is_authenticated%}
                     <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{user.username}} <i class="fa fa-caret-down"></i></a>
                 {% else %}
                     <a href="javascript:void(0)"class="dropbtn"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Login <i class="fa fa-caret-down"></i></a>
                 {% endif %}
-                <div class = "dropdown-nav-content">
+                <div class = "dropdown-nav-content" id="content">
                     {% if user.is_authenticated %}
                         <a href="{% url 'user:profile_page' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Perfil</a>
                         <a href="{% url 'user:mudar_senha' %}"><i class="fa fa-lock"></i></i>Mudar senha</a>
@@ -62,13 +62,26 @@
             <span>Nihongo Gaido</span>
         </div>
 
-        <ul>
+        <ul class="mt-3">
             <li>
                 <a href="{% url 'pages:home' %}">Home</a>
             </li>
             <li>
                 <a href="{% url 'grammar:grammar_list'%}">Grammar</href=>
             </li>
+        
+            <li>
+                <a href="{% url 'text:text_list' %}">Tradução</a>
+            </li>
+
+            <li>
+                <a href="{% url 'text:text_escrito_list' %}">Escrita</a>
+            </li>
+
+            <li>
+                <a href="{% url 'vocabulary:word_list' %}">Vocabulário</a>
+            </li>
+
             <li>
                 <a href="{% url 'pages:sobre' %}">Sobre</a>
             </li>
@@ -126,13 +139,13 @@
        
 
         function menuShow(){
-            var ele = document.getElementById("itens");
-            console.log(ele);
-            if(ele.style.display === "flex"){
+            var ele = document.getElementById("ul");
+            if(ele.style.display === "block"){
                 ele.style.display = "none";
             }else{
-                ele.style.display = "flex"
+                ele.style.display = "block"
             }
+            
         }
 
     </script>

@@ -10,6 +10,7 @@
 {% endfor %}
 
 <div class="container">
+  <div class="div-text">
     <h2 class='h2 text-center mt-4'>Lista de textos</h2>
     <div class="div-search-add">
         <div class="div-text-frase">
@@ -45,85 +46,99 @@
         </ul>
     </div>
     <hr>
-</div>
-{% if texts %}
-    <div class="row">
-        {% for t in texts %}
-        <div class="col-12 col-md-6 col-lg-4 p-5">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">{{t.titulo}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{t.date_created}}</h6>
-                <div>{{t.texto|safe|truncatechars:100}}</div>
-                <a class="btn-open" href="{% url 'text:text_escrito_view' t.slug %}" class="card-link">Abrir texto</a>
-                <a class="btn-delete-text confirm-delete-text" id="deleteButton{{t.slug}}" href="{% url 'text:text_escrito_delete_w' t.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir texto</a>
-                </div>
-            </div>
-            <div class="modal fade" id="confirmDeleteModalText" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header text-danger">
-                      <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body confirm-delete-text">
-                      Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalText">Sim, desejo apagar</button>
-                    </div>
+  </div>
+  {% if texts %}
+  <div class="row">
+      {% for t in texts %}
+      <div class="col-12 col-md-6 col-lg-4 p-5">
+          <div class="card">
+              <div class="card-body">
+              <h5 class="card-title">{{t.titulo}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{t.date_created}}</h6>
+              <div>{{t.texto|safe|truncatechars:100}}</div>
+              <a class="btn-open" href="{% url 'text:text_escrito_view' t.slug %}" class="card-link">Abrir texto</a>
+              <a class="btn-delete-text confirm-delete-text" id="deleteButton{{t.slug}}" href="{% url 'text:text_escrito_delete_w' t.slug %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalText">Excluir texto</a>
+              </div>
+          </div>
+          <div class="modal fade" id="confirmDeleteModalText" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" caller-id="" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header text-danger">
+                    <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body confirm-delete-text">
+                    Os dados serão apagados do banco de dados!<br>Dejesa apagá-los mesmo assim?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButtonModalText">Sim, desejo apagar</button>
                   </div>
                 </div>
-            </div>   
-        </div>
-        {% endfor %}
-    </div>
-    <div class="div-pagination">
-        <div class="paginacao">
-          <div class="paginacao-content">
-            <ul class="pagination">
-              {% if texts.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="{% url 'text:text_escrito_list'%}?limit{{qnt_pagina}}&page={{texts.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
-                </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-                </li>
-              {% endif %}
-              
-              {% for num in texts.paginator.page_range %}
-                {% if num == texts.number %}
-                    <li class="page-item active">
-                      <a class="page-link" href="#">{{num}}</a>
-                    </li>
-                {% else %}
-                  <li class="page-item">
-                    <a class="page-link" href="{% url 'text:text_escrito_list' %}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
+              </div>
+          </div>   
+      </div>
+      {% endfor %}
+  </div>
+  <div class="div-pagination">
+      <div class="paginacao">
+        <div class="paginacao-content">
+          <ul class="pagination">
+            {% if texts.has_previous %}
+              <li class="page-item">
+                  <a class="page-link" href="{% url 'text:text_escrito_list'%}?limit{{qnt_pagina}}&page={{texts.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+              </li>
+            {% endif %}
+            
+            {% for num in texts.paginator.page_range %}
+              {% if num == texts.number %}
+                  <li class="page-item active">
+                    <a class="page-link" href="#">{{num}}</a>
                   </li>
-                {% endif %}
-  
-                
-              {% endfor %}
-  
-              {% if texts.has_next %}
-                <li class="page-item">
-                  <a class="page-link" href="{% url 'text:text_escrito_list'%}?limit{{qnt_pagina}}&page={{texts.next_page_number}}">Próximo</a>
-                </li>
               {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link" href="#">Próximo</a>
+                <li class="page-item">
+                  <a class="page-link" href="{% url 'text:text_escrito_list' %}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
                 </li>
               {% endif %}
+
               
-            </ul>
-          </div>
-        </div>            
-    </div>
+            {% endfor %}
+
+            {% if texts.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="{% url 'text:text_escrito_list'%}?limit{{qnt_pagina}}&page={{texts.next_page_number}}">Próximo</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#">Próximo</a>
+              </li>
+            {% endif %}
+            
+          </ul>
+        </div>
+      </div>            
+  </div>
 {% else %}
+  <div class="row m-5">
     <div class='text-center mt-4'>
-        <h2>Não há dados cadastrados</h2>
+      <h2>Não há dados cadastrados</h2>
+      <p>Para adicionar algum dado, basta clicar no botão "add" e preencher o formulário.</p>
     </div>
+  </div>
 {% endif %}
+</div>
+
+<script>
+  document.getElementById('home').classList.remove('active'); // Adiciona classe
+
+  document.getElementById('gramatica').classList.remove('active'); // Remove classe
+  document.getElementById('texto').classList.add('active'); // Remove classe
+  document.getElementById('vocabulario').classList.remove('active'); // Remove classe
+  document.getElementById('sobre').classList.remove('active'); // Remove classe
+  document.getElementById('profile').classList.remove('active'); // Remove classe
+</script>
 {% endblock content %}

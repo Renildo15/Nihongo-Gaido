@@ -20,7 +20,7 @@
                 <hr>
             </div>
 
-            <div class="content">
+            <div class="content pt-5 pb-5">
                 <div class="list mb-5 mt-5">
                     <table class="table-css">
                         <thead>
@@ -64,9 +64,21 @@
                 <div class="div-buttons"><a class="btn-add" href="{% url 'vocabulary:add_conjugation' word.slug %}"> <i class="fa fa-plus"></i> Add conjugação</a></div>
                 <hr>
             </div>
-            <div class='text-center mt-4'>
+            <div class="row">
+              <div class='text-center mt-4'>
                 <h2>Não há dados cadastrados</h2>
+                <p>Para adicionar algum dado, basta clicar no botão "add" e preencher o formulário.</p>
+              </div>
             </div>
         {% endif %}
     </div>
+    <script>
+      document.getElementById('home').classList.remove('active'); // Adiciona classe
+    
+      document.getElementById('gramatica').classList.remove('active'); // Remove classe
+      document.getElementById('texto').classList.remove('active'); // Remove classe
+      document.getElementById('vocabulario').classList.add('active'); // Remove classe
+      document.getElementById('sobre').classList.remove('active'); // Remove classe
+      document.getElementById('profile').classList.remove('active'); // Remove classe
+    </script>
 {% endblock content %}

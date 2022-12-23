@@ -102,6 +102,7 @@ def grammar_update(request, pk):
 
     if form_grammar.is_valid():
         form_grammar.save()
+        messages.success(request,"Gramática alterada com sucesso!")
         return redirect('grammar:grammar_list')
     
     context = {
