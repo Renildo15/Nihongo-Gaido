@@ -460,19 +460,19 @@ label{
     font-size: 20px;
 }
 
-.btn-frase {
-    text-decoration: none;
-    background-color: #660066;
-    padding: 5px;
-    border-radius: 10px;
-    color: #fff;
+.btn-frase i {
+    color: #660066;
+    font-size:20px;
 }
-.btn-frase:hover {
-    background-color: #420042;
-    color: #fff;
-    box-shadow: 6px 6px 1px #0000001c;
+
+
+.btn-frase  i:hover{
+    color: #420042;
+    transform: scale(1.5);
     transition: 0.6s ease;
+    
 }
+
 
 .btn-edit i{
     color: #664e00;
@@ -1322,7 +1322,7 @@ img{
     .navbar-ul > .active{
         background-color: #4F9D69;
         color: #fff;
-        width: 30%;
+        width: 40%;
         margin: 0 auto;
         border-radius: 5px;
         
@@ -1335,10 +1335,32 @@ img{
     }
     
 
-  
-    
+    .div-search-add{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
 
+    .div-table{
+        width: 100%;
+    }
     
+    .table-css td{
+        width: 50%;
+    }
+
+    .inputs-grammar{
+        padding: 40px;
+        width: 100%;
+        height: 80%;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        max-width: 100%;
+        box-shadow: 1px 1px 6px #0000001c;
+    }
 }
 
 
@@ -1370,8 +1392,26 @@ img{
     }
 
     .navbar-ul > .active{
-        width: 60%;
+        width: 80%;
     }
 
+    .div-table{
+        width: 100%;
+    }
+    
+    .table-css td{
+        width: 80%;
+    }
+
+    .inputs-grammar{
+        padding: 40px;
+        width: 100%;
+        height: 80%;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        max-width: 100%;
+        box-shadow: 1px 1px 6px #0000001c;
+    }
     
 }
