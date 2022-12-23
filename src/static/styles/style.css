@@ -838,7 +838,6 @@ img{
 }
 
 .inputs-text-box{
-   
     padding: 0 30px;
     margin: 20px;
 }
@@ -1430,6 +1429,13 @@ img{
     .text-buttons{
         flex-direction: column;
     }
+
+    .inputs-text-box{
+        width: 100%;
+        padding: 0 0px;
+        margin: 20px;
+    }
+    
 }
 
 

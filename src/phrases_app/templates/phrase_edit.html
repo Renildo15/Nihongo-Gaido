@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Nihongo Gaido - Alterar Frase
+{% endblock title %}
+
+{% block content %}
+{% for msg in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
+    </div>
+{% endfor %}
+<div class="form-container-form">
+    <form class="" method="POST">
+        {% csrf_token %}
+        <div class="inputs-grammar">
+            <h2>Alterar frase</h2>
+            <hr>
+            {% for field in form %}
+                <div class="inputs-grammar-box">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+            <div class="btn-div">
+                <input type="submit" name="phrase" value="Alterar Frase"/>
+            </div>
+        </div>
+        
+    </form>
+</div>
+<script>
+    document.getElementById('home').classList.remove('active'); // Adiciona classe
+  
+    document.getElementById('gramatica').classList.add('active'); // Remove classe
+    document.getElementById('texto').classList.remove('active'); // Remove classe
+    document.getElementById('vocabulario').classList.remove('active'); // Remove classe
+    document.getElementById('sobre').classList.remove('active'); // Remove classe
+    document.getElementById('profile').classList.remove('active'); // Remove classe
+  </script>
+{% endblock content %}
+

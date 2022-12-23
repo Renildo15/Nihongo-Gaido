@@ -56,7 +56,7 @@ CKEDITOR_CONFIGS = {'default': {
 'allowedContent': True,
 'width': 410,
 'height': 300,
- 'width': 'auto'},
+'width': 'auto'},
 }
 
 
