@@ -975,7 +975,9 @@ img{
 .div-comment{
     background-color: #efefef;
     border-radius: 30px;
+    width: 100%;
     padding: 15px;
+    margin-bottom: 30px;
 }
 
 /* vocabulary*/
@@ -1130,6 +1132,14 @@ img{
     margin: 10px 0;
     border-radius: 10px;
 
+}
+
+.text-buttons{
+    border: 1px solid #4F9D69;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #efefef;
 }
 
 @media (max-width : 1200px) and (min-width : 930px){
@@ -1410,6 +1420,16 @@ img{
    .div-pagination{
         width: 50%;
    }
+
+   .div-comment{
+        text-align: justify;
+        border-radius: 0;
+    }
+
+
+    .text-buttons{
+        flex-direction: column;
+    }
 }
 
 
