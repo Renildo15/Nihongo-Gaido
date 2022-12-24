@@ -29,7 +29,7 @@ ENCRYPT_KEY = b'RHvwoSRAZyz89rS3o6uoTYe6uAp_zY0ypHNLC7sJIFg='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

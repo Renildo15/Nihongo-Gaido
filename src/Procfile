@@ -1,0 +1,1 @@
+web: gunicorn 'nihongo_gaido.wsgi'
