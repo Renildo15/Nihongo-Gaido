@@ -9,29 +9,17 @@
     </div>
 {% endfor %}
     <section>
-<<<<<<< HEAD
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-=======
         <div class="container div-h3">
             <div class="row">
                 <div class="col-md-12 text-center div-img">
->>>>>>> responsividade
                     <img src={% static 'imgs/Nihongo-Gaido-1.png' %} alt="">
                     <h2>Nihongo Gaido</h2>
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div class="row">
-                <div>
-                    <h2>Seja bem vindo, {{request.user.first_name}}!</h2>
-=======
             <div class="row mt-5">
                 <div>
                     <h2 class="text-center">Seja bem vindo, {{request.user.first_name}}!</h2>
->>>>>>> responsividade
                     <p>
                         Olá,{{request.user.first_name}}. O Nihongo Gaido está em sua primeira versão e é um sistema que busque auxiliar
                         aqueles que buscam aprender o lindo idioma japonês. Aqui o usuário poderá salvar todas as grámaticas, palavras
@@ -43,11 +31,7 @@
 
                 <div class="col-md-4">
                     <h3>Gramática</h3>
-<<<<<<< HEAD
-                    <p>
-=======
                     <p class="div-content">
->>>>>>> responsividade
                         Em gramática o usuário poderá cadastrar todos os dados referentes a um estrutura gramátical. Sendo possível filtrar
                         por grmática(escrita me português), estrutura e nível. Existem 5 níveis que vão do N1 ao N5, baseando-se nos níveis
                         do JLPT( Avaliação de Proficiência na Língua Japonesa), e existe um campo chamado "UNKNOW", que são para as gramáticas
@@ -56,11 +40,7 @@
                 </div>
                 <div class="col-md-4">
                     <h3>Frases</h3>
-<<<<<<< HEAD
-                    <p>
-=======
                     <p class="div-content">
->>>>>>> responsividade
                         Em frases o usuário irá criar frases de acordo com a estrutura gramátical. Para isso, a estruturadeve está previamente
                         cadastrada no banco de dados. Na lista das gramáticas cadastradas no sistema, na frente, existe um botão roxo escrito 
                         "Ver frases". Clicando nesse botão é levado para um página onde o usuário poderá ver as frase cadastradas que estão relacionadas
@@ -69,11 +49,7 @@
                 </div>
                 <div class="col-md-4">
                     <h3>Textos</h3>
-<<<<<<< HEAD
-                    <p>
-=======
                     <p class="div-content">
->>>>>>> responsividade
                       Em textos, o usuário poderá cadastrar textos que ele encontrar na internet, para que posteriormente ele possa praticar a leitura,
                       digitação em japonês e também a tradução. Caso o usuário queira, ele também pode copiar e colar algum texto da internet. No ato
                       do cadastro da do texto, o usuário pode fazer um comentário sobre o texto. Nesse módulo também é permitido que o usuário filtre pelo
@@ -81,142 +57,31 @@
                     </p>
                 </div>
             </div>
-<<<<<<< HEAD
-
-            <div class="row">
-        
-              <div class="col-md-4">
-                  <h3>Traduções</h3>
-                  <p>
-=======
             <hr>
             <div class="row mt-5">
         
               <div class="col-md-4">
                   <h3>Traduções</h3>
                   <p class="div-content">
->>>>>>> responsividade
                       As traduções são feitas a partir de um texto já cadastro. Para tentar facilitar a vida do usuário, no ato de traduzir, é exibido 
                       o texto ao lado do campo de escrita. A tradução pode ser acessada ao entrar no texto e escolhendo a opção "ver tradução".
                   </p>
               </div>
               <div class="col-md-4">
                   <h3>Textos escritos</h3>
-<<<<<<< HEAD
-                  <p>
-=======
                   <p class="div-content">
->>>>>>> responsividade
                       Textos escritos é um módulo exclusivo para praticar a digitação e pensamento em japonês, onde o usuário irá escrever textos com base em
                       temas aleátorios que o sistema irá gerar. O resto é semalhante ao módulo Texto, porém sem a opção de traduzir.
               </div>
               <div class="col-md-4">
                   <h3>Vocabulário</h3>
-<<<<<<< HEAD
-                  <p>
-=======
                   <p class="div-content">
->>>>>>> responsividade
                      Vocabulário é o módulo responsável por armazenar palavras que o usuário desejar cadastrar. Lá é listadas todas as palavras que o usuário
                      cadastrou. Caso queira, o usuário poderá filtrar por palavra, categoria ou nível. Os níveis são os mesmos que os do módulo grámatica.
                      As categorias são cadastradas pelo o usuário, por isso é bom sempre cadastrar a categoria antes das palavras. Para ver as informações
                      das palavras basta clicar em cima da palavra desejada que abaixo irá sugir as informações.
                   </p>
               </div>
-<<<<<<< HEAD
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-                <h3>Exemplos</h3>
-                <p>
-                   Esse módulo está relacionado as palavras cadastradas. Caso o usuário queira cadastrar vários exemplos de palavras em frases, ele pode fazer
-                   isso clicando no botão "exemplo" e depois em "add exemplo". Quando criado exemplos para alguma palavra, irá ser listado em uma tabela todos
-                   os exemplos daquela palavra. Para ver os detalhes da frase, basta clicar em cima da frase que logo abaixo irá surgir as informações. O usuário
-                   poderá fazer um busca por frase.
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h3>Categorias</h3>
-                <p>
-                   Categorias é uma função para que consiga organizar melhor as palavras cadastradas. Não existe nenhuma categoria cadastrada por padrão, por ser
-                   algo muito fléxivel pois não tem como saber quais serão as palavras cadastradas. Porém o usuário poderá cadastrar suas próprias categorias. Nessa
-                   versão é aconselhado que o usuário antes de cadastrar uma palavra, cadastre a categoria primeiro. Futuramente esse pequeno problema será corrigido.
-                   Essa opção se encontra no módulo Vocabulário.
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h3>Conjugações</h3>
-                <p>
-                   Conjugações é um módulo que está relacionado as palavras que são verbos. O usuário poderá escolher algum dos verbos e adicionar as suas conjugações.
-                   Isso faz com que o usuário consiga praticar a conjugação e memorizar melhor. Para que o usuário consiga usar essa função a palavra deve está previamente
-                   cadastrada no sistema e que, obviamente, seja um verbo. Essa opção se encontra no módulo Vocabulário. 
-                </p>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div>
-                <h3>Dados cadastrados no sistema</h3>
-            </div>
-            <div class="row">
-                <div class="col-sm-3 col-md-6 col-lg-6 list-margin">
-                  <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                      Gramática
-                      <span class="badge bg-primary rounded-pill">{{grammar.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                     Frases
-                      <span class="badge bg-primary rounded-pill">{{phrase.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                      Textos
-                      <span class="badge bg-primary rounded-pill">{{text.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                     Traduções
-                      <span class="badge bg-primary rounded-pill">{{text_translate.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                     Textos escritos
-                      <span class="badge bg-primary rounded-pill">{{text_writing.count}}</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-sm-3 col-md-6 col-lg-6">
-                  <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                      Palavras
-                      <span class="badge bg-primary rounded-pill">{{word.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                      Exemplos
-                      <span class="badge bg-primary rounded-pill">{{example.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                      Categorias
-                      <span class="badge bg-primary rounded-pill">{{category.count}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center li-list">
-                      Conjugações
-                      <span class="badge bg-primary rounded-pill">{{conjugation.count}}</span>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-      <div class="container">
-        
-      </div>
-    </section>
-=======
             </div>
             <hr>
             <div class="row mt-5">
@@ -314,5 +179,4 @@
       document.getElementById('sobre').classList.remove('active'); // Remove classe
       document.getElementById('profile').classList.remove('active'); // Remove classe
   </script>
->>>>>>> responsividade
 {% endblock content %}
