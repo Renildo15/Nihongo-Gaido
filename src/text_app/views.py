@@ -73,6 +73,7 @@ def text_update(request, slug):
 
     if text_form.is_valid():
         text_form.save()
+        messages.success(request,"Texto alterado com sucesso!")
         return redirect('text:text_list')
     context = {
         "text_form":text_form
