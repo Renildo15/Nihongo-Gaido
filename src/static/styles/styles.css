@@ -1441,7 +1441,8 @@ img{
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 100%;
+        width: 80%;
+        margin: 0 auto;
     }
     
     .div-btn-cat{
@@ -1491,6 +1492,10 @@ img{
         margin: 8px auto;
        
     }
+
+    .navbar-ul{
+        padding: 0;
+    }
    
     
 }
@@ -1525,6 +1530,12 @@ img{
 
     .navbar-ul > .active{
         width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar-ul{
+        padding: 0;
     }
 
     .div-table{
@@ -1568,6 +1579,8 @@ img{
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
 
     }
 
@@ -1613,5 +1626,10 @@ img{
 
     .title-form{
         font-size: 20px;
+    }
+
+    .inputs-register{
+        width: 80%;
+        margin: 0 auto;
     }
 }
