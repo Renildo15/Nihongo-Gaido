@@ -1441,7 +1441,8 @@ img{
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 100%;
+        width: 80%;
+        margin: 0 auto;
     }
     
     .div-btn-cat{
@@ -1491,6 +1492,10 @@ img{
         margin: 8px auto;
        
     }
+
+    .navbar-ul{
+        padding: 0;
+    }
    
     
 }
@@ -1525,6 +1530,12 @@ img{
 
     .navbar-ul > .active{
         width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar-ul{
+        padding: 0;
     }
 
     .div-table{
@@ -1538,7 +1549,7 @@ img{
 
     .inputs-grammar{
         padding: 40px;
-        width: 100%;
+        width: 80%;
         height: 80%;
         margin: 0 auto;
         margin-top: 40px;
@@ -1568,6 +1579,8 @@ img{
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
 
     }
 
@@ -1613,5 +1626,64 @@ img{
 
     .title-form{
         font-size: 20px;
+    }
+
+    .inputs-register{
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .btn-table{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+    }
+    .btn-table a{
+        margin-right: 0;
+        font-size: 20px;
+    }
+    .btn-edit{
+        margin: 0;
+    }
+    .btn-table a{
+        margin: 0;
+    }
+    .div-pagination{
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    .paginacao-content{
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .paginacao-content-voca{
+        width: 75%;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    .div-pagination .paginacao{
+        width: 60%;
+        height: 40px;
+        margin: 0 auto;
+    
+    }
+
+    .inputs-text{
+        padding: 40px;
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        max-width: 100%;
+        box-shadow: 1px 1px 6px #0000001c;
+    }
+
+    .inputs-text-box{
+        width: 80%;
+        margin: 20px;
     }
 }

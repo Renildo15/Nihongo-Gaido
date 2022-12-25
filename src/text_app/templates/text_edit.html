@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Nihongo Gaido - Editar Texto{% endblock title %}
-
-{% block content %}
-    {% for msg in messages %}
+{% for msg in messages %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{msg}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
         </div>
     {% endfor %}
+{% block content %}
+    
     <div class="form-container-form">
         <form method="post">
             {% csrf_token %}

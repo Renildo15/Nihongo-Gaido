@@ -74,6 +74,7 @@ def phrase_update(request, pk):
         form.fields['grammar_id'].queryset = Grammar.objects.filter(criado_por = request.user)
         if form.is_valid():
             form.save()
+            messages.success(request,"Frase alterada com sucesso!")
             ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
             return redirect('grammar:grammar_list')
 
