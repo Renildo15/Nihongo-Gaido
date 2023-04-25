@@ -11,15 +11,15 @@ def grammar_list(request):
     grammar_contains_query = request.GET.get('grammar_contains')
     estrutura_contains_query = request.GET.get('estrutura_contains')
     paramentro_page = request.GET.get('page', '1')
-    parametro_limit = request.GET.get('limit', '3')
+    parametro_limit = request.GET.get('limit', '15')
     nivel_query = request.GET.get('select')
     print(type(nivel_query ))
 
     if grammar_contains_query != "" and grammar_contains_query is not None:
         grammar = Grammar.objects.filter(criado_por=request.user.id, gramatica__icontains = grammar_contains_query)
-        
+
         if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '3'
+            parametro_limit = '15'
 
         grammar_paginator = Paginator(grammar, parametro_limit)
 
@@ -29,9 +29,9 @@ def grammar_list(request):
             page = grammar_paginator.page(1)
     elif estrutura_contains_query != "" and estrutura_contains_query is not None:
         grammar = Grammar.objects.filter(criado_por=request.user.id, estrutura__icontains = estrutura_contains_query)
-       
+
         if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '3'
+            parametro_limit = '15'
 
         grammar_paginator = Paginator(grammar, parametro_limit)
 
@@ -43,7 +43,7 @@ def grammar_list(request):
     elif nivel_query  != "" and nivel_query   is not None:
         grammar = Grammar.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_query )
         if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '3'
+            parametro_limit = '15'
 
         grammar_paginator = Paginator(grammar, parametro_limit)
 
@@ -53,9 +53,9 @@ def grammar_list(request):
             page = grammar_paginator.page(1)
     else:
         grammar = Grammar.objects.filter(criado_por=request.user.id)
-      
+
         if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '3'
+            parametro_limit = '15'
 
         grammar_paginator = Paginator(grammar, parametro_limit)
 
@@ -64,13 +64,13 @@ def grammar_list(request):
         except (EmptyPage, PageNotAnInteger):
             page = grammar_paginator.page(1)
     context = {
-        'quantidade_por_pagina':['3','5','10','15'],
+        'quantidade_por_pagina':['15','25','35','45'],
         'qnt_pagina': parametro_limit,
         'grammar': page,
     }
 
-    
-    
+
+
     return render(request, 'grammar_list.html', context)
 
 
@@ -92,7 +92,7 @@ def grammar_create(request):
     context = {
         'form_grammar': form_Grammar,
     }
-   
+
     return render(request, 'grammar_form.html', context)
 
 @login_required(login_url='user:logar_user')
@@ -104,7 +104,7 @@ def grammar_update(request, pk):
         form_grammar.save()
         messages.success(request,"Gramática alterada com sucesso!")
         return redirect('grammar:grammar_list')
-    
+
     context = {
         "form_grammar":form_grammar
     }
