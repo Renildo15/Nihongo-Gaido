@@ -35,7 +35,7 @@ def logar_user(request):
         'form_login': form_login
     }
     return render(request, "login.html", context)
-            
+
 
 def cadastrar_user(request):
     if request.method == "POST":
@@ -95,7 +95,7 @@ def password_reset_request(request):
                     email_template_name = "senha/password_reset_email.txt"
                     c = {
 					"email":user.email,
-					'domain':'127.0.0.1:8000',
+					'domain':'NihongoGaido.pythonanywhere.com',
 					'site_name': 'Website',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
