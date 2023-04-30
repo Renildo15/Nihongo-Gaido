@@ -15,7 +15,7 @@ def phrase_list(request,pk):
     grammar_phrase = Grammar_Phrase.objects.filter(criado_por= request.user.id, grammar_id=pk)
     grammar = get_object_or_404(Grammar, pk=pk)
     if not( paramentro_limit.isdigit() and int( paramentro_limit) > 0):
-         paramentro_limit = "3"
+        paramentro_limit = "3"
     phrase_paginator = Paginator(grammar_phrase, paramentro_limit)
 
     try:
