@@ -12,6 +12,7 @@ class GramarPhraseForm(forms.ModelForm):
         }
         
         widgets = {
+            'observacao': forms.Textarea(attrs={'class':'form-control', 'style':'width:600px;'}),
             'grammar_id': forms.HiddenInput()
         }
 
