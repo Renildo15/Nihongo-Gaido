@@ -8,7 +8,12 @@ class GrammarForm(forms.ModelForm):
         labels = {
             'gramatica': 'Gramática: ',
             'estrutura': 'Estrutura: ',
-            'nivel': 'Nível: '
+            'nivel': 'Nível: ',
+            'explicacao': 'Explicação: '
+        }
+
+        widgets = {
+            'explicacao': forms.Textarea(attrs={'class':'form-control', 'style':'width:600px;'}),
         }
         
     
