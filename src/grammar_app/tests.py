@@ -11,14 +11,14 @@ class GrammarTests(TestCase):
         self.url = reverse('user:logar_user')
 
         self.grammar = Grammar.objects.create(
-            gramatica="gramatica teste", estrutura="estrutura teste", nivel="N5",  criado_por=self.user
-             
+            gramatica="gramatica teste", estrutura="estrutura teste", nivel="N5", explicacao="Explicação", criado_por=self.user
         )
     def test_grammar_model(self):
         self.client.login(username='john', password='johnpassword')
         self.assertEqual(self.grammar.gramatica, "gramatica teste")
         self.assertEqual(self.grammar.estrutura, "estrutura teste")
         self.assertEqual(self.grammar.nivel, "N5")
+        self.assertEqual(self.grammar.explicacao, "Explicação")
         self.assertEqual(self.grammar.criado_por.username,"john")
 
     def test_url_grammar_list(self):

@@ -16,6 +16,7 @@ class Grammar(models.Model):
     gramatica = models.CharField(max_length=200)
     estrutura = models.CharField(max_length=200)
     nivel = models.CharField(max_length=6, choices=nivel_choices)
+    explicacao = models.TextField(null=True, blank=True)
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
@@ -23,4 +24,4 @@ class Grammar(models.Model):
         ordering = ('gramatica', )
 
     def __str__(self):
-        return self.gramatica
+        return f'{self.gramatica} - {self.nivel}'
