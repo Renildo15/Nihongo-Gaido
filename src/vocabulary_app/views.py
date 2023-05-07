@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 from .models import *
 from .forms import *
 # Create your views here.
@@ -15,66 +16,40 @@ def word_list(request):
     categoria_contains_query = request.GET.get('categoria_contains')
     nivel_query = request.GET.get('select')
     parametro_limit = request.GET.get('limit', '12')
-    parametro_page = request.GET.get('page','1')
+    parametro_page = request.GET.get('page', '1')
 
+    word = Word.objects.filter(criado_por=request.user.id)
+    word_by_category = word.values('categoria__nome').annotate(total=Count('categoria'))
+    
+    if palavra_contains_query:
+        word = word.filter(palavra__icontains=palavra_contains_query)
+    elif categoria_contains_query:
+        word = word.filter(categoria__nome__icontains=categoria_contains_query)
+    elif nivel_query:
+        word = word.filter(nivel__icontains=nivel_query)
 
-    if palavra_contains_query != '' and palavra_contains_query is not None:
-        word = Word.objects.filter(criado_por=request.user.id, palavra__icontains = palavra_contains_query)
-        if not(parametro_limit.isdigit() and int(parametro_limit)>0):
-            parametro_limit = '12'
+    if not parametro_limit.isdigit() or int(parametro_limit) <= 0:
+        parametro_limit = '12'
 
-        word_paginator = Paginator(word, parametro_limit)
+    word_paginator = Paginator(word, parametro_limit)
 
-        try:
-            page = word_paginator.page(parametro_page)
-        except(EmptyPage, PageNotAnInteger):
-            page = word_paginator.page(1)
-
-    elif categoria_contains_query != '' and categoria_contains_query is not None:
-        word = Word.objects.filter(criado_por=request.user.id, categoria__nome__icontains = categoria_contains_query)
-        if not(parametro_limit.isdigit() and int(parametro_limit)>0):
-            parametro_limit = '12'
-
-        word_paginator = Paginator(word, parametro_limit)
-
-        try:
-            page = word_paginator.page(parametro_page)
-        except(EmptyPage, PageNotAnInteger):
-            page = word_paginator.page(1)
-
-    elif nivel_query  != "" and nivel_query   is not None:
-         word = Word.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_query)
-         if not(parametro_limit.isdigit() and int(parametro_limit)>0):
-            parametro_limit = '12'
-
-         word_paginator = Paginator(word, parametro_limit)
-
-         try:
-            page = word_paginator.page(parametro_page)
-         except(EmptyPage, PageNotAnInteger):
-            page = word_paginator.page(1)
-    else:
-        word = Word.objects.filter(criado_por=request.user.id)
-
-        if not(parametro_limit.isdigit() and int(parametro_limit)>0):
-            parametro_limit = '12'
-
-        word_paginator = Paginator(word, parametro_limit)
-
-        try:
-            page = word_paginator.page(parametro_page)
-        except(EmptyPage, PageNotAnInteger):
-            page = word_paginator.page(1)
+    try:
+        page = word_paginator.page(parametro_page)
+    except (EmptyPage, PageNotAnInteger):
+        page = word_paginator.page(1)
 
     context = {
-        "words": page,
-        "categorias": categoria,
-        "cat_form": cat_form,
-        'quantidade_por_pagina':['12','24','48'],
+        'words': page,
+        'categorias': categoria,
+        'cat_form': cat_form,
+        'quantidade_por_pagina': ['12', '24', '48'],
         'qnt_pagina': parametro_limit,
+        'word_by_category': word_by_category
     }
 
     return render(request, "word_list.html", context)
+
+
 
 @login_required(login_url='user:logar_user')
 def word_create(request):
@@ -88,7 +63,7 @@ def word_create(request):
             return redirect(reverse('vocabulary:add_word'))
 
     else:
-         form_word = WordForm()
+        form_word = WordForm()
 
     context = {
         "form_vocabulary": form_word
