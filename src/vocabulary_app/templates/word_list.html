@@ -109,8 +109,6 @@
                                         <a class="btn-conjugation" href="{% url 'vocabulary:conjugation_list' word.slug %}">Ver conjugação</a>
                                         <a class="btn-exemple" href="{% url 'example:example_list' word.slug %}">Ver exemplos</a>
                                     {% endif %}
-                                    
-                                   
                                 </div>
                             </div>
                           </div>
@@ -130,7 +128,15 @@
                 <ul class="list-group">
                     <h3>Categorias: </h3>
                     {% for categoria in categorias %}
-                        <li class="list-group-item">{{categoria.nome}}</li>
+                        <li class="list-group-item">
+                          {{ categoria.nome }} (
+                          {% for count_by_category in word_by_category %}
+                              {% if count_by_category.categoria__nome == categoria.nome %}
+                                  {{ count_by_category.total }}
+                              {% endif %}
+                          {% endfor %}
+                          )
+                      </li>
                     {% endfor %}
                     <div class="div-btn-cat">
                         <a class="btn-categoria" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Adicionar categoria</a>
