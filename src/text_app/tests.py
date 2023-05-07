@@ -24,7 +24,7 @@ class TextTests(TestCase):
         self.assertEqual(self.text.texto, "Texto teste")
         self.assertEqual(self.text.comentario, "comentario teste")
         self.assertEqual(self.text.slug, "kagami-no-dengou")
-        self.assertEqual(datetime.date(2022, 12, 24), datetime.date.today())
+        self.assertEqual(datetime.date(2023, 5, 7), datetime.date.today())
         self.assertEqual(self.text.criado_por.username,"john")
 
     def test_url_exists_at_correct_location_listview(self): 
