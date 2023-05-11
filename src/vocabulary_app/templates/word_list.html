@@ -150,7 +150,7 @@
                 <ul class="pagination">
                   {% if words.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="{% url 'vocabulary:word_list'%}?limit{{qnt_pagina}}&page={{words.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
+                        <a class="page-link" href="{% url 'vocabulary:word_list'%}?limit{{qnt_pagina}}&page={{words.previous_page_number}}&select={{request.GET.select}}" tabindex="-1" aria-disabled="true">Anterior</a>
                     </li>
                   {% else %}
                     <li class="page-item disabled">
@@ -165,7 +165,7 @@
                         </li>
                     {% else %}
                       <li class="page-item">
-                        <a class="page-link" href="{% url 'vocabulary:word_list' %}?limit{{qnt_pagina}}&page={{num}}">{{num}}</a>
+                        <a class="page-link" href="{% url 'vocabulary:word_list' %}?limit{{qnt_pagina}}&page={{num}}&select={{request.GET.select}}">{{num}}</a>
                       </li>
                     {% endif %}
       
@@ -174,7 +174,7 @@
       
                   {% if words.has_next %}
                     <li class="page-item">
-                      <a class="page-link" href="{% url 'vocabulary:word_list'%}?limit{{qnt_pagina}}&page={{words.next_page_number}}">Próximo</a>
+                      <a class="page-link" href="{% url 'vocabulary:word_list'%}?limit{{qnt_pagina}}&page={{words.next_page_number}}&select={{request.GET.select}}">Próximo</a>
                     </li>
                   {% else %}
                     <li class="page-item disabled">
