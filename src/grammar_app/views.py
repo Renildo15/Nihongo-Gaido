@@ -6,75 +6,43 @@ from .models import Grammar
 from .forms import GrammarForm
 from django.contrib import messages
 # Create your views here.
+from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
     grammar_contains_query = request.GET.get('grammar_contains')
     estrutura_contains_query = request.GET.get('estrutura_contains')
-    paramentro_page = request.GET.get('page', '1')
+    parametro_page = request.GET.get('page', '1')
     parametro_limit = request.GET.get('limit', '15')
     nivel_query = request.GET.get('select')
-    print(type(nivel_query ))
 
-    if grammar_contains_query != "" and grammar_contains_query is not None:
-        grammar = Grammar.objects.filter(criado_por=request.user.id, gramatica__icontains = grammar_contains_query)
+    grammar = Grammar.objects.filter(criado_por=request.user.id)
 
-        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '15'
+    if grammar_contains_query:
+        grammar = grammar.filter(gramatica__icontains=grammar_contains_query)
+    elif estrutura_contains_query:
+        grammar = grammar.filter(estrutura__icontains=estrutura_contains_query)
+    elif nivel_query:
+        grammar = grammar.filter(nivel__icontains=nivel_query)
 
-        grammar_paginator = Paginator(grammar, parametro_limit)
+    if not parametro_limit.isdigit() or int(parametro_limit) <= 0:
+        parametro_limit = '15'
 
-        try:
-            page = grammar_paginator.page(paramentro_page)
-        except (EmptyPage, PageNotAnInteger):
-            page = grammar_paginator.page(1)
-    elif estrutura_contains_query != "" and estrutura_contains_query is not None:
-        grammar = Grammar.objects.filter(criado_por=request.user.id, estrutura__icontains = estrutura_contains_query)
+    grammar_paginator = Paginator(grammar, parametro_limit)
 
-        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '15'
+    try:
+        page = grammar_paginator.page(parametro_page)
+    except (EmptyPage, PageNotAnInteger):
+        page = grammar_paginator.page(1)
 
-        grammar_paginator = Paginator(grammar, parametro_limit)
-
-        try:
-            page = grammar_paginator.page(paramentro_page)
-        except (EmptyPage, PageNotAnInteger):
-            page = grammar_paginator.page(1)
-
-    elif nivel_query  != "" and nivel_query   is not None:
-        grammar = Grammar.objects.filter(criado_por=request.user.id, nivel__icontains = nivel_query )
-        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '15'
-
-        grammar_paginator = Paginator(grammar, parametro_limit)
-
-        try:
-            page = grammar_paginator.page(paramentro_page)
-        except (EmptyPage, PageNotAnInteger):
-            page = grammar_paginator.page(1)
-    else:
-        grammar = Grammar.objects.filter(criado_por=request.user.id)
-
-        if not (parametro_limit.isdigit() and int(parametro_limit) > 0):
-            parametro_limit = '15'
-
-        grammar_paginator = Paginator(grammar, parametro_limit)
-
-        try:
-            page = grammar_paginator.page(paramentro_page)
-        except (EmptyPage, PageNotAnInteger):
-            page = grammar_paginator.page(1)
     context = {
-        'quantidade_por_pagina':['15','25','35','45'],
+        'quantidade_por_pagina': ['15', '25', '35', '45'],
         'qnt_pagina': parametro_limit,
         'grammar': page,
     }
 
-
-
     return render(request, 'grammar_list.html', context)
-
-
-
 
 @login_required(login_url='user:logar_user')
 def grammar_create(request):
