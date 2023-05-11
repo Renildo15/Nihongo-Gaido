@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -11,7 +11,20 @@ from .forms import *
 @login_required(login_url='user:logar_user')
 def word_list(request):
     categoria = Category.objects.filter(criado_por=request.user.id)
-    cat_form = category_form(request)
+
+    if request.method == "POST":
+        form_category = CategoryForm(request.POST)
+        if form_category.is_valid():
+            category = form_category.save(commit=False)
+            category.criado_por = request.user
+            category.save()
+            messages.success(request, "Categoria adicionada com sucesso!")
+            return HttpResponseRedirect(reverse('vocabulary:word_list'))
+    else:
+        form_category = CategoryForm()
+
+    cat_form = form_category
+
     palavra_contains_query = request.GET.get('palavra_contains')
     categoria_contains_query = request.GET.get('categoria_contains')
     nivel_query = request.GET.get('select')
@@ -20,7 +33,7 @@ def word_list(request):
 
     word = Word.objects.filter(criado_por=request.user.id)
     word_by_category = word.values('categoria__nome').annotate(total=Count('categoria'))
-    
+
     if palavra_contains_query:
         word = word.filter(palavra__icontains=palavra_contains_query)
     elif categoria_contains_query:
@@ -93,23 +106,6 @@ def word_delete(request, slug):
     word.delete()
     messages.success(request, "Palavra deletada com sucesso!")
     return redirect(reverse("vocabulary:word_list"))
-
-
-
-@login_required(login_url='user:logar_user')
-def category_form(request):
-    if request.method == "POST":
-        form_category = CategoryForm(request.POST or None)
-        if form_category.is_valid():
-            category = form_category.save(commit=False)
-            category.criado_por = request.user
-            category.save()
-            messages.success(request,"Categoria adicionada com sucesso!")
-            return redirect(reverse('vocabulary:word_list'))
-    else:
-        form_category = CategoryForm(request.POST or None)
-
-    return form_category
 
 
 @login_required(login_url='user:logar_user')
