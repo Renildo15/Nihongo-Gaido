@@ -1,13 +1,10 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import Grammar
 from .forms import GrammarForm
 from django.contrib import messages
-# Create your views here.
-from django.db.models import Q
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from  utils.utils import pagination, verify_contains
 
 @login_required(login_url='user:logar_user')
 def grammar_list(request):
@@ -18,23 +15,8 @@ def grammar_list(request):
     nivel_query = request.GET.get('select')
 
     grammar = Grammar.objects.filter(criado_por=request.user.id)
-
-    if grammar_contains_query:
-        grammar = grammar.filter(gramatica__icontains=grammar_contains_query)
-    elif estrutura_contains_query:
-        grammar = grammar.filter(estrutura__icontains=estrutura_contains_query)
-    elif nivel_query:
-        grammar = grammar.filter(nivel__icontains=nivel_query)
-
-    if not parametro_limit.isdigit() or int(parametro_limit) <= 0:
-        parametro_limit = '15'
-
-    grammar_paginator = Paginator(grammar, parametro_limit)
-
-    try:
-        page = grammar_paginator.page(parametro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = grammar_paginator.page(1)
+    grammar = verify_contains(grammar_contains_query, estrutura_contains_query, nivel_query, grammar)
+    page = pagination(parametro_limit, grammar, parametro_page )
 
     context = {
         'quantidade_por_pagina': ['15', '25', '35', '45'],
