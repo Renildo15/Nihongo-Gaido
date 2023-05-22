@@ -8,6 +8,7 @@ from .forms import ExampleForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from utils.utils import pagination
 # Create your views here.
 
 @login_required(login_url='user:logar_user')
@@ -20,17 +21,9 @@ def example_list(request, slug):
     if example_contains_query != '' and example_contains_query is not None:
         example = Example.objects.filter(criado_por=request.user.id, slug=slug, frase__icontains = example_contains_query)
     else:
-         example = Example.objects.filter(criado_por=request.user.id, slug=slug)
+        example = Example.objects.filter(criado_por=request.user.id, slug=slug)
 
-    if not(paramentro_limit.isdigit() and int(paramentro_limit)>0):
-        paramentro_limit = "10"
-
-    example_paginator = Paginator(example, paramentro_limit)
-
-    try:
-        page = example_paginator.page(paramentro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = example_paginator.page(1)
+    page = pagination(paramentro_limit, example, paramentro_page )
 
     
     context = {
@@ -63,7 +56,6 @@ def example_create(request,slug):
 
     context = {
         "form_example": form_example,
-       
     }
 
     return render(request,'example_form.html', context)
