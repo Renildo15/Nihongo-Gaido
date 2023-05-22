@@ -5,7 +5,9 @@ from .forms import TextForm,TextTraducaoForm,TextWritingForm
 from .models import Text,TextTraducao, TextWriting
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-import requests , random
+from .util import theme_choose
+from utils.utils import pagination
+
 # Create your views here.
 
 
@@ -18,16 +20,7 @@ def text_list(request):
 
     if text_contains_query != '' and text_contains_query is not None:
         texts = Text.objects.filter(criado_por=request.user.id, titulo__icontains = text_contains_query)
-
-    if not (paramentro_limit.isdigit() and int(paramentro_limit) > 0):
-        paramentro_limit = "3"
-
-    text_paginator = Paginator(texts, paramentro_limit)
-
-    try:
-        page = text_paginator.page(paramentro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = text_paginator.page(1)
+    page = pagination(paramentro_limit, texts, paramentro_page )
 
     context = {
         "quantidade_por_pagina":['3','6','12','24'],
@@ -41,9 +34,8 @@ def text_list(request):
 @login_required(login_url='user:logar_user')
 def text_create(request):
     if request.method == "POST":
-         text_form = TextForm(request.POST or None)
-         
-         if text_form.is_valid():
+        text_form = TextForm(request.POST or None)
+        if text_form.is_valid():
             text = text_form.save(commit=False)
             text.criado_por = request.user
             text.save()
@@ -138,7 +130,7 @@ def text_traducao_update(request, slug):
         return redirect("text:text_view", slug=slug)
     context = {
         'text_traducao_form':text_traducao_form,
-         "text": text_texto
+        "text": text_texto
     }
 
     return render(request,"text_traducao/text_traducao_edit.html", context)
@@ -153,86 +145,6 @@ def text_traducao_delete(request, slug):
 
 ###############################Texto escrita############################################
 
-def theme_choose(request):
-    #api = "https://api-temas.herokuapp.com/temas"
-    #requisicao = requests.get(api)
-    
-    try:
-        lista = [
-            {
-                "id": "1",
-                "tema": "Anime"
-            },
-            {
-                "id": "2",
-                "tema": "Faculdade"
-            },
-            {
-                "id": "3",
-                "tema": "Filme"
-            },
-            {
-                "id": "4",
-                "tema": "Estudos"
-            },
-            {
-                "id": "5",
-                "tema": "Amizade"
-            },
-            {
-                "id": "6",
-                "tema": "Sonhos"
-            },
-            {
-                "id": "7",
-                "tema": "Infância"
-            },
-            {
-                "id": "8",
-                "tema": "Comida"
-            },
-            {
-                "id": "9",
-                "tema": "Lembranças"
-            },
-            {
-                "id": "10",
-                "tema": "Sobre Hoje"
-            },
-            {
-                "id": "11",
-                "tema": "Programação"
-            },
-            
-            {
-                "id": "12",
-                "tema": "Música"
-            },
-            {
-                "id": "13",
-                "tema": "Astronomia"
-            },
-            {
-                "id": "14",
-                "tema": "Hobby"
-            },
-            {
-                "id": "15",
-                "tema": "Cultura"
-            }    
-        ]
-    except ValueError:
-        print("A resposta não chegou com o formato esperado.")
-
-    dic = {}
-    
-
-    for i, value in enumerate(lista):
-        dic[i] = value
-
-    theme = random.choice(list(dic.values()))
-
-    return theme['tema']
 
 
 
@@ -247,18 +159,8 @@ def text_list_w(request):
     if text_contains_query != '' and text_contains_query is not None:
         texts = TextWriting.objects.filter(criado_por=request.user.id, titulo__icontains=text_contains_query)
 
-    if not(paramentro_limit.isdigit() and int(paramentro_limit)>0):
-        paramentro_limit = "3"
-
-    text_paginator = Paginator(texts, paramentro_limit)
-
-    try:
-        page = text_paginator.page(paramentro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = text_paginator.page(1)
-
-
-
+    page = pagination(paramentro_limit, texts, paramentro_page )
+    
     context = {
         "quantidade_por_pagina":['3','6','12','24'],
         "qnt_pagina": paramentro_limit,
@@ -270,7 +172,7 @@ def text_list_w(request):
 
 @login_required(login_url='user:logar_user')
 def text_create_w(request):
-    theme = theme_choose(request)
+    theme = theme_choose()
     if request.method == "POST":
         text_form = TextWritingForm(request.POST or None)
 
@@ -281,8 +183,7 @@ def text_create_w(request):
             text.save()
             return redirect(reverse("text:text_escrito_form"))
     else:
-         
-         text_form = TextWritingForm()
+        text_form = TextWritingForm()
 
     context = {
         'text_form': text_form,
