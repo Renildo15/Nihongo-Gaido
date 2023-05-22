@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
 from .models import Grammar_Phrase
 from grammar_app.models import Grammar
 from .forms import GramarPhraseForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import  messages
+from django.contrib import messages
+from utils.utils import pagination
 
 # Create your views here.
 @login_required(login_url='user:logar_user')
@@ -14,15 +15,9 @@ def phrase_list(request,pk):
     paramentro_limit = request.GET.get('limit', '3')
     grammar_phrase = Grammar_Phrase.objects.filter(criado_por= request.user.id, grammar_id=pk)
     grammar = get_object_or_404(Grammar, pk=pk)
-    if not( paramentro_limit.isdigit() and int( paramentro_limit) > 0):
-        paramentro_limit = "3"
-    phrase_paginator = Paginator(grammar_phrase, paramentro_limit)
 
-    try:
-        page = phrase_paginator.page(paramentro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = phrase_paginator.page(1)
-
+    page = pagination(paramentro_limit, grammar_phrase, paramentro_page )
+    
     context = {
         'quantidade_por_pagina':['3','5','10','15'],
         'qnt_pagina':  paramentro_limit,
@@ -75,8 +70,7 @@ def phrase_update(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request,"Frase alterada com sucesso!")
-            ##TODO:Fazer com que seja redirecionadp para a tela Phrase list
-            return redirect('grammar:grammar_list')
+            return redirect('phrase:phrases_list', phrase.grammar_id.pk)
 
     context = {
         "form": form
