@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
 from .models import *
 from .forms import *
+from utils.utils import pagination, verify_contains
 # Create your views here.
 
 @login_required(login_url='user:logar_user')
@@ -34,22 +34,8 @@ def word_list(request):
     word = Word.objects.filter(criado_por=request.user.id)
     word_by_category = word.values('categoria__nome').annotate(total=Count('categoria'))
 
-    if palavra_contains_query:
-        word = word.filter(palavra__icontains=palavra_contains_query)
-    elif categoria_contains_query:
-        word = word.filter(categoria__nome__icontains=categoria_contains_query)
-    elif nivel_query:
-        word = word.filter(nivel__icontains=nivel_query)
-
-    if not parametro_limit.isdigit() or int(parametro_limit) <= 0:
-        parametro_limit = '12'
-
-    word_paginator = Paginator(word, parametro_limit)
-
-    try:
-        page = word_paginator.page(parametro_page)
-    except (EmptyPage, PageNotAnInteger):
-        page = word_paginator.page(1)
+    word = verify_contains(palavra_contains_query, categoria_contains_query, nivel_query, word)
+    page = pagination(parametro_limit, word, parametro_page )
 
     context = {
         'words': page,
@@ -61,8 +47,6 @@ def word_list(request):
     }
 
     return render(request, "word_list.html", context)
-
-
 
 @login_required(login_url='user:logar_user')
 def word_create(request):
