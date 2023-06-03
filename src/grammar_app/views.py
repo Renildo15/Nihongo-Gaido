@@ -61,6 +61,17 @@ def grammar_update(request, pk):
     return render(request, 'grammar_edit.html', context)
 
 @login_required(login_url='user:logar_user')
+def grammar_detail(request, pk):
+    grammar = Grammar.objects.get(id=pk)
+
+    context = {
+        "grammar": grammar
+    }
+
+    return render(request, "grammar_detail.html", context)
+
+
+@login_required(login_url='user:logar_user')
 def grammar_delete(request, pk):
     grammar = Grammar.objects.get(id = pk)
     grammar.delete()
