@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Nihongo Gaido - Detalhe Gramatica
+{% endblock%}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <h1>
+                <span>JLPT {{grammar.nivel}} Grammar</span><br>
+                <span>{{grammar.estrutura}}</span>
+            </h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Gramatica:</h3>
+                        <p>{{grammar.gramatica}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Explicação</h3>
+                        <p>{{grammar.explicacao}}</p></div>
+                    </div>
+            </div>
+        </div>
+        <article>
+            {% for phrase in grammar.Grammar_Phrase.all%}
+                <div>
+                    <p>{{phrase.frase}}</p>
+                    <p>{{phrase.traducao}}</p>
+                    <p>{{phrase.observacao}}</p>
+                    <a class="btn-edit" href="{% url 'phrase:update_phrase' phrase.id %}"><i class="fa fa-edit"></i></a>
+                    <a class="btn-delete confirm-delete-phrase" id="deleteButton{{phrase.id}}" href="{% url 'phrase:delete_phrase' phrase.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
+                </div>
+                {% include "partials/modal_delete.html" %}
+            {% endfor %}
+        </article>
+        {% include "partials/pagination.html" %}
+            
+    </div>
+    <script>
+        document.getElementById('home').classList.remove('active'); // Adiciona classe
+      
+        document.getElementById('gramatica').classList.add('active'); // Remove classe
+        document.getElementById('texto').classList.remove('active'); // Remove classe
+        document.getElementById('vocabulario').classList.remove('active'); // Remove classe
+        document.getElementById('sobre').classList.remove('active'); // Remove classe
+        document.getElementById('profile').classList.remove('active'); // Remove classe
+      </script>
+{% endblock content %}
