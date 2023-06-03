@@ -90,7 +90,7 @@
         {% for g in grammar%}
         <tr>
           <td data-label="Gramática">{{g.gramatica}}</td>
-          <td data-label="Estrutura">{{g.estrutura}}</td>
+          <td data-label="Estrutura"><a href="{% url 'grammar:grammar_detail' g.id %}"> {{g.estrutura}}</a></td>
           <td data-label="Nível">{{g.nivel}}</td>
           <td data-label="Frases"><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}"><i class="fa fa-eye"></i></a></td>
           <td data-label="Opções" class="btn-table">
