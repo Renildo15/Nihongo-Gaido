@@ -1141,6 +1141,89 @@ img{
     background-color: #efefef;
 }
 
+
+.container-detail .row .header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container-detail .row .header .title_one{
+    width: 80%;
+    text-align: center;
+    background-color: rgb(37, 36, 36);
+    color: white;
+    font-size: 25px;
+}
+.container-detail .row .header .title_second{
+    font-size: 30px;
+    width: 80%;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background-color: #4F9D69;
+}
+
+
+.container-detail .row .container-info{
+    padding: 20px;
+}
+.container-detail .row .container-info .grammar_info{
+    border-right: 1px solid #3f7a53;
+    border-left: 1px solid #3f7a53;
+    border-bottom: 1px solid #3f7a53;
+}
+.container-detail .row .container-info .explanation_info{
+    border-right: 1px solid #3f7a53;
+    border-bottom: 1px solid #3f7a53;
+}
+
+
+.container-detail article .list_phrases{
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #4F9D69;
+    border-radius: 10px;
+}
+
+.container-detail article .list_phrases p{
+    color: blackwhite;
+    border-bottom: 2px solid #4F9D69;
+}
+.container-detail article .list_phrases .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}
+.container-detail article .list_phrases .options a i{
+    font-size: 20px;
+}
+.container-detail article .article-content{
+    border: 1px solid plum;
+    padding: 20px 8px;
+}
+.container-detail article .article-content .btn-add{
+    width: 200px;
+    background-color: #68D89B;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.container-detail article .article-content .btn-add:hover{
+    background-color: #4F9D69;
+    width: 190px;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 1px #0000001c;
+    transition: 0.6s ease;
+}
+
 @media (max-width : 1200px) and (min-width : 930px){
 
     nav{
