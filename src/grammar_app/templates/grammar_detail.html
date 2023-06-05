@@ -5,32 +5,40 @@
 {% endblock%}
 {% block content %}
 
-    <div class="container">
+    <div class="container container-detail">
         <div class="row">
-            <h1>
-                <span>JLPT {{grammar.nivel}} Grammar</span><br>
-                <span>{{grammar.estrutura}}</span>
-            </h1>
-            <div class="container">
+            <div class="header">
+                <span class="title_one">JLPT {{grammar.nivel}} Grammar</span>
+                <span class="title_second">{{grammar.estrutura}}</span>
+            </div>
+            <div class="container container-info">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 grammar_info">
                         <h3>Gramatica:</h3>
                         <p>{{grammar.gramatica}}</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 explanation_info">
                         <h3>Explicação</h3>
                         <p>{{grammar.explicacao}}</p></div>
                     </div>
             </div>
         </div>
         <article>
+            <div class="article-content">
+                {% include "partials/item_pagina.html" %}
+                <a class="btn-add" href="{% url 'phrase:add_phrase' grammar.id %}"><i class="fa fa-plus"></i> Add nova frase</a>
+            </div>
             {% for phrase in grammar.Grammar_Phrase.all%}
-                <div>
+                <div class="list_phrases">
                     <p>{{phrase.frase}}</p>
                     <p>{{phrase.traducao}}</p>
-                    <p>{{phrase.observacao}}</p>
-                    <a class="btn-edit" href="{% url 'phrase:update_phrase' phrase.id %}"><i class="fa fa-edit"></i></a>
-                    <a class="btn-delete confirm-delete-phrase" id="deleteButton{{phrase.id}}" href="{% url 'phrase:delete_phrase' phrase.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
+                    {% if phrase.observacao %}
+                        <p>{{phrase.observacao}}</p>
+                    {% endif %}
+                    <div class="options">
+                        <a class="btn-edit" href="{% url 'phrase:update_phrase' phrase.id %}"><i class="fa fa-edit"></i></a>
+                        <a class="btn-delete confirm-delete-phrase" id="deleteButton{{phrase.id}}" href="{% url 'phrase:delete_phrase' phrase.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModalPhrase"><i class="fa fa-trash"></i></a>
+                    </div>
                 </div>
                 {% include "partials/modal_delete.html" %}
             {% endfor %}
@@ -40,11 +48,10 @@
     </div>
     <script>
         document.getElementById('home').classList.remove('active'); // Adiciona classe
-      
         document.getElementById('gramatica').classList.add('active'); // Remove classe
         document.getElementById('texto').classList.remove('active'); // Remove classe
         document.getElementById('vocabulario').classList.remove('active'); // Remove classe
         document.getElementById('sobre').classList.remove('active'); // Remove classe
         document.getElementById('profile').classList.remove('active'); // Remove classe
-      </script>
+    </script>
 {% endblock content %}
