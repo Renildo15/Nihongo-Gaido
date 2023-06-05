@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+
 from django.urls import reverse
 from .models import Grammar_Phrase
 from grammar_app.models import Grammar
