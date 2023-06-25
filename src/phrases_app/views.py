@@ -8,34 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from utils.utils import pagination
 
-# Create your views here.
-@login_required(login_url='user:logar_user')
-def phrase_list(request,pk):
-    paramentro_page = request.GET.get('page', '1')
-    paramentro_limit = request.GET.get('limit', '3')
-    grammar_phrase = Grammar_Phrase.objects.filter(criado_por= request.user.id, grammar_id=pk)
-    grammar = get_object_or_404(Grammar, pk=pk)
-
-    page = pagination(paramentro_limit, grammar_phrase, paramentro_page )
-    
-    context = {
-        'quantidade_por_pagina':['3','5','10','15'],
-        'qnt_pagina':  paramentro_limit,
-        'grammar_phrase': page,
-        'id_grammar': pk,
-        'g': grammar
-    }
-    return render(request, 'phrase_list.html', context)
-
-@login_required(login_url='user:logar_user')
-def phrase_view(request, pk):
-    phrase = Grammar_Phrase.objects.get(pk=pk)
-    context = {
-        'phrase':phrase
-    }
-
-    return render(request, "phrase_view.html", context)
-
 @login_required(login_url='user:logar_user')
 def phrase_create(request, pk):
     form = GramarPhraseForm()
