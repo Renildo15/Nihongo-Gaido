@@ -61,6 +61,23 @@ def grammar_update(request, pk):
     return render(request, 'grammar_edit.html', context)
 
 @login_required(login_url='user:logar_user')
+def grammar_detail(request, pk):
+    grammar = Grammar.objects.get(id=pk)
+    grammar_phrase = grammar.Grammar_Phrase.all()
+    parametro_page = request.GET.get('page', '1')
+    parametro_limit = request.GET.get('limit', '15')
+    page = pagination(parametro_limit, grammar_phrase, parametro_page )
+    context = {
+        "grammar": grammar,
+        'quantidade_por_pagina': ['15', '25', '35', '45'],
+        'qnt_pagina': parametro_limit,
+        'grammar_phrase': page
+    }
+
+    return render(request, "grammar_detail.html", context)
+
+
+@login_required(login_url='user:logar_user')
 def grammar_delete(request, pk):
     grammar = Grammar.objects.get(id = pk)
     grammar.delete()

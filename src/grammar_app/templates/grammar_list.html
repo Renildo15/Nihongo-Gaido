@@ -5,12 +5,7 @@
 {% endblock%}
 
 {% block content %}
-{% for msg in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{msg}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
-    </div>
-{% endfor %}
+{% include "partials/messages.html" %}
 <div class="container">
   <div class="div-text">
     <h2 class='h2 text-center mt-4'>Lista de Gramática</h2>
@@ -82,7 +77,6 @@
           <th>Gramática</th>
           <th>Estrutura</th>
           <th>Nível</th>
-          <th>Frases</th>
           <th>Opções</th>
         </tr>
       </thead>
@@ -90,9 +84,8 @@
         {% for g in grammar%}
         <tr>
           <td data-label="Gramática">{{g.gramatica}}</td>
-          <td data-label="Estrutura">{{g.estrutura}}</td>
+          <td data-label="Estrutura"><a href="{% url 'grammar:grammar_detail' g.id %}"> {{g.estrutura}}</a></td>
           <td data-label="Nível">{{g.nivel}}</td>
-          <td data-label="Frases"><a class="btn-frase" href="{% url 'phrase:phrases_list' g.id %}"><i class="fa fa-eye"></i></a></td>
           <td data-label="Opções" class="btn-table">
             <a class="btn-edit" href="{% url 'grammar:grammar_edit' g.id %}"><i class="fa fa-edit"></i></a>
             <a id="deleteButton{{g.id}}" class="btn-delete confirm-delete" href="{% url 'grammar:grammar_delete' g.id %}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa fa-trash"></i></a>

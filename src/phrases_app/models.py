@@ -8,7 +8,7 @@ class Grammar_Phrase(models.Model):
     frase = models.CharField(max_length=200, unique=True)
     traducao = models.CharField(max_length=200)
     observacao = models.TextField(max_length=300, blank=True, null=True)
-    grammar_id = models.ForeignKey(Grammar, on_delete=models.CASCADE, null=True, blank=True)
+    grammar_id = models.ForeignKey(Grammar, on_delete=models.CASCADE, null=True, blank=True, related_name="Grammar_Phrase")
     criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     
 
