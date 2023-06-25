@@ -70,7 +70,7 @@ def phrase_update(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request,"Frase alterada com sucesso!")
-            return redirect('phrase:phrases_list', phrase.grammar_id.pk)
+            return redirect('grammar:grammar_detail', phrase.grammar_id.pk)
 
     context = {
         "form": form
