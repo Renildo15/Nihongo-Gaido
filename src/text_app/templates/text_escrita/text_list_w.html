@@ -2,19 +2,13 @@
 {% block title %}Nihongo Gaido - Textos{% endblock title %}
 
 {% block content %}
-{% for msg in messages %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{msg}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
-</div>
-{% endfor %}
+{% include "./partials/messages.html" %}
 
 <div class="container">
   <div class="div-text">
     <h2 class='h2 text-center mt-4'>Lista de textos</h2>
     <div class="div-search-add">
         <div class="div-text-frase">
-           
             <div class="div-buttons">
                 <a class="btn-add" href="{% url 'text:text_escrito_form' %}"><i class="fa fa-plus"></i> Escrever novo texto</a>
             </div>
