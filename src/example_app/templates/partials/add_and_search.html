@@ -1,0 +1,24 @@
+<div class="div-text">
+    <h2 class='h2 text-center mt-4'>Exemplos</h2>
+    <hr>
+    <div class="div-search-add">
+        <div class="div-text-frase">
+            <div class="div-buttons">
+                <a class="btn-add" href="{% url 'example:add_example' word.slug %}"><i class="fa fa-plus"></i> Add exemplo</a>
+            </div>
+        </div>
+    
+        <div class="search">
+            <form action="" method="get" class="form-busca">
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-group mt-2">
+                            <input class="form-control-search" type="search" name="example_contains" placeholder="Pesquisar frase..." />
+                            <button type="submit" class="btn-search">Buscar</button>
+                        </div>
+                    </div>        
+                </div>    
+            </form>
+        </div>
+    </div>
+</div>
