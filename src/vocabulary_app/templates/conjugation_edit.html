@@ -5,12 +5,7 @@ Editar conjugação - Nihongo Gaido
 {% endblock title %}
 
 {% block content %}
-{% for msg in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{msg}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button>
-    </div>
-{% endfor %}
+{% include "./partials/messages.html" %}
 <div class="form-container-form">
     <form method="post">
         {% csrf_token %}
